@@ -1,6 +1,38 @@
+.web_container {
 
+}
 
-.test {
+.test_header {
     background: red;
-    height: 700px;
+    height: 150px;
+}
+.test_footer {
+    background: blue;
+    height: 150px;
+    display: block;
+}
+.web_body_wraper {
+    position: relative;
+    display: block;
+}
+.web_footer_wraper {
+    display: block;
+}
+.top_side_menu {
+    background: lightseagreen;
+    height: 100px;
+}
+.left_side_menu {
+    position: relative;
+    background: pink;
+    height: 250px;
+    width: 20%;
+    float: left;
+}
+.product_container {
+    position: relative;
+    background: green;
+    height: 300px;
+    width: 80%;
+    float: left;
 }
