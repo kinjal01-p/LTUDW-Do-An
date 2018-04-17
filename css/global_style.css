@@ -31,8 +31,11 @@
 }
 .product_container {
     position: relative;
-    background: green;
+  
     height: 300px;
     width: 80%;
     float: left;
+}
+footer{
+    margin-top: 600px;
 }
