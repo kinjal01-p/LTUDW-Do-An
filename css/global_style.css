@@ -70,16 +70,18 @@ body {
   height: 100px;
 }
 .left_side_menu {
-  position: relative;
-  background: pink;
-  height: 250px;
-  width: 20%;
-  float: left;
+    position: relative;
+    background:white;
+    width: 20%;
+    float: left;  
+    margin-top: 5px;  
+    padding-bottom: 10px;
 }
 .product_container {
-  position: relative;
-  background: green;
-  height: 300px;
-  width: 80%;
-  float: left;
+    position: relative;
+    background: green;
+    height: 300px;
+    width: 79%;
+    float: left;
+    margin-left: 5px;
 }
