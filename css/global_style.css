@@ -24,18 +24,23 @@
 }
 .left_side_menu {
     position: relative;
-    background: pink;
-    height: 250px;
+    background:white;
     width: 20%;
-    float: left;
+    float: left;  
+    margin-top: 5px;  
+    padding-bottom: 10px;
 }
 .product_container {
     position: relative;
   
     height: 300px;
-    width: 80%;
+    width: 79%;
     float: left;
+<<<<<<< HEAD
 }
 footer{
     margin-top: 600px;
+=======
+    margin-left: 5px;
+>>>>>>> 1.0.0
 }
