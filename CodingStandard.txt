@@ -1,5 +1,5 @@
-﻿Để dễ maintain với phân chia code nên mọi người theo nguyên tắc này nha:
-
+﻿Để dễ maintain với phân chia code nên mọi người theo nguyên tắc coding này nha:
+--------------------------------------------------------
 +Thêm mới code:
 Đối với file html:
 	<!-- BEGIN ADD CAM-SV -->
@@ -7,10 +7,10 @@
 	<!-- END ADD CAM-SV -->
 
 Đối với file js,css:
-	/* BEGIN ADD CAM-SV */
+	// BEGIN ADD CAM-SV
 		...
-	/* END ADD CAM-SV */
-
+	// END ADD CAM-SV
+--------------------------------------------------------
 +Edit code:
 Đối với file html:
 	<!-- BEGIN EDIT CAM-SV -->
@@ -18,8 +18,15 @@
 	<!-- END EDIT CAM-SV -->
 
 Đối với file js,css:
-	/* BEGIN EDIT CAM-SV */
+	// BEGIN EDIT CAM-SV
 		...
-	/* END EDIT CAM-SV */
+	// END EDIT CAM-SV
+--------------------------------------------------------
++Remind:
+Đối với file html:
+	<!-- CAM-SV: Hello -->
+
+Đối với file html:
+	// CAM-SV: Tui sửa ở dòng này abc thành xyz
 
 	

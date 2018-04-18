@@ -1,6 +1,6 @@
 $(document).ready(function () {
-
-
+     // BEGIN EDIT CAM-SV
+     
     // var arrProductImage = ["one", "two", "three", "four", "five", "six"]
     // var arrProductColor = ["red", "green", "blue",
     //     "orange", "yellow", "pink"
@@ -23,6 +23,7 @@ $(document).ready(function () {
     //     $(".flexbox-container").append(divTag);
     // }
 
+    // Demo slide show product
     var slides = document.querySelectorAll('#slides .slide');
     var currentSlide = 0;
     var slideInterval = setInterval(nextSlide, 2000);
@@ -55,18 +56,15 @@ $(document).ready(function () {
 
     $(".img-thumbnail").on({
         click: function () {
-          var img = $(this).data("img");
-          console.log(img);
-          pauseSlideshow();
-          var thisSlide = $("#slides li[data-slide=" + img + "]");
-          console.log(thisSlide);
-          $(".showing").removeClass("showing");
-          thisSlide.addClass("showing");
-          currentSlide = img - 1;
+            var img = $(this).data("img");
+            console.log(img);
+            pauseSlideshow();
+            var thisSlide = $("#slides li[data-slide=" + img + "]");
+            console.log(thisSlide);
+            $(".showing").removeClass("showing");
+            thisSlide.addClass("showing");
+            currentSlide = img - 1;
         }
-      });
-
-
-
-
+    });
+    // END EDIT CAM-SV
 });

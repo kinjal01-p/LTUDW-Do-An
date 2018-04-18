@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <!-- CAM-SV: lưu ý phiên bản css của bootstrap phải giống với phiên bản js của bootstrap -->
+    <!-- CAM-SV: nếu dùng css ver 4 mà dùng bản js ver 3 là ko hiển thị được modal -->
     <link rel="stylesheet" href="css/global_style.css">
     <link rel="stylesheet" href="css/anmoc.css">
     <link rel="stylesheet" href="css/left_side_menu.css">
     <link rel="stylesheet" href="css/slider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <!-- CAM-SV: lưu ý phiên bản js của bootstrap -->
+    <script src="js/common.js"></script>
     <script src="js/product_page.js"></script>
 
     <title>Guest Client</title>
@@ -46,7 +51,8 @@
                     </a>
                 </div>
                 <div style="display: block; margin: auto 20px;">
-                    <button class="btn">
+                    <button class="btn" id="btnLogIn"> 
+                        <!-- CAM-SV: thêm id btnLogIn để trigger modal -->
                         <i>
                             <img src="resources/imgs/icons/user.png" />
                         </i>
@@ -130,5 +136,130 @@
         </div>
     </div>
 </footer>
+
+<!-- BEGIN ADD CAM-SV -->
+<!-- Do nó dài quá nên tui để dưới cùng này -->
+<!-- BEGIN Modal Login -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Đăng nhập
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a id="tabLogIn" href="#Login" data-toggle="tab">Đăng nhập</a>
+                            </li>
+                            <li>
+                                <a id="tabSignUp" href="#Registration" data-toggle="tab">Đăng ký</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Login">
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-2 control-label">
+                                            Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                            Mật khẩu</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Đăng nhập</button>
+                                            <a href="javascript:;">Quên mật khẩu?</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="Registration">
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-2 control-label">
+                                            Họ tên</label>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" placeholder="Nhập họ tên" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-2 control-label">
+                                            Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="email" placeholder="Nhập email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mobile" class="col-sm-2 control-label">
+                                            Di động</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="mobile" placeholder="Nhập di động" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="col-sm-2 control-label">
+                                            Mật khẩu</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <button type="button" class="btn btn-primary btn-sm">
+                                                Đăng ký</button>
+                                            <button type="button" class="btn btn-default btn-sm">
+                                                Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row text-center sign-with">
+                            <div class="col-md-12">
+                                <h3>
+                                    Đăng nhập bằng</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="#" class="btn btn-primary">Facebook</a>
+                                    <a href="#" class="btn btn-danger">
+                                        Google</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal Login -->
+<!-- END ADD CAM-SV -->
 
 </html>
