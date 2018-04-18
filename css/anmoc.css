@@ -1,0 +1,49 @@
+.flexbox-container {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.box {
+    width: 100px;
+    height: 250px;
+    opacity: 0.5;
+    margin: 0px 10px 20px 10px;
+}
+
+.one {
+    opacity: 1;
+    background: red;
+    width: 25%;
+   
+    background-repeat: no-repeat;
+}
+
+.two {
+    background: yellow;
+    width: 25%;
+    background-repeat: no-repeat;
+}
+
+.three {
+    background: green;
+    width: 25%;
+    background-repeat: no-repeat;
+}
+
+.four {
+    background: blue;
+    width: 25%;
+    background-repeat: no-repeat;
+}
+
+.five {
+    background: blue;
+    width: 25%;
+    background-repeat: no-repeat;
+}
+.six {
+    background: blue;
+    width: 25%;
+    background-repeat: no-repeat;
+}

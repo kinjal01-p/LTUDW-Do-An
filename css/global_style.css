@@ -79,9 +79,15 @@ body {
 }
 .product_container {
     position: relative;
-    background: green;
+  
     height: 300px;
     width: 79%;
     float: left;
+<<<<<<< HEAD
+}
+footer{
+    margin-top: 600px;
+=======
     margin-left: 5px;
+>>>>>>> 1.0.0
 }
