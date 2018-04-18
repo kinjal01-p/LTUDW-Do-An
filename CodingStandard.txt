@@ -1,0 +1,25 @@
+﻿Để dễ maintain với phân chia code nên mọi người theo nguyên tắc này nha:
+
++Thêm mới code:
+Đối với file html:
+	<!-- BEGIN ADD CAM-SV -->
+		...
+	<!-- END ADD CAM-SV -->
+
+Đối với file js,css:
+	/* BEGIN ADD CAM-SV */
+		...
+	/* END ADD CAM-SV */
+
++Edit code:
+Đối với file html:
+	<!-- BEGIN EDIT CAM-SV -->
+		...
+	<!-- END EDIT CAM-SV -->
+
+Đối với file js,css:
+	/* BEGIN EDIT CAM-SV */
+		...
+	/* END EDIT CAM-SV */
+
+	

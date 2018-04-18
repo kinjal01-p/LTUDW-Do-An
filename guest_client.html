@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/global_style.css">
     <link rel="stylesheet" href="css/anmoc.css">
     <link rel="stylesheet" href="css/left_side_menu.css">
+    <link rel="stylesheet" href="css/slider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/product_page.js"></script>
 
@@ -47,7 +48,7 @@
                 <div style="display: block; margin: auto 20px;">
                     <button class="btn">
                         <i>
-                            <img src="resources/imgs/icons/user.png"/>
+                            <img src="resources/imgs/icons/user.png" />
                         </i>
                         <span>Đăng nhập</span>
                     </button>
@@ -70,24 +71,52 @@
                         <div class="product_type menu_item">product type 2</div>
                         <div class="product_type menu_item">product type 3</div>
                         <div class="product_type menu_item">product type 4</div>
-                        
+
                     </div>
-                    <hr/>                    
+                    <hr/>
                     <div class="producer_menu_list">
                         <div class="left_side_child_menu_title">Nhà sản xuất</div>
                         <div class="producter menu_item">Producer 1</div>
                         <div class="producter menu_item">Producer 2</div>
                         <div class="producter menu_item">Producer 3</div>
                         <div class="producter menu_item">Producer 4</div>
-                        
+
                     </div>
                 </div>
-                <div class="product_container">
+                <div class="container product_container">
                     <!-- product page code here -->
+                    <!-- BEGIN ADD CAM-SV -->
+
                     <div class="flexbox-container">
-
-
+                        <ul id="slides">
+                            <li class="slide showing" data-slide="1"></li>
+                            <li class="slide" data-slide="2"></li>
+                            <li class="slide" data-slide="3"></li>
+                            <li class="slide" data-slide="4"></li>
+                        </ul>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="row pictures">
+                            <div class="col-sm-3">
+                                <img class="img-thumbnail" id="sakura1" data-img="1" src="resources/imgs/sakura/sakura1.png" height="62" width="62">
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="img-thumbnail" id="sakura2" data-img="2" src="resources/imgs/sakura/sakura2.png" height="62" width="62">
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="img-thumbnail" id="sakura3" data-img="3" src="resources/imgs/sakura/sakura3.png" height="62" width="62">
+                            </div>
+                            <div class="col-sm-3">
+                                <img class="img-thumbnail" id="sakura4" data-img="4" src="resources/imgs/sakura/sakura4.png" height="62" width="62">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <button class="btn btn-success controls" id="pause">Pause</button>
                     </div>
+                    <!-- END ADD CAM-SV -->
                 </div>
             </div>
         </div>
