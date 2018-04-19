@@ -5,16 +5,53 @@
     /* display: flex; */
     /* END EDIT CAM-SV */
 }
+.container-flexbox {
+    margin-top: 10px;
+    flex-wrap: wrap;
+    display: flex;
+  
+}
+a {
+    text-decoration: none !important;
+}
+
+.enable_display_btn{
+    display: block;
+}
+.disable_display_btn{
+
+    display: none;
+}
+.title {
+    text-overflow: ellipsis;
+    text-align: left;
+    margin: 20px auto 0;
+    letter-spacing: .1px;
+    font-size: 13px;
+    color: #242424;
+    overflow: hidden;
+    height: 35px;
+    display: block; 
+}
+.image{
+     overflow: hidden;
+     display: block;
+     margin: 10px auto 0;
+     text-align: center;
+     background: #fff;
+     height: 200px;
+     white-space: nowrap;
+}
 
 .box {
-    width: 100px;
-    height: 250px;
-    opacity: 0.5;
-    margin: 0px 10px 20px 10px;
+
+    border: 1px solid transparent;
+    height: 350px;
+    max-width: 100%;
+    margin: 5px;
 }
 
 .one {
-    opacity: 1;
     background: red;
     width: 25%;
    
