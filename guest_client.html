@@ -6,16 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- CAM-SV: lưu ý phiên bản css của bootstrap phải giống với phiên bản js của bootstrap -->
-    <!-- CAM-SV: nếu dùng css ver 4 mà dùng bản js ver 3 là ko hiển thị được modal -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/global_style.css">
     <link rel="stylesheet" href="css/anmoc.css">
     <link rel="stylesheet" href="css/left_side_menu.css">
     <link rel="stylesheet" href="css/slider.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- CAM-SV: lưu ý phiên bản js của bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <script src="js/common.js"></script>
     <script src="js/product_page.js"></script>
     <script src="js/product_item_list.js"></script>
@@ -23,6 +22,47 @@
 </head>
 
 <body>
+    <!-- BEGIN ADD BAO-SV -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <!-- END ADD BAO-SV -->
     <div class="web_container">
         <div class="web_header_wraper color_header">
             <div class="container custom_header">
@@ -93,40 +133,11 @@
                     <!-- product page code here -->
                     <!-- BEGIN ADD CAM-SV -->
                     <div class="flexbox-container">
-                        <ul id="slides">
-                            <li class="slide showing" data-slide="1"></li>
-                            <li class="slide" data-slide="2"></li>
-                            <li class="slide" data-slide="3"></li>
-                            <li class="slide" data-slide="4"></li>
-                        </ul>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="row pictures">
-                            <div class="col-sm-3">
-                                <img class="img-thumbnail" id="sakura1" data-img="1" src="resources/imgs/sakura/sakura1.png" height="62" width="62">
-                            </div>
-                            <div class="col-sm-3">
-                                <img class="img-thumbnail" id="sakura2" data-img="2" src="resources/imgs/sakura/sakura2.png" height="62" width="62">
-                            </div>
-                            <div class="col-sm-3">
-                                <img class="img-thumbnail" id="sakura3" data-img="3" src="resources/imgs/sakura/sakura3.png" height="62" width="62">
-                            </div>
-                            <div class="col-sm-3">
-                                <img class="img-thumbnail" id="sakura4" data-img="4" src="resources/imgs/sakura/sakura4.png" height="62" width="62">
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <button class="btn btn-success controls" id="pause">Pause</button>
                     </div>
                     <!-- END ADD CAM-SV -->
 
                     <!-- BEGIN ADD ANMOC-SV -->
                     <div class="container-flexbox">
-
-
                     </div>
                     <!-- END ADD ANMOC-SV -->
                 </div>
@@ -149,23 +160,24 @@
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    ×</button>
-                <h4 class="modal-title" id="myModalLabel">
+            <div class="modal-header" style="float: left; display: flex;">
+
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
                     Đăng nhập
                 </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs">
-                            <li class="active">
-                                <a id="tabLogIn" href="#Login" data-toggle="tab">Đăng nhập</a>
+                        <ul class="nav">
+                            <li class="nav-item">
+                                <a id="tabLogIn" class="nav-link" href="#Login" data-toggle="tab">Đăng nhập</a>
                             </li>
-                            <li>
-                                <a id="tabSignUp" href="#Registration" data-toggle="tab">Đăng ký</a>
+                            <li class="nav-item">
+                                <a id="tabSignUp" class="nav-link" href="#Registration" data-toggle="tab">Đăng ký</a>
                             </li>
                         </ul>
                         <!-- Tab panes -->
@@ -173,23 +185,23 @@
                             <div class="tab-pane active" id="Login">
                                 <form role="form" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">
+                                        <label for="email" class="col-sm-12 control-label">
                                             Email</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <input type="email" class="form-control" id="email1" placeholder="Email" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1" class="col-sm-2 control-label">
+                                        <label for="exampleInputPassword1" class="col-sm-12 control-label">
                                             Mật khẩu</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" />
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-12">
                                         </div>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <button type="submit" class="btn btn-primary btn-sm">
                                                 Đăng nhập</button>
                                             <a href="javascript:;">Quên mật khẩu?</a>
@@ -200,41 +212,41 @@
                             <div class="tab-pane" id="Registration">
                                 <form role="form" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">
+                                        <label for="email" class="col-md-12 control-label">
                                             Họ tên</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <div class="row">
-                                                <div class="col-md-9">
+                                                <div class="col-md-12">
                                                     <input type="text" class="form-control" placeholder="Nhập họ tên" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-2 control-label">
+                                        <label for="email" class="col-sm-12 control-label">
                                             Email</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <input type="email" class="form-control" id="email" placeholder="Nhập email" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="mobile" class="col-sm-2 control-label">
+                                        <label for="mobile" class="col-sm-12 control-label">
                                             Di động</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <input type="email" class="form-control" id="mobile" placeholder="Nhập di động" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="password" class="col-sm-2 control-label">
+                                        <label for="password" class="col-sm-12 control-label">
                                             Mật khẩu</label>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" />
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-12">
                                         </div>
-                                        <div class="col-sm-10">
+                                        <div class="col-sm-12">
                                             <button type="button" class="btn btn-primary btn-sm">
                                                 Đăng ký</button>
                                             <button type="button" class="btn btn-default btn-sm">
