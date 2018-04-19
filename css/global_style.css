@@ -79,15 +79,15 @@ body {
 }
 .product_container {
     position: relative;
-  
     height: 300px;
     width: 79%;
     float: left;
-<<<<<<< HEAD
 }
-footer{
-    margin-top: 600px;
-=======
-    margin-left: 5px;
->>>>>>> 1.0.0
+
+/* BEGIN EDIT ANMOC-SV */
+
+footer {
+  margin-top: 1000px;
 }
+
+/* END EDIT ANMOC-SV */
