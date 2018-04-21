@@ -9,6 +9,10 @@ body {
   background: #00ffa1;
 }
 
+.color_navbar {
+  background-color: #e3f2fd;
+}
+
 .flex {
   display: flex;
 }
