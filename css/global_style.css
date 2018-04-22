@@ -27,7 +27,7 @@ body {
 }
 
 .color_footer {
-  background: white;
+  background: #1abc9c;
   margin: auto;
   padding: 10px;
   text-align: center;
@@ -81,17 +81,15 @@ body {
     margin-top: 5px;  
     padding-bottom: 10px;
 }
+/* BEGIN EDIT HUUDANH-SV */
 .product_container {
     position: relative;
-    height: 300px;
     width: 79%;
     float: left;
 }
 
-/* BEGIN EDIT ANMOC-SV */
-
 footer {
-  margin-top: 1000px;
+  width: 100%;
+  position: relative;
 }
-
-/* END EDIT ANMOC-SV */
+/* END EDIT HUUDANH-SV */
