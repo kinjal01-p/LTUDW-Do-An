@@ -9,20 +9,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/global_style.css">
-    <link rel="stylesheet" href="css/anmoc.css">
-    <link rel="stylesheet" href="css/left_side_menu.css">
-    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/detail_page.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="js/common.js"></script>
-    <script src="js/product_page.js"></script>
     <script src="js/product_item_list.js"></script>
-    <title>Guest Client</title>
+    <title>Product</title>
 </head>
 
 <body>
-    <!-- BEGIN ADD BAO-SV -->
+    <!-- BEGIN ADD HUUDANH-SV -->
+    <!-- begin header -->
     <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -68,54 +66,48 @@
             </div>
         </div>
     </nav>
-    <!-- END ADD BAO-SV -->
-    <div class="web_container">
-        <div class="web_body_wraper">
-            <!-- code web-body at here -->
-            <div class="container">
-                <div class="top_side_menu">
-                    <!--if exist code here  -->
-                    <h1>Code top-side menu here if we need</h1>
-                </div>
-                <div class="left_side_menu">
-                    <!-- left side menu code here -->
-                    <div class="left_side_menu_title">Danh mục sản phẩm</div>
-                    <div class="product_type_menu_list">
-                        <div class="left_side_child_menu_title">Loại sản phẩm</div>
-                        <div class="product_type menu_item">product type 1</div>
-                        <div class="product_type menu_item">product type 2</div>
-                        <div class="product_type menu_item">product type 3</div>
-                        <div class="product_type menu_item">product type 4</div>
-
-                    </div>
-                    <hr/>
-                    <div class="producer_menu_list">
-                        <div class="left_side_child_menu_title">Nhà sản xuất</div>
-                        <div class="producter menu_item">Producer 1</div>
-                        <div class="producter menu_item">Producer 2</div>
-                        <div class="producter menu_item">Producer 3</div>
-                        <div class="producter menu_item">Producer 4</div>
-
+    <!-- end header -->
+    <!-- begin body -->
+    <div class="detail_container">
+        <div class="row product_detail_container">
+            <div class="row col-md-5 img_side">
+                <!-- BEGIN LEFT COLUMN - SMALL IMG -->
+                <div class="col-md-3 product_small_img_column">
+                    <div class="small_img_container">
+                        <img class="small_img" src="resources/imgs/small/3.jpg" alt="">
                     </div>
                 </div>
-                <div class="container product_container">
-                    <!-- product page code here -->
-                    <!-- BEGIN ADD CAM-SV -->
-                    <div class="flexbox-container">
+                <!-- END LEFT COLUMN - SMALL IMG -->
+                <!--BEGIN MIDDLE COLUMN - BIG IMG -->
+                <div class="col-md-9 product_image_wraper">
+                    <div class="product_image_div">
+                        <img class="product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                            alt="">
                     </div>
-                    <!-- END ADD CAM-SV -->
+                </div>
+                <!-- END MIDLE COLUMN - BIG IMG -->
+            </div>
 
-                    <!-- BEGIN ADD ANMOC-SV -->
-                    <div class="container-flexbox">
-                        
-                    </div>
-                    <!-- END ADD ANMOC-SV -->
+            <!-- BEGIN RIGHT COLUMN - PRODUCT INFO -->
+            <div class="col-md-7 product_info_wraper">
+                <div class="general_info_container">
+
                 </div>
             </div>
+            <!-- END RIGHT COLUMN - PRODUCT INFO -->
+        </div>
+        <div class="same_producer_list">
+
+        </div>
+        <div class="same_type_list">
+
         </div>
     </div>
+    <!-- end body -->
     <div style="clear: both;"></div>
+    <!-- END ADD HUUDANH-SV -->
 </body>
+<!-- BEGIN ADD HUUDANH-SV -->
 <footer>
     <div class="web_footer_wraper">
         <div class="color_footer">
@@ -123,7 +115,7 @@
         </div>
     </div>
 </footer>
-
+<!-- END ADD HUUDANH-SV -->
 <!-- BEGIN ADD CAM-SV -->
 <!-- Do nó dài quá nên tui để dưới cùng này -->
 <!-- BEGIN Modal Login -->
