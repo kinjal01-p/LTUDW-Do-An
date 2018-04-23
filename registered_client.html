@@ -35,7 +35,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <form class="form-inline mr-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" style="min-width: 400px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
+                    <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
                         aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                         <i>
@@ -55,13 +55,21 @@
                             <span class="count">0</span>
                         </a>
                     </div>
-                    <div style="display: block; margin: auto 20px;">
-                        <button class="btn btn-primary" id="btnLogIn">
+                    <div class="nav-item dropdown" style="display: block; margin: auto 20px;">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-primary">
                             <i>
                                 <img src="resources/imgs/icons/user.png" />
                             </i>
                             <span>Chào, tqbdev</span>
-                        </button>
+                            </button>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Tài khoản của tôi</a>
+                            <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Thoát tài khoản</a>
+                        </div>
                     </div>
                 </div>
             </div>
