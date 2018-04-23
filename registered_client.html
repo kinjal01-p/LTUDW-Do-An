@@ -56,7 +56,7 @@
                         <i>
                             <img src="resources/imgs/icons/checkout.png" />
                         </i>
-                        <i class="text">Giỏ hàng</i>
+                        <span class="text">Giỏ hàng</span>
                         <span class="count">0</span>
                     </a>
                 </div>
@@ -346,7 +346,7 @@
     </div>
 </footer>
 
-<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="float: left; display: flex;">
@@ -362,14 +362,14 @@
                         <label>Họ và tên</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text"/>
+                        <input class="form-control" type="text" />
                     </div>
 
                     <div class="col-md-3 entry_information">
                         <label>Điện thoại</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text"/>
+                        <input class="form-control" type="text" />
                     </div>
 
                     <div class="col-md-3 entry_information">
@@ -383,12 +383,12 @@
                         <label>Giới tính</label>
                     </div>
                     <div class="col-md-3 entry_information">
-                        <label class="radio-inline" style="margin-left: 10px;">
+                        <label class="radio-inline">
                             <input type="radio" name="optradio" style="margin-right: 10px;">Nam</label>
                     </div>
                     <div class="col-md-3 entry_information">
-                        <label class="radio-inline" style="margin-left: 10px;">
-                            <input type="radio" name="optradio" style="margin-right: 10px;" checked>Nữ</label>        
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;" checked>Nữ</label>
                     </div>
                     <div class="col-md-3 entry_information"></div>
 
@@ -403,7 +403,42 @@
                         <label>Địa chỉ</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text"/>
+                        <input class="form-control" type="text" />
+                    </div>
+
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9 entry_information">
+                        <label>
+                            <input type="checkbox" value="" id="isChangePassword">
+                            <span style="margin-left: 10px">Thay đổi mật khẩu</span>
+                        </label>
+                    </div>
+
+                    <div class="row area_password" id="areaChangePassword">
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu cũ</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu mới</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Nhập lại</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin: 0 auto;">
+                        <button class="btn btn-warning">Thay đổi</button>
                     </div>
                 </div>
             </div>

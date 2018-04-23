@@ -23,6 +23,23 @@ $(document).ready(function () {
     $("#refMyAccount").click(function () {
         $('#modalInformation').modal('show');
     }); 
+
+    $("#isChangePassword").prop('checked', false);
+    if ($("#isChangePassword").checked) {
+        $('#areaChangePassword').show();
+    }
+    else {
+        $('#areaChangePassword').hide();
+    }
+
+    $("#isChangePassword").change(function () {
+        if (this.checked) {
+            $('#areaChangePassword').show();
+        }
+        else {
+            $('#areaChangePassword').hide();
+        }
+    }); 
     // END ADD BAO-TQ
 });
 
