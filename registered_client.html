@@ -24,52 +24,57 @@
 <body>
     <!-- BEGIN ADD BAO-TQ -->
     <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="resources/imgs/logo.png" />
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <a class="navbar-brand" href="#">
+            <img src="resources/imgs/logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <form class="form-inline mr-auto mt-2 mt-lg-0">
-                    <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
-                        aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline mr-auto mt-2 mt-lg-0">
+                <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
+                    aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <i>
+                        <img src="resources/imgs/icons/search.png" />
+                    </i>
+                    <span>Tìm kiếm</span>
+                </button>
+                <button class="btn btn-outline-success my-2 my-sm-0 advance_search">
+                    <i>
+                        <img src="resources/imgs/icons/search.png" />
+                    </i>
+                    <span>Nâng cao</span>
+                </button>
+            </form>
+
+            <div class="navbar-nav my-2 my-lg-0">
+                <div style="display: block; margin: auto 10px;">
+                    <a class="check_out" href="">
                         <i>
-                            <img src="resources/imgs/icons/search.png" />
+                            <img src="resources/imgs/icons/checkout.png" />
                         </i>
-                        <span>Tìm kiếm</span>
-                    </button>
-                </form>
-
-                <div class="navbar-nav my-2 my-lg-0">
-                    <div style="display: block; margin: auto 20px;">
-                        <a class="check_out" href="">
-                            <i>
-                                <img src="resources/imgs/icons/checkout.png" />
-                            </i>
-                            <i class="text">Giỏ hàng</i>
-                            <span class="count">0</span>
-                        </a>
-                    </div>
-                    <div class="nav-item dropdown" style="display: block; margin: auto 20px;">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <button class="btn btn-primary">
+                        <i class="text">Giỏ hàng</i>
+                        <span class="count">0</span>
+                    </a>
+                </div>
+                <div class="nav-item dropdown" style="display: block; margin: auto 20px;">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <button class="btn btn-primary">
                             <i>
                                 <img src="resources/imgs/icons/user.png" />
                             </i>
                             <span>Chào, tqbdev</span>
-                            </button>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Tài khoản của tôi</a>
-                            <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Thoát tài khoản</a>
-                        </div>
+                        </button>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" id="refMyAccount">Tài khoản của tôi</a>
+                        <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Thoát tài khoản</a>
                     </div>
                 </div>
             </div>
@@ -340,6 +345,71 @@
         </div>
     </div>
 </footer>
- <!-- END ADD BAO-TQ -->
+
+<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                    Thông tin tài khoản
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text"/>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Điện thoại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text"/>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" disabled/>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giới tính</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline" style="margin-left: 10px;">
+                            <input type="radio" name="optradio" style="margin-right: 10px;">Nam</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline" style="margin-left: 10px;">
+                            <input type="radio" name="optradio" style="margin-right: 10px;" checked>Nữ</label>        
+                    </div>
+                    <div class="col-md-3 entry_information"></div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input type="date" class="form-control">
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Địa chỉ</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END ADD BAO-TQ -->
 
 </html>

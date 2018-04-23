@@ -19,5 +19,10 @@ $(document).ready(function () {
     }); 
 
     // END ADD CAM-SV
+    // BEGIN ADD BAO-TQ
+    $("#refMyAccount").click(function () {
+        $('#modalInformation').modal('show');
+    }); 
+    // END ADD BAO-TQ
 });
 
