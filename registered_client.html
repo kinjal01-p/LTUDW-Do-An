@@ -1,48 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="css/global_style.css">
+    <link rel="stylesheet" href="css/anmoc.css">
+    <link rel="stylesheet" href="css/left_side_menu.css">
+    <link rel="stylesheet" href="css/top_side_menu.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="js/common.js"></script>
+    <script src="js/product_item_list.js"></script>
     <title>Registered Client</title>
 </head>
+
 <body>
-    <div class="web_container">
-        <div class="web_header_wraper">
-            <!--code web-header at here -->
-            <div class="test_header">
-                <h1>Code header here!</h1>
+    <!-- BEGIN ADD BAO-TQ -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="resources/imgs/logo.png" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline mr-auto mt-2 mt-lg-0">
+                    <input class="form-control mr-sm-2" style="min-width: 400px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
+                        aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        <i>
+                            <img src="resources/imgs/icons/search.png" />
+                        </i>
+                        <span>Tìm kiếm</span>
+                    </button>
+                </form>
+
+                <div class="navbar-nav my-2 my-lg-0">
+                    <div style="display: block; margin: auto 20px;">
+                        <a class="check_out" href="">
+                            <i>
+                                <img src="resources/imgs/icons/checkout.png" />
+                            </i>
+                            <i class="text">Giỏ hàng</i>
+                            <span class="count">0</span>
+                        </a>
+                    </div>
+                    <div style="display: block; margin: auto 20px;">
+                        <button class="btn btn-primary" id="btnLogIn">
+                            <i>
+                                <img src="resources/imgs/icons/user.png" />
+                            </i>
+                            <span>Đăng nhập</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
+    </nav>
+    <div class="web_container">
         <div class="web_body_wraper">
             <!-- code web-body at here -->
             <div class="container">
-                <div class="top_side_menu">
-                    <!--if exist code here  -->
-                    <h1>Code top-side menu here if we need</h1>
+                <div class="w3-row-padding">
+                    <div class="instruction-text">Top 10 sản phẩm mới nhất</div>
+                    <!-- Row 1 -->
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                                title="5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Khi Hơi Thở Hóa Thinh Không_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Tự truyện - Hồi ký _big.jpg"
+                                title="Khi Hơi Thở Hóa Thinh Không_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Tự truyện - Hồi ký _big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Nuôi Con Không Phải Là Cuộc Chiến (Tái Bản)_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách Bà mẹ - Em bé Sách Làm Cha Mẹ_big.jpg"
+                                title="Nuôi Con Không Phải Là Cuộc Chiến (Tái Bản)_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách Bà mẹ - Em bé Sách Làm Cha Mẹ_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/7 Thói Quen Hiệu Quả_Nhà Xuất Bản Tổng hợp TP.HCM_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big.jpg"
+                                title="7 Thói Quen Hiệu Quả_Nhà Xuất Bản Tổng hợp TP.HCM_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Bứt Phá Điểm Thi THPT Môn Tiếng Anh 1_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách Tham Khảo Sách Luyện Thi Đại Học - Cao Đẳng_big.jpg"
+                                title="Bứt Phá Điểm Thi THPT Môn Tiếng Anh 1_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách Tham Khảo Sách Luyện Thi Đại Học - Cao Đẳng_big.jpg"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Ở Lại Thành Phố Hay Về Quê _Nhà Xuất Bản Thế Giới_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp Sách hướng nghiệp_big.jpg"
+                                title="Ở Lại Thành Phố Hay Về Quê _Nhà Xuất Bản Thế Giới_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp Sách hướng nghiệp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Sự Im Lặng Của Bầy Cừu (Tái Bản)_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Trinh thám - Phiêu lưu_big.jpg"
+                                title="Sự Im Lặng Của Bầy Cừu (Tái Bản)_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Trinh thám - Phiêu lưu_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Ruồi Trâu_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Văn học phương Tây_big.jpg"
+                                title="Ruồi Trâu_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Văn học phương Tây_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Nói Thế Nào Để Được Chào Đón, Làm Thế Nào Để Được Ghi Nhận_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big.jpg"
+                                title="Nói Thế Nào Để Được Chào Đón, Làm Thế Nào Để Được Ghi Nhận_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Stay With Me - Anh Ơi Đừng Đi_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                                title="Stay With Me - Anh Ơi Đừng Đi_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="instruction-text">Top 10 sản phẩm bán chạy nhất</div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                                title="5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Khi Hơi Thở Hóa Thinh Không_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Tự truyện - Hồi ký _big.jpg"
+                                title="Khi Hơi Thở Hóa Thinh Không_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Tự truyện - Hồi ký _big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Nuôi Con Không Phải Là Cuộc Chiến (Tái Bản)_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách Bà mẹ - Em bé Sách Làm Cha Mẹ_big.jpg"
+                                title="Nuôi Con Không Phải Là Cuộc Chiến (Tái Bản)_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách Bà mẹ - Em bé Sách Làm Cha Mẹ_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/7 Thói Quen Hiệu Quả_Nhà Xuất Bản Tổng hợp TP.HCM_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big.jpg"
+                                title="7 Thói Quen Hiệu Quả_Nhà Xuất Bản Tổng hợp TP.HCM_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Bứt Phá Điểm Thi THPT Môn Tiếng Anh 1_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách Tham Khảo Sách Luyện Thi Đại Học - Cao Đẳng_big.jpg"
+                                title="Bứt Phá Điểm Thi THPT Môn Tiếng Anh 1_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách Tham Khảo Sách Luyện Thi Đại Học - Cao Đẳng_big.jpg"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Ở Lại Thành Phố Hay Về Quê _Nhà Xuất Bản Thế Giới_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp Sách hướng nghiệp_big.jpg"
+                                title="Ở Lại Thành Phố Hay Về Quê _Nhà Xuất Bản Thế Giới_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp Sách hướng nghiệp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Sự Im Lặng Của Bầy Cừu (Tái Bản)_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Trinh thám - Phiêu lưu_big.jpg"
+                                title="Sự Im Lặng Của Bầy Cừu (Tái Bản)_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Trinh thám - Phiêu lưu_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Ruồi Trâu_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Văn học phương Tây_big.jpg"
+                                title="Ruồi Trâu_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Văn học phương Tây_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Nói Thế Nào Để Được Chào Đón, Làm Thế Nào Để Được Ghi Nhận_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big.jpg"
+                                title="Nói Thế Nào Để Được Chào Đón, Làm Thế Nào Để Được Ghi Nhận_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Stay With Me - Anh Ơi Đừng Đi_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                                title="Stay With Me - Anh Ơi Đừng Đi_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="instruction-text">Top 10 sản phẩm xem nhiều nhất</div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                                title="5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Khi Hơi Thở Hóa Thinh Không_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Tự truyện - Hồi ký _big.jpg"
+                                title="Khi Hơi Thở Hóa Thinh Không_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Tự truyện - Hồi ký _big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Nuôi Con Không Phải Là Cuộc Chiến (Tái Bản)_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách Bà mẹ - Em bé Sách Làm Cha Mẹ_big.jpg"
+                                title="Nuôi Con Không Phải Là Cuộc Chiến (Tái Bản)_Nhà Xuất Bản Lao Động_Nhà Sách Tiki Sách tiếng Việt Sách Bà mẹ - Em bé Sách Làm Cha Mẹ_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/7 Thói Quen Hiệu Quả_Nhà Xuất Bản Tổng hợp TP.HCM_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big.jpg"
+                                title="7 Thói Quen Hiệu Quả_Nhà Xuất Bản Tổng hợp TP.HCM_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Bứt Phá Điểm Thi THPT Môn Tiếng Anh 1_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách Tham Khảo Sách Luyện Thi Đại Học - Cao Đẳng_big.jpg"
+                                title="Bứt Phá Điểm Thi THPT Môn Tiếng Anh 1_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách Tham Khảo Sách Luyện Thi Đại Học - Cao Đẳng_big.jpg"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Ở Lại Thành Phố Hay Về Quê _Nhà Xuất Bản Thế Giới_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp Sách hướng nghiệp_big.jpg"
+                                title="Ở Lại Thành Phố Hay Về Quê _Nhà Xuất Bản Thế Giới_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp Sách hướng nghiệp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Sự Im Lặng Của Bầy Cừu (Tái Bản)_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Trinh thám - Phiêu lưu_big.jpg"
+                                title="Sự Im Lặng Của Bầy Cừu (Tái Bản)_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Trinh thám - Phiêu lưu_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Ruồi Trâu_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Văn học phương Tây_big.jpg"
+                                title="Ruồi Trâu_Nhà Xuất Bản Hồng Đức_Nhà Sách Tiki Sách tiếng Việt Sách văn học Văn học nước ngoài Văn học phương Tây_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Nói Thế Nào Để Được Chào Đón, Làm Thế Nào Để Được Ghi Nhận_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big.jpg"
+                                title="Nói Thế Nào Để Được Chào Đón, Làm Thế Nào Để Được Ghi Nhận_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách kỹ năng - Sống đẹp_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
+                    <div class="w3-col l2 m2 w3-margin-bottom" id="imgResize">
+                        <div class="w3-display-container">
+                            <img src="resources/imgs/big/Stay With Me - Anh Ơi Đừng Đi_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                                title="Stay With Me - Anh Ơi Đừng Đi_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big"
+                                alt="House" style="width:100%">
+                        </div>
+                    </div>
                 </div>
                 <div class="left_side_menu">
                     <!-- left side menu code here -->
-                    <h1>code left side menu here</h1>
+                    <div class="left_side_menu_title">Danh mục sản phẩm</div>
+                    <div class="product_type_menu_list">
+                        <div class="left_side_child_menu_title">Loại sản phẩm</div>
+                        <div class="product_type menu_item">product type 1</div>
+                        <div class="product_type menu_item">product type 2</div>
+                        <div class="product_type menu_item">product type 3</div>
+                        <div class="product_type menu_item">product type 4</div>
+
+                    </div>
+                    <hr/>
+                    <div class="producer_menu_list">
+                        <div class="left_side_child_menu_title">Nhà sản xuất</div>
+                        <div class="producter menu_item">Producer 1</div>
+                        <div class="producter menu_item">Producer 2</div>
+                        <div class="producter menu_item">Producer 3</div>
+                        <div class="producter menu_item">Producer 4</div>
+
+                    </div>
                 </div>
-                <div class="product_container">
+                <div class="container product_container">
                     <!-- product page code here -->
-                    <h1>product page is here</h1>
+                    <div class="container-flexbox">
+                    </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
     <div style="clear: both;"></div>
 </body>
 <footer>
-        <div class="web_footer_wraper">
-            <!-- code web footer at here -->
-            <div class="test_footer">
-                <h1>footer is here, remember to delete elements which have class 'test_'</h1>
+    <div class="web_footer_wraper">
+        <div class="color_footer">
+            <div>Copyright © 2018. Đây là một sản phẩm của nhóm LTUDWeb - CNTT KHTN K2015</div>
+        </div>
+    </div>
+</footer>
+
+<!-- BEGIN Modal Login -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                    Đăng nhập
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a id="tabLogIn" class="nav-link active" href="#Login" data-toggle="tab">Đăng nhập</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="tabSignUp" class="nav-link" href="#Registration" data-toggle="tab">Đăng ký</a>
+                            </li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="Login">
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-12 control-label">
+                                            Email</label>
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1" class="col-sm-12 control-label">
+                                            Mật khẩu</label>
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                Đăng nhập</button>
+                                            <a href="javascript:;">Quên mật khẩu?</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="Registration">
+                                <form role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="email" class="col-md-12 control-label">
+                                            Họ tên</label>
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" placeholder="Nhập họ tên" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-12 control-label">
+                                            Email</label>
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="email" placeholder="Nhập email" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mobile" class="col-sm-12 control-label">
+                                            Di động</label>
+                                        <div class="col-sm-12">
+                                            <input type="email" class="form-control" id="mobile" placeholder="Nhập di động" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password" class="col-sm-12 control-label">
+                                            Mật khẩu</label>
+                                        <div class="col-sm-12">
+                                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button type="button" class="btn btn-primary btn-sm">
+                                                Đăng ký</button>
+                                            <button type="button" class="btn btn-default btn-sm">
+                                                Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row text-center sign-with">
+                            <div class="col-md-12">
+                                <h3>
+                                    Đăng nhập bằng</h3>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="#" class="btn btn-primary">Facebook</a>
+                                    <a href="#" class="btn btn-danger">
+                                        Google</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-</footer>
+    </div>
+</div>
+ <!-- END ADD BAO-TQ -->
+
 </html>
