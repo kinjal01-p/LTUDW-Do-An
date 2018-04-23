@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/global_style.css">
@@ -69,30 +71,74 @@
     <!-- end header -->
     <!-- begin body -->
     <div class="detail_container">
+        <div class="breadcrumb_container">
+            <!-- <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Library</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+            </nav> -->
+        </div>
         <div class="row product_detail_container">
-            <div class="row col-md-5 img_side">
-                <!-- BEGIN LEFT COLUMN - SMALL IMG -->
-                <div class="col-md-3 product_small_img_column">
-                    <div class="small_img_container">
-                        <img class="small_img" src="resources/imgs/small/3.jpg" alt="">
-                    </div>
+            <!--BEGIN LEFT COLUMN - BIG IMG -->
+            <div class="col-md-4  product_image_wraper">
+                <div class="product_image_div">
+                    <img class="product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                        alt="">
                 </div>
-                <!-- END LEFT COLUMN - SMALL IMG -->
-                <!--BEGIN MIDDLE COLUMN - BIG IMG -->
-                <div class="col-md-9 product_image_wraper">
-                    <div class="product_image_div">
-                        <img class="product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
-                            alt="">
-                    </div>
-                </div>
-                <!-- END MIDLE COLUMN - BIG IMG -->
             </div>
-
+            <!-- END LEFT COLUMN - BIG IMG -->
             <!-- BEGIN RIGHT COLUMN - PRODUCT INFO -->
-            <div class="col-md-7 product_info_wraper">
-                <div class="general_info_container">
+            <div class="col-md-8 product_info_wraper">
+                <div class="info_box">
+                    <div class="general_info_container">
+                        <div class="product_name">Thám Tử Lừng Danh Conan (Tập 93)</div>
+                        <div class="product_price">20.000đ</div>
+                        <div class="product_origin_info row">
+                            <div class="product_type_info">
+                                <a href="#">Truyện tranh</a>
+                            </div>
+                            <div class="product_producer_info">
+                                <a href="#">NXB Kim Đồng</a>
+                            </div>
 
+                            <div class="product_country_info">
+                                <a href="#">Nhật Bản</a>
+                            </div>
+                        </div>
+                        <div class="product_rating row">
+                            <div class="product_viewed">Lượt xem: 2000</div>
+                            <div class="product_sold">Đã bán: 1000</div>
+                        </div>
+                    </div>
                 </div>
+                <div class="add_cart_and_descript_container row">
+                    <div class="col-md-8 descript_box">
+                        <div class="descript_title">Mô tả</div>
+                        <div class="descript">
+                            <p>
+                                Thi thể đã biến đi đâu!? “Vụ án xác chết biến mất trong bể bơi” sẽ được làm sáng tỏ! Bên cạnh đó, bóng dáng “Rum”, nhân vật
+                                quyền lực thứ 2 của tổ chức Áo Đen sẽ theo sát Conan và Haibara!? Cũng trong tập này, “vụ
+                                án người cô thân thiết”, vụ án mạng quái vật “Kamaitachi” với sự tham gia của Heiji... và
+                                sự mở đầu của “án mạng Kawanakajima” nơi máu của các cảnh sát hình sự sẽ đổ xuống chiến trường
+                                xưa ở tỉnh Nagano... hứa hẹn sẽ mang tới nhiều điều bất ngờ!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 add_cart_box">
+                        <div class="add_cart_background">
+                            <div class="order_quantity_row">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- END RIGHT COLUMN - PRODUCT INFO -->
         </div>
@@ -102,20 +148,17 @@
         <div class="same_type_list">
 
         </div>
+        <script src="js/detail_page.js"></script>
     </div>
     <!-- end body -->
     <div style="clear: both;"></div>
-    <!-- END ADD DANH-NH -->
-</body>
-<!-- BEGIN ADD DANH-NH -->
-<footer>
     <div class="web_footer_wraper">
         <div class="color_footer">
             <div>Copyright © 2018. Đây là một sản phẩm của nhóm LTUDWeb - CNTT KHTN K2015</div>
         </div>
     </div>
-</footer>
-<!-- END ADD DANH-NH -->
+    <!-- END ADD HUUDANH-N -->
+</body>
 <!-- BEGIN ADD CAM-SV -->
 <!-- Do nó dài quá nên tui để dưới cùng này -->
 <!-- BEGIN Modal Login -->
