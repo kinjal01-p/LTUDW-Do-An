@@ -76,6 +76,7 @@ body {
 .web_footer_wraper {
   display: block;
   position: relative;
+  margin-top: 20px;
   width: 100%;
   bottom: 0px;
 }
@@ -94,7 +95,6 @@ body {
 /* BEGIN EDIT HUUDANH-SV */
 .product_container {
     position: relative;
-    height: 300px;
 /* BEGIN EDIT ANMOC-SV */
     width: 80%;
     /* END EDIT ANMOC-SV */
