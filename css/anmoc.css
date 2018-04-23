@@ -9,19 +9,19 @@
     margin-top: 10px;
     flex-wrap: wrap;
     display: flex;
-  
+    box-sizing: border-box;
+    height: 750px;
 }
 a {
     text-decoration: none !important;
 }
 
-.enable_display_btn{
-    display: block;
+.btn-divide-page{
+    float: right;
+    padding: 0;
 }
-.disable_display_btn{
 
-    display: none;
-}
+
 .title {
     text-overflow: ellipsis;
     text-align: left;
@@ -44,10 +44,8 @@ a {
 }
 
 .box {
-
-    border: 1px solid transparent;
+    display: inline-block;
     height: 350px;
-    max-width: 100%;
     margin: 5px;
 }
 

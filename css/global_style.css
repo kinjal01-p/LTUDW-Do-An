@@ -84,7 +84,10 @@ body {
 /* BEGIN EDIT HUUDANH-SV */
 .product_container {
     position: relative;
-    width: 79%;
+    height: 300px;
+/* BEGIN EDIT ANMOC-SV */
+    width: 80%;
+    /* END EDIT ANMOC-SV */
     float: left;
 }
 
