@@ -93,3 +93,11 @@ footer {
   position: relative;
 }
 /* END EDIT HUUDANH-SV */
+
+/* BEGIN ADD BAO-SV */
+.instruction-text {
+  position: relative;
+  display: block;
+  font-size: 20px;
+}
+/* END ADD BAO-SV */
