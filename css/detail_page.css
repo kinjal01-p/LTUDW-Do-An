@@ -158,19 +158,78 @@
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */
 }
+/* BEGIN ADD CART TO CART */
 .add_cart_box {
     padding: 0 0 0 15px!important;
 }
 .add_cart_background {
     background: white;
     box-shadow: 0 0 5px #b2bec3;
-    padding: 10px;
+    padding: 20px 10px 20px 10px;
 }
 .order_quantity_row {
-    width: 50%;
-    margin: auto;
+    width: 100%;
+    margin: auto!important;
 }
-
+#quantity_label {
+    width: 40%;
+    padding:  2px 0 2px 0;
+}
+.decrease_btn {
+    width: 14%;
+    color: white;     
+    background: #1abc9c;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;    
+}
+#quantity_input {
+    width: 28%;
+    text-align: center;
+    color: teal;
+}
+.increase_btn {
+    width: 14%;
+    color: white;
+    background:#1abc9c;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;    
+    margin: auto;        
+}
+.increase_btn:hover , .decrease_btn:hover {
+    background: #16a085;
+}
+.buy_now {
+    margin-top: 30px;
+    padding: 10px 5px 10px 5px;
+    font-size: 25px;
+    background: #e74c3c;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 5px #b2bec3;
+}
+.add_to_cart {
+    margin-top: 15px;
+    padding: 10px 5px 10px 5px;
+    font-size: 25px;
+    background: #3498db;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 5px #b2bec3;
+}
+.buy_now:hover {
+    background: #c0392b;
+    box-shadow: none;    
+    cursor: pointer;
+}
+.add_to_cart:hover {
+    background: #2980b9;
+    box-shadow: none;    
+    cursor: pointer;
+}
+/* END ADD TO CART */
 /* END RIGHT COLUMN */
 
 .same_producer_list {
