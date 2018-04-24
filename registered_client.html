@@ -42,7 +42,7 @@
                     </i>
                     <span>Tìm kiếm</span>
                 </button>
-                <button class="btn btn-outline-success my-2 my-sm-0 advance_search">
+                <button class="btn btn-outline-success my-2 my-sm-0 advance_search" id="btnAdvanceSearch">
                     <i>
                         <img src="resources/imgs/icons/search.png" />
                     </i>
@@ -369,7 +369,7 @@
                         <label>Điện thoại</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text" placeholder="Hãy nhập số điện thoại để tiện trong việc giao hàng"/>
+                        <input class="form-control" type="text" placeholder="Hãy nhập số điện thoại để tiện trong việc giao hàng" />
                     </div>
 
                     <div class="col-md-3 entry_information">
@@ -439,6 +439,60 @@
 
                     <div class="row" style="margin: 0 auto;">
                         <button class="btn btn-warning">Thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAdvanceSearch" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                    Tìm kiếm nâng cao
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Tiêu đề</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên tựa sách, báo, ..." />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Nhà xuất bản</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên nhà xuất bản" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Thể loại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giá</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <input class="form-control" type="text" placeholder="Nhập giá thấp nhất" />
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <input class="form-control" type="text" placeholder="Nhập giá cao nhất" />
+                    </div>
+                    <div class="col-md-3 entry_information">
+                    </div>
+
+                    <div class="row" style="margin: 0 auto;">
+                        <button class="btn btn-warning">Đồng ý</button>
                     </div>
                 </div>
             </div>
