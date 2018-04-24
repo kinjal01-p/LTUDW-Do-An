@@ -18,11 +18,12 @@ $(document).ready(function () {
   });
 
   //testing checkbox 
-  $(':checkbox').change(function () {
-    if (this.checked) {
-      alert("Hế nhô");
-    }
-  });
+  // $(':checkbox').change(function () {
+  //   if (this.checked) {
+  //     alert("Hế nhô");
+  //   }
+  // });
+  
   // END ADD CAM-SV
   // BEGIN ADD BAO-TQ
   $('#btnAdvanceSearch').click(function () {
