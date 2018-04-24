@@ -1,22 +1,46 @@
 /* BENGIN ADD HUUDANH-SV */
+/* BEGIN BREADCRUMB */
+.breadcrumb_container {
+    height: 50px;
+    width: 100%;
+    margin: auto!important;
+    background: #f4f4f4;
+    padding: 5px 0 5px 0;
+}
+.breadcrumb_item a {
+    text-decoration: none;
+    color: #1abc9c;
+}
+.breadcrumb_item a:hover {
+    color: #16a085;
+}
+.breadcrumb_item {
+    padding: 5px 2px 5px 2px;
+    text-align: center;
+    font-size: 18px;
+    color: #b2bec3;
+}
+.path_seperator {
+    padding: 5px 0 5px 0;
+    text-align: center;
+    font-size: 18px;
+    color: #1abc9c;
+}
+/* END BREADCRUMB */
 .detail_container {
     margin-left: 3%;
     margin-right: 3%;
-    background: white;
+    background: #f4f4f4;
 }
 .product_detail_container {
     position: relative;
     margin-left: 0px!important;
     margin-right: 0px!important;  
 }
-.breadcrumb_container {
-    height: 50px;
-    width: 100%;
-    background: palevioletred;
-}
+
 /* BEGIN LEFT COLUMN */
 .product_image_div {
-    padding-top: 30px;
+    padding-top: 15px;
     padding-bottom: 30px;
     max-width: 100%;
     margin: auto;
@@ -41,7 +65,7 @@
 }
 .product_info_wraper {
     /* padding: 0!important; */
-    padding-top: 30px;
+    padding-top: 15px;
     padding-bottom: 30px;
    
 }
@@ -50,6 +74,7 @@
     border: 1px solid #b2bec3;
     border-style: none none solid none;
     padding-bottom: 20px;
+    background: white;
 }
 .product_name {
     width: 95%;
