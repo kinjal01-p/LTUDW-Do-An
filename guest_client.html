@@ -529,7 +529,24 @@
                         <label>Thể loại</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" />
+                        <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" /> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn thể loại sách</option>
+                            <option value="scienceFiction">Khoa học viễn tưởng</option>
+                            <option value="foreignLanguage">Ngoại ngữ</option>
+                            <option value="psychology">Tâm lý học</option>
+                            <option value="comics">Truyện tranh</option>
+                            <option value="actionAndAdventure">Hành động và phiêu lưu</option>
+                            <option value="romance">Lãng mạn</option>
+                            <option value="horror">Kinh dị</option>
+                            <option value="cookbooks">Dạy nấu ăn</option>
+                            <option value="health">Sức khỏe, Thể chất</option>
+                            <option value="history">Lịch sử</option>
+                            <option value="encyclopedias">Sách giáo khoa</option>
+                            <option value="art">Nghệ thuật</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
                     </div>
 
                     <div class="col-md-3 entry_information">
@@ -546,11 +563,13 @@
 
                     <div class="row" style="margin: 0 auto;">
                         <!-- <button class="btn btn-warning">Đồng ý</button> -->
+                        <!-- BEGIN EDIT CAM-SV -->
                         <button type="submit" class="btn btn-primary">
                             <span>
                                 <img src="resources/imgs/icons/search.png" />
                             </span>
                         </button>
+                        <!-- END EDIT CAM-SV -->
                     </div>
                 </div>
             </div>
