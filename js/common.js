@@ -3,11 +3,6 @@
 
 $(document).ready(function() {
   // BEIN ADD CAM-SV
-  // ví dụ như: hiện modal button Đăng Nhập
-  $("#btnLogIn").click(function() {
-    $("#modalLogin").modal("show");
-  });
-
   // thay đổi label của modal khi click vào tab Đăng Nhập
   $("#tabLogIn").click(function() {
     $("#myModalLabel").text("Đăng nhập");
@@ -21,15 +16,13 @@ $(document).ready(function() {
   // END ADD CAM-SV
   // BEGIN ADD BAO-TQ
   $("#refMyAccount").click(function() {
-    $("#modalInformation").modal("show");
-  });
-
-  $("#isChangePassword").prop("checked", false);
-  if ($("#isChangePassword").checked) {
-    $("#areaChangePassword").show();
-  } else {
-    $("#areaChangePassword").hide();
-  }
+    $("#isChangePassword").prop("checked", false);
+    if ($("#isChangePassword").checked) {
+      $("#areaChangePassword").show();
+    } else {
+      $("#areaChangePassword").hide();
+    }
+  })
 
   $("#isChangePassword").change(function() {
     if (this.checked) {
