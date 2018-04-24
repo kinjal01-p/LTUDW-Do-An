@@ -172,12 +172,11 @@
 <!-- BEGIN ADD CAM-SV -->
 <!-- Do nó dài quá nên tui để dưới cùng này -->
 <!-- BEGIN Modal Login -->
-<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="float: left; display: flex;">
-
-                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
                     Đăng nhập
                 </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -200,17 +199,17 @@
                             <div class="tab-pane active" id="Login">
                                 <form role="form" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="email" class="col-sm-12 control-label">
+                                        <label for="reEmail" class="col-sm-12 control-label">
                                             Email</label>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control" id="email1" placeholder="Email" />
+                                            <input type="email" class="form-control" id="reEmail" placeholder="Email" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1" class="col-sm-12 control-label">
+                                        <label for="rePassword" class="col-sm-12 control-label">
                                             Mật khẩu</label>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Mật khẩu" />
+                                            <input type="password" class="form-control" id="rePassword" placeholder="Mật khẩu" />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -227,12 +226,12 @@
                             <div class="tab-pane" id="Registration">
                                 <form role="form" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="email" class="col-md-12 control-label">
+                                        <label for="name" class="col-md-12 control-label">
                                             Họ tên</label>
                                         <div class="col-sm-12">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <input type="text" class="form-control" placeholder="Nhập họ tên" />
+                                                    <input type="text" class="form-control" id="name" placeholder="Nhập họ tên" />
                                                 </div>
                                             </div>
                                         </div>
@@ -248,7 +247,7 @@
                                         <label for="mobile" class="col-sm-12 control-label">
                                             Di động</label>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control" id="mobile" placeholder="Nhập di động" />
+                                            <input type="text" class="form-control" id="mobile" placeholder="Nhập di động" />
                                         </div>
                                     </div>
                                     <div class="form-group">
