@@ -1,3 +1,5 @@
+//author: huudanh
+// BEGIN ADD HUUDANH
 var tmpQuantity = "";
 var maxQuantity = 20;
 $(document).ready(function () {
@@ -106,3 +108,4 @@ function decreaseQuantity() {
     });
 }
 ////////////////////////////////////////////////////////////////
+//END ADD HUUDANH
