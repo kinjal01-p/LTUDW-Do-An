@@ -451,6 +451,8 @@
     </div>
 </div>
 
+<!-- BEGIN ADD BAO-TQ -->
+<!-- BEGIN Modal Advance Search -->
 <div class="modal fade" id="modalAdvanceSearch" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -471,6 +473,7 @@
                     </div>
 
                     <!-- BEGIN ADD CAM-SV -->
+                    <!-- thêm thông tin Tác giá -->
                     <div class="col-md-3 entry_information">
                         <label>Tác giả</label>
                     </div>
@@ -480,12 +483,14 @@
                     </div>
                     <!-- END ADD CAM-SV -->
 
+
                     <div class="col-md-3 entry_information">
                         <label>Nhà xuất bản</label>
                     </div>
                     <div class="col-md-9 entry_information">
                         <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên nhà xuất bản" /> -->
                         <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành combobox nhà xuất bản -->
                         <select class="form-control" required>
                             <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
                             <option value="kd">NXB Kim Đồng</option>
@@ -512,6 +517,7 @@
                     <div class="col-md-9 entry_information">
                         <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" /> -->
                         <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành comboBox thể loại -->
                         <select class="form-control" required>
                             <option value="" disabled selected hidden>Chọn thể loại sách</option>
                             <option value="scienceFiction">Khoa học viễn tưởng</option>
@@ -533,15 +539,9 @@
                     <div class="col-md-3 entry_information">
                         <label>Giá</label>
                     </div>
-                   <!-- <div class="col-md-3 entry_information">
-                        <input class="form-control" type="text" placeholder="Nhập giá thấp nhất" />
-                    </div>
-                    <div class="col-md-3 entry_information">
-                        <input class="form-control" type="text" placeholder="Nhập giá cao nhất" />
-                    </div> -->
-
                     <div class="col-md-9 entry_information">
                         <!-- BEGIN EDIT CAM-SV -->
+                        <!-- Sửa lại thành comboBox giá tiền -->
                         <select class="form-control" required>
                             <option value="" disabled selected hidden>Chọn giá tiền</option>
                             <option value="less50">Dưới 50 ngàn</option>
@@ -552,12 +552,33 @@
                         </select>
                         <!-- END EDIT CAM-SV -->
                     </div>
-                    <div class="col-md-3 entry_information">
-                    </div>
 
-                    <div class="row"style="margin-right: 10px;margin-bottom: 5px;position: fixed;right: 0;bottom: 0;">
+                    <!-- BEGIN ADD CAM-SV -->
+                    <!-- Thêm các checkbox  -->
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">MỚI
+                            <input type="checkbox" id="c1"/>
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">GIẢM GIÁ
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">BÁN CHẠY
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <!-- END ADD CAM-SV -->
+
+                    <div class="row" style="margin-right: 10px;margin-bottom: 5px;position: fixed;right: 0;bottom: 0;">
                         <!-- <button class="btn btn-warning">Đồng ý</button> -->
                         <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành icon search + chỉnh lại vị trí bottom-right-->
                         <button type="submit" class="btn btn-primary">
                             <span>
                                 <img src="resources/imgs/icons/search.png" />
@@ -570,6 +591,8 @@
         </div>
     </div>
 </div>
+<!-- END Modal Advance Search -->
 <!-- END ADD BAO-TQ -->
+
 
 </html>
