@@ -9,12 +9,12 @@ $(document).ready(function () {
   });
 
   $("#tabLogIn").click(function () {
-    $("#myModalLabel").text("Đăng nhập");
+    $("#myModalLoginTitle").text("Đăng nhập");
   });
 
   // thay đổi label của modal khi click vào tab Đăng Ký
   $("#tabSignUp").click(function () {
-    $("#myModalLabel").text("Đăng ký");
+    $("#myModalLoginTitle").text("Đăng ký");
   });
 
   //testing checkbox 
