@@ -20,10 +20,6 @@ $(document).ready(function() {
 
   // END ADD CAM-SV
   // BEGIN ADD BAO-TQ
-  $("#btnAdvanceSearch").click(function() {
-    $("#modalAdvanceSearch").modal("show");
-  });
-
   $("#refMyAccount").click(function() {
     $("#modalInformation").modal("show");
   });

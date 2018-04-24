@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="css/global_style.css">
     <link rel="stylesheet" href="css/anmoc.css">
     <link rel="stylesheet" href="css/left_side_menu.css">
     <link rel="stylesheet" href="css/top_side_menu.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="js/common.js"></script>
@@ -42,7 +45,7 @@
                     </i>
                     <span>Tìm kiếm</span>
                 </button>
-                <button class="btn btn-outline-success my-2 my-sm-0 advance_search" id="btnAdvanceSearch">
+                <button class="btn btn-outline-success my-2 my-sm-0 advance_search" data-toggle="modal" data-target="#modalAdvanceSearch">
                     <i>
                         <img src="resources/imgs/icons/search.png" />
                     </i>
@@ -71,7 +74,7 @@
                         </button>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" id="refMyAccount">Tài khoản của tôi</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalInformation">Tài khoản của tôi</a>
                         <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Thoát tài khoản</a>
@@ -450,7 +453,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="float: left; display: flex;">
-                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
                     Tìm kiếm nâng cao
                 </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
