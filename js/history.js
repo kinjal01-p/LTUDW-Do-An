@@ -12,15 +12,33 @@ $(document).ready(function () {
 
 
     createTable(0, 2, '123123');
+    createTable(1, 4, '123123');
     createTable(2, 5, '445880');
 
     function createTable(begin, end, code) {
         var table = $('<table></table>').addClass("table table-hover");
 
-        var thead = $('<thead>' +
-            '<tr><th colspan="4"># Đơn hàng ' + code + '</th>' +
-            '</tr></thead>').addClass("thead-light");
+        var thead = $('<thead></thead>').addClass("thead-light");
 
+        var trHead = $('<tr></tr>');
+
+        var thheadTitle = $('<th colspan = "2"></th>').text('#Đơn hàng ' + code );
+         var random = Math.floor((Math.random() * 3) + 1);
+         var spanState;
+
+         if (random == 1) {
+             spanState = $('<span></span>').text("Chưa giao hàng").addClass("p-2 mb-2 bg-danger text-white");
+         } else if (random == 2) {
+             spanState = $('<span></span>').text("Đang giao hàng").addClass("p-2 mb-2 bg-warning text-white");
+         } else {
+             spanState = $('<span></span>').text("Đã giao hàng").addClass("p-2 mb-2 bg-success text-white");
+         }
+     
+        var statusHead = $('<th></th>').append(spanState);
+
+        trHead.append(thheadTitle, statusHead);
+        thead.append(trHead);
+      
         table.append(thead);
 
         var tbody = $('<tbody></tbody >');
@@ -37,7 +55,7 @@ $(document).ready(function () {
             var divItem = $('<div></div>').append(img, imageName).addClass("item row");
 
             var thTag = $('<th scope="row"></th>').append(divItem);
-            var tdQty = $('<td></td>').text("Qty: 1");
+            var tdQty = $('<td></td>').text("Qty: 1").css("width", "20%");
 
             var random = Math.floor((Math.random() * 3) + 1);
             var spanState;
@@ -52,11 +70,11 @@ $(document).ready(function () {
                 spanState = $('<span></span>').text("Đã giao hàng").addClass("p-2 mb-2 bg-success text-white");
             }
            
-            var tdState = $('<td></td>').append(spanState);
+           // var tdState = $('<td></td>').append(spanState);
             var tdDate = $('<td></td>').text("Đã được giao vào 14 thg 4 2018");
 
 
-            var content = $('<tr></tr>').append(thTag, tdQty, tdState, tdDate);
+            var content = $('<tr></tr>').append(thTag, tdQty, tdDate);
 
             tbody.append(content);
 
