@@ -9,27 +9,27 @@ $(document).ready(function () {
 
     // Xử lý thu gọn - xem thêm phần left_side_menu
     $("#bookTypeMenuTitle").click(function () {
-        $("#bookTypeMenuItem").slideToggle("fast");
+        $("#bookTypeMenuItem").toggle("fast");
         $('#bookTypeExtend').toggleClass('fa fa-angle-down fa fa-angle-up ');
     });
 
     $("#writerMenuTitle").click(function () {
-        $("#writerMenuItem").slideToggle("fast");
+        $("#writerMenuItem").toggle("fast");
         $('#writerExtend').toggleClass('fa fa-angle-up fa fa-angle-down');
     });
 
     $("#nxbMenuTitle").click(function () {
-        $("#nxbMenuItem").slideToggle("fast");
+        $("#nxbMenuItem").toggle("fast");
         $('#nxbExtend').toggleClass('fa fa-angle-up fa fa-angle-down');
     });
 
     $("#ratingMenuTitle").click(function () {
-        $("#ratingMenuItem").slideToggle("fast");
+        $("#ratingMenuItem").toggle("fast");
         $('#ratingExtend').toggleClass('fa fa-angle-up fa fa-angle-down');
     });
 
     $("#pricingMenuTitle").click(function () {
-        $("#pricingMenuItem").slideToggle("fast");
+        $("#pricingMenuItem").toggle("fast");
         $('#pricingExtend').toggleClass('fa fa-angle-up fa fa-angle-down');
     });
     // END ADD CAM-SV
