@@ -12,6 +12,8 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+
+      <script src="js/admin_funcs.js"></script>
       <title>Admin page</title>
 </head>
 
@@ -31,26 +33,125 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                              <a class="nav-link" href="#">Dashboard
-                                    <span class="sr-only">(current)</span>
-                              </a>
+                              <a class="nav-link" href="#" id="linkDashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                              <a class="nav-link" href="#">Quản lý sản phẩm</a>
+                              <a class="nav-link" href="#" id="linkItemManager">Quản lý sản phẩm</a>
                         </li>
                         <li class="nav-item">
-                              <a class="nav-link" href="#">Quản lý đơn hàng</a>
+                              <a class="nav-link" href="#" id="linkOrderManager">Quản lý đơn hàng</a>
                         </li>
                   </ul>
-                  <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                  </form>
+                  <div class="nav-item dropdown my-2 my-lg-0" style="display: block; margin: auto 20px;">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                              aria-expanded="false">
+                              <button class="btn btn-primary">
+                                    <i>
+                                          <img src="resources/imgs/icons/user.png" />
+                                    </i>
+                                    <span>Chào, admin</span>
+                              </button>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="#" id="refMyAccount">Tài khoản của tôi</a>
+                              <!-- <a class="dropdown-item" href="#">Đơn hàng của tôi</a> -->
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Thoát tài khoản</a>
+                        </div>
+                  </div>
             </div>
             </div>
       </nav>
-      <div class="web_container">
+      <div class="web_container container">
             <div class="web_body_wraper">
+                  <div class="row" id="dashboard">
+                        <div class="col-md-6" id="piechartItems"></div>
+                        <div class="col-md-6" id="piechartRevenue"></div>
+                        <canvas class="col-md-12" id="myChart" width="400" height="400" style="margin-top: 40px;"></canvas>
+                  </div>
+                  <div id="itemManager">
+                        <h1>Quản lý sản phẩm</h1>
+                        <button class="btn btn-success" style="float: right; margin: 20px;">
+                              <span>Thêm</span>
+                        </button>
+                        <div class="table-responsive">
+                              <table class="table">
+                                    <thead>
+                                          <tr>
+                                                <th></th>
+                                                <th>#id</th>
+                                                <th>Hình ảnh</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Nhà sản xuất</th>
+                                                <th>Loại</th>
+                                                <th>Giá bán (VND)</th>
+                                                <th>Giá nhập (VND)</th>
+                                                <th>Số lượng tồn</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          <tr>
+                                                <td>
+                                                      <button class="btn btn-warning">Edit</button>
+                                                </td>
+                                                <td>#000001</td>
+                                                <td>
+                                                      <img src="resources/imgs/small/5 Centimet Trên Giây_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_small.jpg">
+                                                </td>
+                                                <td>5 Centimet Trên Giây</td>
+                                                <td>NXB Văn học</td>
+                                                <td>Sách văn học</td>
+                                                <td>68,000</td>
+                                                <td>50,000</td>
+                                                <td>25</td>
+                                          </tr>
+                                    </tbody>
+                              </table>
+                        </div>
+                  </div>
+                  <div id="orderManager">
+                        <h1>Quản lý đơn hàng</h1>
+                        <button class="btn btn-success" style="float: right; margin: 20px;">
+                              <span>Thêm</span>
+                        </button>
+                        <div class="table-responsive">
+                              <table class="table">
+                                    <thead>
+                                          <tr>
+                                                <th style="width: 5%"></th>
+                                                <th style="width: 5%">#id</th>
+                                                <th style="width: 15%">Tên người đặt hàng</th>
+                                                <th style="width: 20%">Địa chỉ giao hàng</th>
+                                                <th style="width: 5%">Điện thoại người nhận</th>
+                                                <th style="width: 5%">Ngày đặt hàng</th>
+                                                <th style="width: 5%">Ngày giao hàng (dự kiến)</th>
+                                                <th style="width: 15%">Tên người giao hàng</th>
+                                                <th style="width: 5%">Điện thoại người giao</th>
+                                                <th style="width: 10%">Tổng tiền (VND)</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          <tr>
+                                                <td>
+                                                      <div>
+                                                            <button class="btn btn-success">Đã giao</button>
+                                                            <button class="btn btn-danger">Hủy</button>
+                                                      </div>
+                                                </td>
+                                                <td>#000001</td>
+                                                <td>Trần Quốc Bảo</td>
+                                                <td>230 Nguyễn Văn Cừ, Quận 5, Tp.HCM</td>
+                                                <td>0909090909</td>
+                                                <td>11/01/2018</td>
+                                                <td>13/01/2018</td>
+                                                <td>Nguyễn Văn A</td>
+                                                <td>0909080808</td>                                               
+                                                <td>200,000</td>                                               
+                                          </tr>
+                                    </tbody>
+                              </table>
+                        </div>
+                  </div>
             </div>
       </div>
       <div style="clear: both;"></div>
@@ -62,6 +163,11 @@
             </div>
       </div>
 </footer>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script type="text/javascript" src="js/admin_data_visualization.js"></script>
+
 <!-- END ADD BAO-TQ -->
 
 </html>

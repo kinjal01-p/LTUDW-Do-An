@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="css/left_side_menu.css">
     <link rel="stylesheet" href="css/top_side_menu.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="css/slider.css">
 
     <!-- BEGIN ANMOC - THEM FONT AWESOME-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -379,7 +378,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="float: left; display: flex;">
-                <h4 class="modal-title" style="float: left; display: flex;">
+                <h4 class="modal-title" id="myModalLoginTitle" style="float: left; display: flex;">
                     Đăng nhập
                 </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
@@ -518,34 +517,120 @@
                         <input class="form-control" type="text" placeholder="Hãy nhập tên tựa sách, báo, ..." />
                     </div>
 
+                    <!-- BEGIN ADD CAM-SV -->
+                    <!-- thêm thông tin Tác giá -->
+                    <div class="col-md-3 entry_information">
+                        <label>Tác giả</label>
+                    </div>
+
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên tác giả" />
+                    </div>
+                    <!-- END ADD CAM-SV -->
+
+
                     <div class="col-md-3 entry_information">
                         <label>Nhà xuất bản</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text" placeholder="Hãy nhập tên nhà xuất bản" />
+                        <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên nhà xuất bản" /> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành combobox nhà xuất bản -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
+                            <option value="kd">NXB Kim Đồng</option>
+                            <option value="tre">NXB Trẻ</option>
+                            <option value="sm">Nhà sách Sao Mai</option>
+                            <option value="dt">Đinh Tị</option>
+                            <option value="vl">Văn Lang</option>
+                            <option value="tv">First News - Trí Việt</option>
+                            <option value="kv">Khang Việt Book</option>
+                            <option value="tv">Tân Việt</option>
+                            <option value="alpha">Alphabooks</option>
+                            <option value="mt">Nhà sách Minh Trí</option>
+                            <option value="nn">Nhã Nam</option>
+                            <option value="ml">Minh Long</option>
+                            <option value="pn">Phương Nam</option>
+                            <option value="tn">Nhà sách Thị Nghè</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
                     </div>
 
                     <div class="col-md-3 entry_information">
                         <label>Thể loại</label>
                     </div>
                     <div class="col-md-9 entry_information">
-                        <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" />
+                        <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" /> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành comboBox thể loại -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn thể loại sách</option>
+                            <option value="scienceFiction">Khoa học viễn tưởng</option>
+                            <option value="foreignLanguage">Ngoại ngữ</option>
+                            <option value="psychology">Tâm lý học</option>
+                            <option value="comics">Truyện tranh</option>
+                            <option value="actionAndAdventure">Hành động và phiêu lưu</option>
+                            <option value="romance">Lãng mạn</option>
+                            <option value="horror">Kinh dị</option>
+                            <option value="cookbooks">Dạy nấu ăn</option>
+                            <option value="health">Sức khỏe, Thể chất</option>
+                            <option value="history">Lịch sử</option>
+                            <option value="encyclopedias">Sách giáo khoa</option>
+                            <option value="art">Nghệ thuật</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
                     </div>
 
                     <div class="col-md-3 entry_information">
                         <label>Giá</label>
                     </div>
-                    <div class="col-md-3 entry_information">
-                        <input class="form-control" type="text" placeholder="Nhập giá thấp nhất" />
-                    </div>
-                    <div class="col-md-3 entry_information">
-                        <input class="form-control" type="text" placeholder="Nhập giá cao nhất" />
-                    </div>
-                    <div class="col-md-3 entry_information">
+                    <div class="col-md-9 entry_information">
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- Sửa lại thành comboBox giá tiền -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn giá tiền</option>
+                            <option value="less50">Dưới 50 ngàn</option>
+                            <option value="50to100">Từ 50 - 100 ngàn</option>
+                            <option value="100to300">Từ 100 - 300 ngàn</option>
+                            <option value="300to500">Từ 300 - 500 ngàn</option>
+                            <option value="greater500">Trên 500 ngàn</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
                     </div>
 
-                    <div class="row" style="margin: 0 auto;">
-                        <button class="btn btn-warning">Đồng ý</button>
+                    <!-- BEGIN ADD CAM-SV -->
+                    <!-- Thêm các checkbox  -->
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">MỚI
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">GIẢM GIÁ
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">BÁN CHẠY
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <!-- END ADD CAM-SV -->
+
+
+                    <div class="row" style="margin-right: 10px;margin-bottom: 5px;position: fixed;right: 0;bottom: 0;">
+                        <!-- <button class="btn btn-warning">Đồng ý</button> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành icon search + chỉnh lại vị trí bottom-right-->
+                        <button type="submit" class="btn btn-primary">
+                            <span>
+                                <img src="resources/imgs/icons/search.png" />
+                            </span>
+                        </button>
+                        <!-- END EDIT CAM-SV -->
                     </div>
                 </div>
             </div>
