@@ -284,14 +284,14 @@
 .relate_product_name {
     color: #636e72;
     padding: 5px 10px 5px 10px;
-    width: 95%;
+    width: 98%;
     font-size: 14px;
     text-align: justify;
     margin: auto;
 }
 .relate_product_price {
     padding-left: 10px;
-    width: 95%;
+    width: 98%;
     text-align: left;
     margin: auto;
     font-size: 18px;
@@ -299,14 +299,16 @@
 }
 .same_producer_list {
     position: relative;
-    padding: 15px;
     width: 100%;
-    background: blue;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 .same_type_list {
     position: relative;
     width: 100%;
-    background: blueviolet;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  
 }
 /* END TOP 5 RELATE  PRODUCT */
 
