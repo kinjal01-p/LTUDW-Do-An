@@ -194,6 +194,10 @@ $(document).ready(function () {
             let imageTag = $('<span></span>').append($('<img src=' + image + ' ></img >')).addClass("image");
             let titleTag = $('<span></span>').text(title[0]).addClass("title");
             let priceTag = $('<h4></h4>').text("20.000 đ").css("color", "orange");
+            // BEGIN ADD CAM-SV
+            // Thêm rating cho sản phẩm
+            let ratingTag = $('<span></span><span></span><span></span><span></span><span></span>').addClass("fa fa-star checked");
+            // END ADD CAM-SV
             let btnAdd_Checkout = $('<button></button>')
                 .text("Thêm vào giỏ hàng")
                 .css({
@@ -201,9 +205,10 @@ $(document).ready(function () {
                     "width": "100%"
                 })
                 .addClass("btn btn-warning");
-
-            let aTag = $('<a></a>').append(imageTag, titleTag, priceTag, btnAdd_Checkout);
-
+            // BEGIN ADD CAM-SV
+            // Thêm rating cho sản phẩm
+            let aTag = $('<a></a>').append(imageTag, titleTag, priceTag, ratingTag, btnAdd_Checkout);
+            // END ADD CAM-SV
             let divTag = $('<div></div>').append(aTag).addClass("box")
                 .css({
                     "background": "white",

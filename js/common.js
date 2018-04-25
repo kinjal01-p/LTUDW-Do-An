@@ -1,8 +1,8 @@
 // author: cam-sv
-// common.js sẽ chứa các xử lý js chung cho toàn màn hình
+// common.js sẽ chứa các xử lý js chung cho toàn màn hình guest và register
 
 $(document).ready(function () {
-  // BEIN ADD CAM-SV
+  // BEGIN ADD CAM-SV
   // thay đổi label của modal khi click vào tab Đăng Nhập
   $('#btnLogin').click(function () {
     $("#modalLogin").modal('show');
@@ -23,8 +23,9 @@ $(document).ready(function () {
   //     alert("Hế nhô");
   //   }
   // });
-  
+
   // END ADD CAM-SV
+
   // BEGIN ADD BAO-TQ
   $('#btnAdvanceSearch').click(function () {
     $("#modalAdvanceSearch").modal('show');

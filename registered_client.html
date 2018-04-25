@@ -13,14 +13,17 @@
     <link rel="stylesheet" href="css/left_side_menu.css">
     <link rel="stylesheet" href="css/top_side_menu.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/product_item_list.js"></script>
+    <script src="js/left_side_menu.js"></script>
     <title>Registered Client</title>
 </head>
 
@@ -320,27 +323,131 @@
                     </div>
                     <!-- END EDIT DANH-NH -->
                 </div>
+                <!-- BEGIN EDIT CAM-SV -->
+                <!-- Thêm thông tin cho left_side menu -->
                 <div class="left_side_menu">
                     <!-- left side menu code here -->
                     <div class="left_side_menu_title">Danh mục sản phẩm</div>
                     <div class="product_type_menu_list">
-                        <div class="left_side_child_menu_title">Loại sản phẩm</div>
-                        <div class="product_type menu_item">product type 1</div>
-                        <div class="product_type menu_item">product type 2</div>
-                        <div class="product_type menu_item">product type 3</div>
-                        <div class="product_type menu_item">product type 4</div>
-
+                        <div class="left_side_child_menu_title" id="bookTypeMenuTitle">Thể loại
+                            <span class="fa fa-angle-down extend" id="bookTypeExtend"></span>
+                        </div>
+                        <div id="bookTypeMenuItem">
+                            <div class="product_type menu_item">Khoa học viễn tưởng (1044)</div>
+                            <div class="product_type menu_item">Ngoại ngữ (1000)</div>
+                            <div class="product_type menu_item">Tâm lý học (990)</div>
+                            <div class="product_type menu_item">Truyện tranh (864)</div>
+                            <div class="product_type menu_item">Hành động và phiêu lưu (860)</div>
+                            <div class="product_type menu_item">Lãng mạn (820)</div>
+                            <div class="product_type menu_item">Kinh dị (750)</div>
+                            <div class="product_type menu_item">Dạy nấu ăn (724)</div>
+                            <div class="product_type menu_item">Sức khỏe, Thể chất (710)</div>
+                            <div class="product_type menu_item">Lịch sử (620)</div>
+                            <div class="product_type menu_item">Sách giáo khoa (500)</div>
+                            <div class="product_type menu_item">Nghệ thuật (458)</div>
+                        </div>
                     </div>
-                    <hr/>
-                    <div class="producer_menu_list">
-                        <div class="left_side_child_menu_title">Nhà sản xuất</div>
-                        <div class="producter menu_item">Producer 1</div>
-                        <div class="producter menu_item">Producer 2</div>
-                        <div class="producter menu_item">Producer 3</div>
-                        <div class="producter menu_item">Producer 4</div>
 
+                    <div class="product_type_menu_list">
+                        <div class="left_side_child_menu_title" id="writerMenuTitle">Tác giả
+                            <span class="fa fa-angle-down extend" id="writerExtend"></span>
+                        </div>
+                        <div id="writerMenuItem">
+                            <div class="product_type menu_item">Nguyễn Nhật Ánh (52)</div>
+                            <div class="product_type menu_item">Yoshito Usui (82)</div>
+                            <div class="product_type menu_item">The Windy (73)</div>
+                            <div class="product_type menu_item">Song Văn Cẩm (30)</div>
+                            <div class="product_type menu_item">Eiichiro Oda (83)</div>
+                            <div class="product_type menu_item">Aoyama Ghoso (92)</div>
+                            <div class="product_type menu_item">Fujiko.F.Fujio (135)</div>
+                            <div class="product_type menu_item">Nguyễn Hữu Danh (23)</div>
+                            <div class="product_type menu_item">J.K.Rowling (35)</div>
+                            <div class="product_type menu_item">Trần Quốc Bảo (35)</div>
+                            <div class="product_type menu_item">Mark Twain (11)</div>
+                            <div class="product_type menu_item">Nhiều Tác Giả (961)</div>
+                            <div class="product_type menu_item">Nhóm Tác Giả (154)</div>
+                            <div class="product_type menu_item">Tony Buổi Sáng (5)</div>
+                            <div class="product_type menu_item">Mộc Thành Ân (20)</div>
+                        </div>
+                    </div>
+
+                    <div class="producer_menu_list">
+                        <div class="left_side_child_menu_title" id="nxbMenuTitle">Nhà xuất bản
+                            <span class="fa fa-angle-down extend" id="nxbExtend"></span>
+                        </div>
+                        <div id="nxbMenuItem">
+                            <div class="producter menu_item">NXB Kim Đồng (1466)</div>
+                            <div class="producter menu_item">NXB Trẻ (978)</div>
+                            <div class="producter menu_item">Nhà sách Sao Mai (643)</div>
+                            <div class="producter menu_item">Đinh Tị (567)</div>
+                            <div class="producter menu_item">Văn Lang (554)</div>
+                            <div class="producter menu_item">First News - Trí Việt (548)</div>
+                            <div class="producter menu_item">Khang Việt Book (424)</div>
+                            <div class="producter menu_item">Tân Việt (308)</div>
+                            <div class="producter menu_item">Alphabooks (299)</div>
+                            <div class="producter menu_item">Nhà sách Minh Trí (279)</div>
+                            <div class="producter menu_item">Nhã Nam (276)</div>
+                            <div class="producter menu_item">Minh Long (265)</div>
+                            <div class="producter menu_item">Phương Nam (240)</div>
+                            <div class="producter menu_item">Nhà sách Thị Nghè (231)</div>
+                        </div>
+                    </div>
+
+                    <div class="producer_menu_list">
+                        <div class="left_side_child_menu_title" id="pricingMenuTitle">Giá
+                            <span class="fa fa-angle-down extend" id="pricingExtend"></span>
+                        </div>
+                        <div id="pricingMenuItem">
+                            <div class="producter menu_item">Dưới 50 ngàn (987)</div>
+                            <div class="producter menu_item">Từ 50 - 100 ngàn (653)</div>
+                            <div class="producter menu_item">Từ 100 - 300 ngàn (204)</div>
+                            <div class="producter menu_item">Từ 300 - 500 ngàn (71)</div>
+                            <div class="producter menu_item">Trên 500 ngàn (27)</div>
+                        </div>
+                    </div>
+
+
+                    <div class="producer_menu_list">
+                        <div class="left_side_child_menu_title" id="ratingMenuTitle">Đánh giá
+                            <span class="fa fa-angle-down extend" id="ratingExtend"></span>
+                        </div>
+                        <div id="ratingMenuItem">
+                            <div class="producter menu_item">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span>(ít nhất 4 sao)</span>
+                            </div>
+                            <div class="producter menu_item">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span>(ít nhất 3 sao)</span>
+                            </div>
+                            <div class="producter menu_item">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span>(ít nhất 2 sao)</span>
+                            </div>
+                            <div class="producter menu_item">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span>(ít nhất 1 sao)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- END EDIT CAM-SV -->
                 <!-- EDIT AN - MT-->
                 <div class="container product_container">
                     <!-- product page code here -->

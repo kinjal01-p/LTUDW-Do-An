@@ -18,6 +18,9 @@ a {
 
 .btn-divide-page{
     float: right;
+    /* BEGIN EDIT CAM-SV */
+    margin-top: 40px;
+    /* END EDIT CAM-SV */
     padding: 0;
 }
 
@@ -42,14 +45,16 @@ a {
      height: 200px;
      white-space: nowrap;
 }
-/* BEGIN ADD HUUDANH-NG */
+/* BEGIN ADD DANH-NH */
 .image img {
     width: 100%;
 }
-/* END  ADD HUUDANH-NG */
+/* END  ADD DANH-NH */
 .box {
     display: inline-block;
-    height: 350px;
+    /* BEGIN EDIT CAM-SV */
+    height: 375px;
+    /* END EDIT CAM-SV */
     margin: 5px;
 }
 

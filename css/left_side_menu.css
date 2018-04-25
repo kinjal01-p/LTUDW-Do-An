@@ -11,7 +11,7 @@
     color: white;
     font-size: 1.3em;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 10px;
 }
 .left_side_child_menu_title {
@@ -21,7 +21,10 @@
     margin-right: 5px;    
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 10px;
+    /* BEGIN EDIT CAM-SV */
+    /* chỉnh lại padding left 5px cho đủ chỗ hiển thị tên item */
+    padding-left: 5px;
+     /* END EDIT CAM-SV */
     font-size: 1.2em;    
     text-align: left;
     color: #16a085;
@@ -32,12 +35,38 @@
     text-align: left;
     color: #2c3e50;
     font-size: 1.1em;
-    padding-left: 20%;
+    /* BEGIN EDIT CAM-SV */
+    /* chỉnh lại padding left 10px cho đủ chỗ hiển thị tên item */
+    padding-left: 10px;
+    /* END EDIT CAM-SV */
     padding-top: 2px;
     padding-bottom: 2px;    
 }
 .menu_item:hover {
     background:#1abc9c;
     color: white;
-    padding-left: 25%;
+    /* BEGIN EDIT CAM-SV */
+    /* tắt hover khi lia chuột vào menu item */
+    /* lý do: ko đủ chỗ để hiển thị item nếu padding left 25% -> bị xuống dòng -> xấu */
+    /* padding-left: 25%; */
+    /* END EDIT CAM-SV */
 }
+
+/* BEGIN ADD CAM-SV */
+/* chỉnh vị trí cho icon extend bên left style menu */
+#bookTypeExtend {
+    margin-left: 132px;
+}
+#writerExtend {
+    margin-left: 139px;
+}
+#nxbExtend {
+    margin-left: 93px;
+}
+#ratingExtend {
+    margin-left: 122px;
+}
+#pricingExtend {
+    margin-left: 165px;
+}
+/* END ADD CAM-SV */
