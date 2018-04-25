@@ -71,7 +71,7 @@
                   </div>
                   <div id="itemManager">
                         <h1>Quản lý sản phẩm</h1>
-                        <button class="btn btn-success" style="float: right; margin: 20px;">
+                        <button class="btn btn-success" style="float: right; margin: 20px;" id="btnAddItem">
                               <span>Thêm</span>
                         </button>
                         <div class="table-responsive">
@@ -93,7 +93,7 @@
                                     <tbody>
                                           <tr>
                                                 <td>
-                                                      <button class="btn btn-warning">Edit</button>
+                                                      <button class="btn btn-warning" id="btnEditItem">Edit</button>
                                                 </td>
                                                 <td>#000001</td>
                                                 <td>
@@ -109,7 +109,7 @@
                                           </tr>
                                           <tr>
                                                 <td>
-                                                      <button class="btn btn-warning">Edit</button>
+                                                      <button class="btn btn-warning" id="btnEditItem2">Edit</button>
                                                 </td>
                                                 <td>#000002</td>
                                                 <td>
@@ -129,7 +129,7 @@
                   </div>
                   <div id="orderManager">
                         <h1>Quản lý đơn hàng</h1>
-                        <button class="btn btn-success" style="float: right; margin: 20px;">
+                        <button class="btn btn-success" style="float: right; margin: 20px;" id="btnPlaceOrder">
                               <span>Thêm</span>
                         </button>
                         <div class="table-responsive">
@@ -153,7 +153,7 @@
                                           <tr>
                                                 <td>
                                                       <div>
-                                                            <button class="btn btn-warning">Edit</button>
+                                                            <button class="btn btn-warning" id="btnEditOrder">Edit</button>
                                                       </div>
                                                 </td>
                                                 <td>Chưa giao</td>
@@ -170,7 +170,7 @@
                                           <tr class="table-success">
                                                 <td>
                                                       <div>
-                                                            <button class="btn btn-warning">Edit</button>
+                                                            <button class="btn btn-warning" disabled>Edit</button>
                                                       </div>
                                                 </td>
                                                 <td>Đã giao</td>
@@ -187,7 +187,7 @@
                                           <tr class="table-danger">
                                                 <td>
                                                       <div>
-                                                            <button class="btn btn-warning">Edit</button>
+                                                            <button class="btn btn-warning" disabled>Edit</button>
                                                       </div>
                                                 </td>
                                                 <td>Đã hủy</td>
@@ -216,6 +216,324 @@
             </div>
       </div>
 </footer>
+
+<!-- BEGIN Modal Place Order -->
+<div class="modal fade" id="modalPlaceOrder" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                  <div class="modal-header" style="float: left; display: flex;">
+                        <h4 class="modal-title" style="float: left; display: flex;">
+                              Thêm đơn hàng
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              ×</button>
+                  </div>
+                  <div class="modal-body modal_information">
+                        <div class="row">
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên người đặt hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên người đặt hàng" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Địa chỉ giao hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập địa chỉ giao hàng" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Điện thoại người nhận</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập điện thoại người nhận" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Ngày đặt hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="date" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Ngày giao hàng (dự kiến)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="date" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên người giao hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên người đặt hàng" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Điện thoại người giao</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập điện thoại người giao" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tổng tiền (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập tổng số tiền" />
+                              </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer modal_information">
+                        <button class="btn btn-success">Xong</button>
+                        <button class="btn btn-info">Hủy</button>
+                  </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Place Order -->
+<!-- BEGIN Modal Edit Order -->
+<div class="modal fade" id="modalEditOrder" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                  <div class="modal-header" style="float: left; display: flex;">
+                        <h4 class="modal-title" style="float: left; display: flex;">
+                              Chỉnh sửa đơn hàng
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              ×</button>
+                  </div>
+                  <div class="modal-body modal_information">
+                        <div class="row">
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên người đặt hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên người đặt hàng" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Địa chỉ giao hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập địa chỉ giao hàng" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Điện thoại người nhận</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập điện thoại người nhận" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Ngày đặt hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="date" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Ngày giao hàng (dự kiến)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="date" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên người giao hàng</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên người đặt hàng" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Điện thoại người giao</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập điện thoại người giao" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tổng tiền (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập tổng số tiền" />
+                              </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer modal_information">
+                        <button class="btn btn-success">Đã giao</button>
+                        <button class="btn btn-danger">Hủy đơn hàng</button>
+                        <button class="btn btn-warning">Xóa đơn hàng</button>
+                  </div>
+                  <div class="modal-footer modal_information">
+                        <button class="btn btn-success">Xong</button>
+                        <button class="btn btn-info">Hủy chỉnh sửa</button>
+                  </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Order -->
+<!-- BEGIN Modal Add Item -->
+<div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                  <div class="modal-header" style="float: left; display: flex;">
+                        <h4 class="modal-title" style="float: left; display: flex;">
+                              Thêm sản phẩm
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              ×</button>
+                  </div>
+                  <div class="modal-body modal_information">
+                        <div class="row">
+                              <div class="col-md-3 entry_information">
+                                    <label>Hình nhỏ (200x200)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input type="file" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Hình lớn (550x550)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input type="file" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên sản phẩm</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Nhà sản xuất (NXB)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Loại</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập loại sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Giá bán (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập giá bán của sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Giá nhập (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập giá nhập về của sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Số lượng tồn</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập số lượng có trong kho" />
+                              </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer modal_information">
+                        <button class="btn btn-success">Xong</button>
+                        <button class="btn btn-info">Hủy</button>
+                  </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Add Item -->
+<!-- BEGIN Modal Add Item -->
+<div class="modal fade" id="modalEditItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                  <div class="modal-header" style="float: left; display: flex;">
+                        <h4 class="modal-title" style="float: left; display: flex;">
+                              Thêm sản phẩm
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              ×</button>
+                  </div>
+                  <div class="modal-body modal_information">
+                        <div class="row">
+                              <div class="col-md-3 entry_information">
+                                    <label>Hình nhỏ (200x200)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input type="file" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Hình lớn (550x550)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input type="file" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên sản phẩm</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Nhà sản xuất (NXB)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Loại</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập loại sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Giá bán (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập giá bán của sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Giá nhập (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập giá nhập về của sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Số lượng tồn</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập số lượng có trong kho" />
+                              </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer modal_information">
+                        <button class="btn btn-success">Xong</button>
+                        <button class="btn btn-info">Hủy chỉnh sửa</button>
+                  </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Item -->
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>

@@ -2,6 +2,26 @@
 "use strict";
 
 $(document).ready(function() {
+  $('#btnPlaceOrder').click(function () {
+    $("#modalPlaceOrder").modal('show');
+  });
+
+  $('#btnAddItem').click(function () {
+    $("#modalAddItem").modal('show');
+  });
+
+  $('#btnEditOrder').click(function () {
+    $("#modalEditOrder").modal('show');
+  });
+
+  $('#btnEditItem').click(function () {
+    $("#modalEditItem").modal('show');
+  });
+
+  $('#btnEditItem2').click(function () {
+    $("#modalEditItem").modal('show');
+  });
+
   $("#dashboard").show();
   $("#itemManager").hide();
   $("#orderManager").hide();
