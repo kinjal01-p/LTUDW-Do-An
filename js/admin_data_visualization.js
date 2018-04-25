@@ -1,3 +1,4 @@
+// ADD BEGIN BAO-TQ
 "use strict";
 
 // Load google charts
@@ -104,3 +105,4 @@ var myChart = new Chart(ctx, {
             }
       }
 });
+// END ADD BAO-TQ
