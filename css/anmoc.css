@@ -42,7 +42,11 @@ a {
      height: 200px;
      white-space: nowrap;
 }
-
+/* BEGIN ADD HUUDANH-NG */
+.image img {
+    width: 100%;
+}
+/* END  ADD HUUDANH-NG */
 .box {
     display: inline-block;
     height: 350px;
