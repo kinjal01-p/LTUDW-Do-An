@@ -41,7 +41,7 @@
 /* BEGIN LEFT COLUMN */
 .product_image_div {
     padding-top: 15px;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
     max-width: 100%;
     margin: auto;
 }
@@ -56,8 +56,7 @@
    padding-left: 15px!important;
    padding-right: 0!important;
 }
-/* BEGIN LEFT COLUMN */
-/* END MIDDLE COLUMN */
+/* END LEFT COLUMN */
 
 /* BEGIN RIGHT COLUMN */
 .info_box {
@@ -66,7 +65,7 @@
 .product_info_wraper {
     /* padding: 0!important; */
     padding-top: 15px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
    
 }
 .general_info_container {
@@ -153,7 +152,6 @@
     margin: 15px 0 15px 0!important;
     position: relative;
     margin-top: 15px;
-    padding-bottom: 20px;
 }
 .descript_box {
     padding: 0 0 20px 0!important;
@@ -183,7 +181,7 @@
     width: 0px;  /* remove scrollbar space */
     background: transparent;  /* optional: just make scrollbar invisible */
 }
-/* BEGIN ADD CART TO CART */
+    /* BEGIN ADD CART TO CART */
 .add_cart_box {
     padding: 0 0 0 15px!important;
 }
@@ -254,19 +252,62 @@
     box-shadow: none;    
     cursor: pointer;
 }
-/* END ADD TO CART */
+    /* END ADD TO CART */
 /* END RIGHT COLUMN */
 
+/* BEGIN TOP 5 RELATE  PRODUCT */
+.relate_product_row {
+    margin: 0!important;
+    background:#f4f4f4;
+    padding: 5px;
+}
+.relate_product_wraper {
+    width: 15%;
+    padding: 10px;
+    background: white;
+    margin-left: 0.7%;
+}
+.relate_product_wraper:hover {
+    box-shadow: 0 0 8px #636e72;
+    cursor: pointer;
+}
+.relate_product_img_warper {
+    width: 80%;
+   vertical-align: middle;
+   text-align: center;
+   margin: auto;   
+}
+#relate_product_img {
+    width: 100%;
+    margin: auto;
+}
+.relate_product_name {
+    color: #636e72;
+    padding: 5px 10px 5px 10px;
+    width: 95%;
+    font-size: 14px;
+    text-align: justify;
+    margin: auto;
+}
+.relate_product_price {
+    padding-left: 10px;
+    width: 95%;
+    text-align: left;
+    margin: auto;
+    font-size: 18px;
+    color: #f1c40f;
+}
 .same_producer_list {
     position: relative;
+    padding: 15px;
     width: 100%;
-    height: 100px;
     background: blue;
 }
 .same_type_list {
     position: relative;
     width: 100%;
-    height: 100px;
     background: blueviolet;
 }
+/* END TOP 5 RELATE  PRODUCT */
+
 /* END ADD HUUDANH-SV */
