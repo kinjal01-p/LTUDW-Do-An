@@ -2,6 +2,10 @@
 "use strict";
 
 $(document).ready(function() {
+  $("#dashboard").show();
+  $("#itemManager").hide();
+  $("#orderManager").hide();
+
   $("#linkDashboard").click(function() {
     $("#dashboard").show();
     $("#itemManager").hide();
