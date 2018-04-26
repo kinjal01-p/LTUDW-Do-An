@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     display: flex;
     box-sizing: border-box;
-    height: 750px;
+   
 }
 a {
     text-decoration: none !important;
