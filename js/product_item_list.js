@@ -55,12 +55,10 @@ $(document).ready(function () {
         ["6.jpg", "Nhà Giả Kim_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_small"],
         ["6.jpg", "Nhà Giả Kim_Nhà Xuất Bản Văn Học_Nhà Sách Tiki Sách tiếng Việt Sách văn học_small"]
 
-
-
     ];
 
 
-    var numberOfItemsInOnePage = 8;
+    var numberOfItemsInOnePage = 20;
 
     var size = arrProductImage.length
 
