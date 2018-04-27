@@ -194,18 +194,39 @@ $(document).ready(function () {
             let priceTag = $('<h4></h4>').text("20.000 đ").css("color", "orange");
             // BEGIN ADD CAM-SV
             // Thêm rating cho sản phẩm
-            let ratingTag = $('<span></span><span></span><span></span><span></span><span></span>').addClass("fa fa-star checked");
+
+            let ratingTag = $('<span></span><span></span><span></span><span></span><span></span>').addClass("fa fa-star checked")
+
+            // BEGIN ADD AN-MT
+            let divratingTag = $('<div></div>').append(ratingTag).css("display", "block");
+            // END ADD AN-MT
+
             // END ADD CAM-SV
             let btnAdd_Checkout = $('<button></button>')
-                .text("Thêm vào giỏ hàng")
+                .append($('<span><i class="fa fa-cart-plus fa-lg"></i></span>'))
+
                 .css({
                     "display": "none",
-                    "width": "100%"
+                    "width": "30%",
+                    "margin-right": "5px",
+                    "margin-top": "10px"
                 })
-                .addClass("btn btn-warning");
+                .addClass("btn btn-info");
+
+            let btnBuy = $('<button></button>')
+                //.append($('<span><img src="resources/imgs/buy-now.png" style="width:20px;height:20px;"></img></span>')
+                //  .css({"width":"20px","height":"20px"}))
+                .text("Mua ngay")
+                .css({
+                    "display": "none",
+                    "width": "60%",
+                    "margin-left": "5px",
+                    "margin-top": "10px"
+                })
+                .addClass("btn btn-danger");
             // BEGIN ADD CAM-SV
             // Thêm rating cho sản phẩm
-            let aTag = $('<a></a>').append(imageTag, titleTag, priceTag, ratingTag, btnAdd_Checkout);
+            let aTag = $('<a></a>').append(imageTag, titleTag, priceTag, divratingTag, btnAdd_Checkout, btnBuy);
             // END ADD CAM-SV
             let divTag = $('<div></div>').append(aTag).addClass("box")
                 .css({
@@ -215,7 +236,7 @@ $(document).ready(function () {
                 })
                 .hover(function () {
                     $(this).css("box-shadow", "0 0 20px rgba(0,0,0,.3)");
-                    $(this).children().children("button").css("display", "block");
+                    $(this).children().children("button").css("display", "inline-block");
 
                 }, function () {
                     $(this).css("box-shadow", "initial");
