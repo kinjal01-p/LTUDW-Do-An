@@ -8,11 +8,11 @@ body {
 }
 
 .color_header {
-  background: #00ffa1;
+  background: #1abc9c;
 }
 
 .color_navbar {
-  background-color: #e3f2fd;
+  background-color: #34495e;
 }
 
 .flex {
@@ -29,16 +29,17 @@ body {
 }
 
 .color_footer {
-  background: #1abc9c;
+  background: #34495e;
   margin: auto;
+  color: white;
   padding: 10px;
   text-align: center;
 }
 
 .check_out {
   vertical-align: middle;
-  border: 2px solid #000;
-  padding: 8px 11px 8px 11px;
+  border: 2px solid #2d3436;
+  padding: 10px 11px 10px 11px;
   border-radius: 4px;
 }
 
@@ -47,9 +48,18 @@ body {
   letter-spacing: 0.7px;
   font-weight: 400;
   font-size: 20px;
-  color: #000;
+  color: white;
 }
-
+a {
+  text-decoration: none!important;
+}
+.check_out img {
+  margin-bottom: 6px;
+}
+.check_out:hover {
+  background: #0984e3;
+  border: none;
+}
 .check_out .count {
   color: #4a4a4a;
   background: #fdd835;
@@ -57,10 +67,12 @@ body {
   border-radius: 2px;
   display: inline-block;
   text-align: center;
+  vertical-align: middle;
   line-height: 20px;
   margin-left: 9px;
+  margin-bottom: 5px;
   font-size: 12px;
-  padding: 0 6px;
+  padding: 0 5px;
   font-weight: 700;
 }
 
@@ -81,7 +93,7 @@ body {
   bottom: 0px;
 }
 .top_side_menu {
-  background: lightseagreen;
+  background: #1abc9c;
   height: 100px;
 }
 .left_side_menu {
@@ -213,3 +225,12 @@ body {
   color: orange;
 }
 /* END ADD CAM-SV */
+/* BEGIN ADD DANH-NH */
+#linkDashboard, #linkItemManager, #linkOrderManager{
+  color: white;
+}
+
+#linkDashboard:hover, #linkItemManager:hover, #linkOrderManager:hover{
+  color: #81ecec;
+}
+/* END ADD DANH-NG */

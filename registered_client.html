@@ -42,14 +42,14 @@
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
                         aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <button class="btn btn-danger my-2 my-sm-0" type="submit">
                         <i>
                             <img src="resources/imgs/icons/search.png" />
                         </i>
                         <span>Tìm kiếm</span>
                     </button>
                 </form>
-                <button class="btn btn-outline-success advance_search" id="btnAdvanceSearch">
+                <button class="btn btn-danger advance_search" id="btnAdvanceSearch">
                     <i>
                         <img src="resources/imgs/icons/search.png" />
                     </i>
@@ -328,9 +328,14 @@
                     <!-- left side menu code here -->
                     <div class="left_side_menu_title">Danh mục sản phẩm</div>
                     <div class="product_type_menu_list">
-                        <div class="left_side_child_menu_title" id="bookTypeMenuTitle">Thể loại
-                            <span class="fa fa-angle-down extend" id="bookTypeExtend"></span>
+                        <!-- BEGIN EDIT DANH-NH-->
+                        <div class="row left_side_child_menu_row">
+                            <div class="left_side_child_menu_title col-md-8" id="bookTypeMenuTitle">Thể loại</div>
+                            <div class="col-md-3 btn_extend btn_booktype">
+                                <span class="fa fa-angle-down extend" id="bookTypeExtend"></span>
+                            </div>
                         </div>
+                        <!-- END EDIT DANH-NH -->
                         <div id="bookTypeMenuItem">
                             <div class="product_type menu_item">Khoa học viễn tưởng (1044)</div>
                             <div class="product_type menu_item">Ngoại ngữ (1000)</div>
@@ -348,9 +353,14 @@
                     </div>
 
                     <div class="product_type_menu_list">
-                        <div class="left_side_child_menu_title" id="writerMenuTitle">Tác giả
-                            <span class="fa fa-angle-down extend" id="writerExtend"></span>
+                        <!-- BEGIN EDIT DANH-NH-->
+                        <div class="row left_side_child_menu_row">
+                            <div class="left_side_child_menu_title col-md-8" id="writerMenuTitle">Tác giả</div>
+                            <div class="col-md-3 btn_extend btn_writer">
+                                <span class="fa fa-angle-down extend" id="writerExtend"></span>
+                            </div>
                         </div>
+                        <!-- END EDIT DANH-NH -->
                         <div id="writerMenuItem">
                             <div class="product_type menu_item">Nguyễn Nhật Ánh (52)</div>
                             <div class="product_type menu_item">Yoshito Usui (82)</div>
@@ -371,9 +381,14 @@
                     </div>
 
                     <div class="producer_menu_list">
-                        <div class="left_side_child_menu_title" id="nxbMenuTitle">Nhà xuất bản
-                            <span class="fa fa-angle-down extend" id="nxbExtend"></span>
+                        <!-- BEGIN EDIT DANH-NH-->
+                        <div class="row left_side_child_menu_row">
+                            <div class="left_side_child_menu_title col-md-8" id="nxbMenuTitle">Nhà xuất bản</div>
+                            <div class="col-md-3 btn_extend btn_nxb">
+                                <span class="fa fa-angle-down extend" id="nxbExtend"></span>
+                            </div>
                         </div>
+                        <!-- END EDIT DANH-NH -->
                         <div id="nxbMenuItem">
                             <div class="producter menu_item">NXB Kim Đồng (1466)</div>
                             <div class="producter menu_item">NXB Trẻ (978)</div>
@@ -393,9 +408,14 @@
                     </div>
 
                     <div class="producer_menu_list">
-                        <div class="left_side_child_menu_title" id="pricingMenuTitle">Giá
-                            <span class="fa fa-angle-down extend" id="pricingExtend"></span>
+                        <!-- BEGIN EDIT DANH-NH-->
+                        <div class="row left_side_child_menu_row">
+                            <div class="left_side_child_menu_title col-md-8" id="pricingMenuTitle">Giá</div>
+                            <div class="col-md-3 btn_extend btn_price">
+                                <span class="fa fa-angle-down extend" id="pricingExtend"></span>
+                            </div>
                         </div>
+                        <!-- END EDIT DANH-NH -->
                         <div id="pricingMenuItem">
                             <div class="producter menu_item">Dưới 50 ngàn (987)</div>
                             <div class="producter menu_item">Từ 50 - 100 ngàn (653)</div>
@@ -407,9 +427,14 @@
 
 
                     <div class="producer_menu_list">
-                        <div class="left_side_child_menu_title" id="ratingMenuTitle">Đánh giá
-                            <span class="fa fa-angle-down extend" id="ratingExtend"></span>
+                        <!-- BEGIN EDIT DANH-NH-->
+                        <div class="row left_side_child_menu_row">
+                            <div class="left_side_child_menu_title col-md-8" id="ratingMenuTitle">Đánh giá</div>
+                            <div class="col-md-3 btn_extend btn_rate">
+                                <span class="fa fa-angle-down extend" id="ratingExtend"></span>
+                            </div>
                         </div>
+                        <!-- END EDIT DANH-NH -->
                         <div id="ratingMenuItem">
                             <div class="producter menu_item">
                                 <span class="fa fa-star checked"></span>
