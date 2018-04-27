@@ -50,6 +50,9 @@ body {
   font-size: 20px;
   color: white;
 }
+a {
+  text-decoration: none!important;
+}
 .check_out img {
   margin-bottom: 6px;
 }
@@ -222,3 +225,12 @@ body {
   color: orange;
 }
 /* END ADD CAM-SV */
+/* BEGIN ADD DANH-NH */
+#linkDashboard, #linkItemManager, #linkOrderManager{
+  color: white;
+}
+
+#linkDashboard:hover, #linkItemManager:hover, #linkOrderManager:hover{
+  color: #81ecec;
+}
+/* END ADD DANH-NG */
