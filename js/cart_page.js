@@ -73,7 +73,7 @@ function calTotalPrice(){
         totalQuan = totalQuan + parseInt(tmpQuantity);
         sum = sum + (parseInt(tmpPrice) * parseInt(tmpQuantity));
     });
-    $('.total_price').text(sum); 
+    $('.total_price').text(sum + "đ"); 
     var quanText = "(" + totalQuan.toString() + " sản phẩm)"
     $('.cart_quantity_label').text(quanText);
     $('.count').text(totalQuan);
