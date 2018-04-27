@@ -1,0 +1,126 @@
+.cart_body {
+    width: 95%;
+    margin: auto;
+}
+.cart_label span {
+    color: #bdc3c7;
+    font-size: 20px;
+    margin: auto;
+}
+.cart_product_row {
+    background: white;
+    margin: 0 0 5px 0!important;
+    box-shadow: 0 0 5px #bdc3c7;
+}
+.cart_product_row:hover {
+    box-shadow: 0 0 10px #1abc9c;
+    cursor: pointer;
+}
+.cart_container {
+    padding: 20px;
+    min-height: 700px;
+}
+.cart_product_img {
+    padding: 20px;
+    margin: auto;
+    border: 1px solid #bdc3c7;
+    border-style: none solid none none;
+}
+.cart_product_info {
+    padding: 20px;
+    color: #636e72;
+}
+.cart_product_name {
+    padding: 5px;
+    font-size: 20px;
+}
+.cart_product_type {
+    padding: 5px;
+    font-size: 15px;
+}
+.cart_product_producer {
+    padding: 5px;
+    font-size:15px;
+}
+.cart_product_price {
+    padding: 20px;
+    font-size: 25px;
+    color: #e67e22;
+    border: 1px solid #bdc3c7;
+    border-style: none solid none none;
+}
+.cart_product_remove {
+    padding: 2px;
+    cursor: pointer;    
+    margin-left: 95%;
+    color: #1abc9c;
+}
+.cart_product_remove:hover {
+    color: #16a085;
+}
+.cart_product_quantity_row {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+}
+.decrease_btn {
+    width: 25%;
+    color: white;     
+    background: #1abc9c;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    margin: auto;    
+}
+#quantity_input {
+    width: 50%;
+    text-align: center;
+    color: teal;
+}
+.increase_btn {
+    width: 25%;
+    color: white;
+    background:#1abc9c;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;    
+    margin: auto;        
+}
+.increase_btn:hover , .decrease_btn:hover {
+    background: #16a085;
+}
+.cart_checkout_container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 150px;
+    margin-top: 97px;
+    max-height: 200px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 5px #bdc3c7;
+}
+.total_price_label {
+    padding: 5px;
+    font-size: 20px;
+    color: #1abc9c;
+    border: 1px solid #bdc3c7;
+    border-style: none none solid none;
+}
+.total_price {
+    font-size: 30px;
+    color: #e67e22;
+}
+.cart_btn_checkout {
+    margin-top: 15%;
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    background: #1abc9c;
+    box-shadow: 0 0 5px #bdc3c7;
+    text-align: center;
+    cursor: pointer;
+}
+.cart_btn_checkout:hover {
+    background: #16a085;
+}
