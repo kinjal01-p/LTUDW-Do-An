@@ -1,7 +1,18 @@
-//author: huudanh
-// BEGIN ADD HUUDANH
+//author: DANH-NH
+// BEGIN ADD DANH-NH
+
+//BEGIN ADD CAM-SV
+// Hàm xử lý format định dạng tiền VND
+function formatCurrency(number) {
+    var n = number.split('').reverse().join("");
+    var n2 = n.replace(/\d\d\d(?!$)/g, "$&.");
+    return n2.split('').reverse().join('') + 'VNĐ';
+}
+//END ADD CAM-SV
+
 var tmpQuantity = "";
 var maxQuantity = 20;
+
 $(document).ready(function () {
     //BEGIN QUANTITY INPUT EVENT
     removeItemFromCart();
@@ -9,9 +20,9 @@ $(document).ready(function () {
     inputQuantity();
     increaseQuantity();
     decreaseQuantity();
-    $("#quantity_input").focusout(function(){
+    $("#quantity_input").focusout(function () {
         var quantity = this.value;
-        if(quantity === ""){
+        if (quantity === "") {
             this.value = 1;
         }
     });
@@ -47,7 +58,7 @@ function increaseQuantity() {
         if (quantity < maxQuantity) {
             $(this).closest('.cart_product_quantity_row').children('#quantity_input').val(quantity + 1);
         }
-        calTotalPrice();        
+        calTotalPrice();
     });
 }
 ////////////////////////////////////////////////////////////////
@@ -59,32 +70,35 @@ function decreaseQuantity() {
         if (quantity > 1) {
             $(this).closest('.cart_product_quantity_row').children('#quantity_input').val(quantity - 1);
         }
-        calTotalPrice();    
+        calTotalPrice();
     });
 }
 ////////////////////////////////////////////////////////////////
 //THIS BELOW FUNCTION CALCULATE TOTAL PRICE AND QUANTITY OF PRODUDCT IN CART PAGE
-function calTotalPrice(){
+function calTotalPrice() {
     var sum = 0;
     var totalQuan = 0;
-    $('.cart_product_row').each(function(){
+    $('.cart_product_row').each(function () {
         var tmpPrice = $(this).find('.cart_product_price').attr('data-price');
-        var tmpQuantity = $(this).find('#quantity_input').val();   
+        var tmpQuantity = $(this).find('#quantity_input').val();
         totalQuan = totalQuan + parseInt(tmpQuantity);
         sum = sum + (parseInt(tmpPrice) * parseInt(tmpQuantity));
     });
-    $('.total_price').text(sum + "đ"); 
+    // BEGIN EDIT CAM-SV
+    // Format lại tổng tiền theo định dạng currency VND
+    $('.total_price').text(formatCurrency(sum.toString()));
+    // END EDIT CAM-SV
     var quanText = "(" + totalQuan.toString() + " sản phẩm)"
     $('.cart_quantity_label').text(quanText);
     $('.count').text(totalQuan);
 }
 /////////////////////////////////////////////////////////////////
 // THIS BELOW FUNCTIOM REMOVE PROUCT FROM CART
-function removeItemFromCart(){
-    $('.cart_product_remove').click(function(){
+function removeItemFromCart() {
+    $('.cart_product_remove').click(function () {
         $(this).closest('.cart_product_row').remove();
         calTotalPrice();
     })
 }
 /////////////////////////////////////////////////////////////////
-//END ADD HUUDANH
+//END ADD DANH-NH
