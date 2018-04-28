@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     display: flex;
     box-sizing: border-box;
-    height: 750px;
+   
 }
 a {
     text-decoration: none !important;
@@ -18,6 +18,9 @@ a {
 
 .btn-divide-page{
     float: right;
+    /* BEGIN EDIT CAM-SV */
+    margin-top: 40px;
+    /* END EDIT CAM-SV */
     padding: 0;
 }
 
@@ -25,7 +28,7 @@ a {
 .title {
     text-overflow: ellipsis;
     text-align: left;
-    margin: 20px auto 0;
+    margin: 10px auto 0;
     letter-spacing: .1px;
     font-size: 13px;
     color: #242424;
@@ -42,45 +45,15 @@ a {
      height: 200px;
      white-space: nowrap;
 }
-
+/* BEGIN ADD DANH-NH */
+.image img {
+    width: 100%;
+}
+/* END  ADD DANH-NH */
 .box {
     display: inline-block;
-    height: 350px;
+    /* BEGIN EDIT CAM-SV */
+    height: 375px;
+    /* END EDIT CAM-SV */
     margin: 5px;
-}
-
-.one {
-    background: red;
-    width: 25%;
-   
-    background-repeat: no-repeat;
-}
-
-.two {
-    background: yellow;
-    width: 25%;
-    background-repeat: no-repeat;
-}
-
-.three {
-    background: green;
-    width: 25%;
-    background-repeat: no-repeat;
-}
-
-.four {
-    background: blue;
-    width: 25%;
-    background-repeat: no-repeat;
-}
-
-.five {
-    background: blue;
-    width: 25%;
-    background-repeat: no-repeat;
-}
-.six {
-    background: blue;
-    width: 25%;
-    background-repeat: no-repeat;
 }

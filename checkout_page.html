@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+    <link rel="stylesheet" href="css/global_style.css">
+    <link rel="stylesheet" href="css/checkout_page.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="js/checkout.js"></script>
+    <script src="js/common.js"></script>
+    <title>Check out page</title>
+</head>
+
+<!-- BEGIN ADD BAO-TQ -->
+
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
+        <a class="navbar-brand" href="#">
+            <img src="resources/imgs/logo.png" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="mr-auto mt-2 mt-lg-0" style="display: flex;">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
+                        aria-label="Search">
+                    <button class="btn btn-danger my-2 my-sm-0" type="submit">
+                        <i>
+                            <img src="resources/imgs/icons/search.png" />
+                        </i>
+                        <span>Tìm kiếm</span>
+                    </button>
+                </form>
+                <button class="btn btn-danger advance_search" id="btnAdvanceSearch">
+                    <i>
+                        <img src="resources/imgs/icons/search.png" />
+                    </i>
+                    <span>Nâng cao</span>
+                </button>
+            </div>
+
+            <div class="navbar-nav my-2 my-lg-0">
+                <div style="display: block; margin: auto 10px;">
+                    <a class="check_out" href="">
+                        <i>
+                            <img src="resources/imgs/icons/checkout.png" />
+                        </i>
+                        <span class="text">Giỏ hàng</span>
+                        <span class="count">0</span>
+                    </a>
+                </div>
+                <div class="nav-item dropdown" style="display: block; margin: auto 20px;">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <button class="btn btn-primary">
+                            <i>
+                                <img src="resources/imgs/icons/user.png" />
+                            </i>
+                            <span>Chào, tqbdev</span>
+                        </button>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" id="refMyAccount">Tài khoản của tôi</a>
+                        <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Thoát tài khoản</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="wrap">
+            <div class="row panel">
+                <div class="col-8 info">
+                    <div class="panel-wrap">
+                        <form class="form-horizontal" action="">
+
+                            <div class="panel-title">
+                                <h4 class="text-info">1. Địa chỉ giao hàng</h4>
+                            </div>
+
+                            <div class="collapse" id="collapseInfo">
+                                <div class="card border-secondary collapse">
+
+                                    <div class="card-body text-secondary ">
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-3">Họ và tên </label>
+                                            <div class="col-9">
+                                                <input type="text" class="form-control" id="name" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-3" for="first">Số điện thoại</label>
+                                            <div class="col-9">
+                                                <input type="text" class="form-control" id="numberPhone" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="control-label col-3" for="first">Địa chỉ giao hàng</label>
+                                            <div class="col-9">
+                                                <input type="text" class="form-control" id="adress" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-3"></div>
+                                            <div class="col-9">
+                                                <button class="btn btn-outline-info cancel" type='button'> Hủy bỏ</button>
+                                                <button class="btn btn-outline-info update" type='button'> Cập nhật</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel-title">
+                                <h4 class="text-info">2. Chọn hình thức thanh toán</h4>
+                            </div>
+                            <div class="card border-secondary">
+
+                                <div class="card-body text-secondary">
+
+
+
+                                    <div class="form-group row">
+                                        <div class="col-1">
+                                            <input checked type="radio" name="shipping_plan1" value="1" id="plan-2">
+                                        </div>
+
+                                        <div class="col-11">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                Thanh toán tiền mặt khi nhận hàng
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-1">
+                                            <input type="radio" name="shipping_plan1" value="1" id="plan-2">
+                                        </div>
+
+                                        <div class="col-11">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                Thanh toán bằng thẻ Visa, Master card
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="panel-title">
+                                <h4 class="text-info">3. Chọn hình thức giao hàng</h4>
+                            </div>
+                            <div class="card border-secondary">
+
+                                <div class="card-body text-secondary">
+                                    <div class="form-group row">
+                                        <div class="col-1">
+                                            <input checked type="radio" name="shipping_plan" value="1" id="plan-1">
+                                        </div>
+
+                                        <div class="col-11">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                Giao hàng tiêu chuẩn
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-1">
+                                            <input type="radio" name="shipping_plan" value="1" id="plan-1">
+                                        </div>
+
+                                        <div class="col-11">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                Giao hàng nhanh
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-4 checkout">
+                    <div class="panel-checkout">
+                        <form class="form-horizontal" action="">
+
+                            <div class="card border-secondary">
+                                <div class="card-body text-secondary">
+                                    <div>
+                                        <span class="text-info" style="font-size: 16px;">Địa chỉ giao hàng</span>
+                                        <button style="float:right" type="button" class="btn btn-outline-secondary btn-sm" data-toggle="collapse" data-target="#collapseInfo"
+                                            aria-expanded="false" aria-controls="collapseInfo" id="repairInfo"> Sửa</button>
+                                        <hr>
+                                    </div>
+
+                                    <div class="information">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-default"></div>
+                            <div class="card border-secondary">
+                                <div class="card-body text-secondary">
+                                    <div>
+                                        <h4 class="text-info">Đơn hàng</h4>
+                                        <hr>
+                                    </div>
+
+                                    <div class="product">
+
+                                    </div>
+                                    <hr>
+                                    <p class="list-info-price">
+                                        Tạm tính
+                                        <span style="float: right;">40.000&nbsp;đ</span>
+                                    </p>
+
+                                    <p class="list-info-price">
+                                        Phí giao hàng
+                                        <span style="float: right;">0&nbsp;đ</span>
+                                        <hr>
+                                    </p>
+
+                                    <div class="list-info-price">
+                                        <b>Thành tiền</b>
+                                        <span class="text-danger" style="float: right;">40.000&nbsp;đ</span>
+
+                                    </div>
+
+                                    <div style="margin-top: 20px">
+                                        <button style="width: 100%" class="btn btn-warning" type='button'> Thanh toán</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="clear: both;"></div>
+</body>
+<footer>
+    <div class="web_footer_wraper">
+        <div class="color_footer">
+            <div>Copyright © 2018. Đây là một sản phẩm của nhóm LTUDWeb - CNTT KHTN K2015</div>
+        </div>
+    </div>
+</footer>
+
+<!-- BEGIN Modal account -->
+<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                    Thông tin tài khoản
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Điện thoại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập số điện thoại để tiện trong việc giao hàng" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" disabled/>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giới tính</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;">Nam</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;" checked>Nữ</label>
+                    </div>
+                    <div class="col-md-3 entry_information"></div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input type="date" class="form-control">
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Địa chỉ</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Nhập địa chỉ nơi bạn sinh sống" />
+                    </div>
+
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9 entry_information">
+                        <label>
+                            <input type="checkbox" value="" id="isChangePassword">
+                            <span style="margin-left: 10px">Thay đổi mật khẩu</span>
+                        </label>
+                    </div>
+
+                    <div class="row area_password" id="areaChangePassword">
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu cũ</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Mật khẩu cũ" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu mới</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Mật khẩu từ 8 đến 32 ký tự" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Nhập lại</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Nhập lại mật khẩu mới" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin: 0 auto;">
+                        <button class="btn btn-warning">Thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal account info -->
+
+<!-- BEGIN ADD BAO-TQ -->
+<!-- BEGIN Modal Advance Search -->
+<div class="modal fade" id="modalAdvanceSearch" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
+                    Tìm kiếm nâng cao
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Tiêu đề</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên tựa sách, báo, ..." />
+                    </div>
+
+                    <!-- BEGIN ADD CAM-SV -->
+                    <!-- thêm thông tin Tác giá -->
+                    <div class="col-md-3 entry_information">
+                        <label>Tác giả</label>
+                    </div>
+
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên tác giả" />
+                    </div>
+                    <!-- END ADD CAM-SV -->
+
+
+                    <div class="col-md-3 entry_information">
+                        <label>Nhà xuất bản</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên nhà xuất bản" /> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành combobox nhà xuất bản -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
+                            <option value="kd">NXB Kim Đồng</option>
+                            <option value="tre">NXB Trẻ</option>
+                            <option value="sm">Nhà sách Sao Mai</option>
+                            <option value="dt">Đinh Tị</option>
+                            <option value="vl">Văn Lang</option>
+                            <option value="tv">First News - Trí Việt</option>
+                            <option value="kv">Khang Việt Book</option>
+                            <option value="tv">Tân Việt</option>
+                            <option value="alpha">Alphabooks</option>
+                            <option value="mt">Nhà sách Minh Trí</option>
+                            <option value="nn">Nhã Nam</option>
+                            <option value="ml">Minh Long</option>
+                            <option value="pn">Phương Nam</option>
+                            <option value="tn">Nhà sách Thị Nghè</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Thể loại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <!-- <input class="form-control" type="text" placeholder="Hãy nhập tên thể loại" /> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành comboBox thể loại -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn thể loại sách</option>
+                            <option value="scienceFiction">Khoa học viễn tưởng</option>
+                            <option value="foreignLanguage">Ngoại ngữ</option>
+                            <option value="psychology">Tâm lý học</option>
+                            <option value="comics">Truyện tranh</option>
+                            <option value="actionAndAdventure">Hành động và phiêu lưu</option>
+                            <option value="romance">Lãng mạn</option>
+                            <option value="horror">Kinh dị</option>
+                            <option value="cookbooks">Dạy nấu ăn</option>
+                            <option value="health">Sức khỏe, Thể chất</option>
+                            <option value="history">Lịch sử</option>
+                            <option value="encyclopedias">Sách giáo khoa</option>
+                            <option value="art">Nghệ thuật</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giá</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- Sửa lại thành comboBox giá tiền -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn giá tiền</option>
+                            <option value="less50">Dưới 50 ngàn</option>
+                            <option value="50to100">Từ 50 - 100 ngàn</option>
+                            <option value="100to300">Từ 100 - 300 ngàn</option>
+                            <option value="300to500">Từ 300 - 500 ngàn</option>
+                            <option value="greater500">Trên 500 ngàn</option>
+                        </select>
+                        <!-- END EDIT CAM-SV -->
+                    </div>
+
+                    <!-- BEGIN ADD CAM-SV -->
+                    <!-- Thêm các checkbox  -->
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">MỚI
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">GIẢM GIÁ
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">BÁN CHẠY
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <!-- END ADD CAM-SV -->
+
+
+                    <div class="row" style="margin-right: 10px;margin-bottom: 5px;position: fixed;right: 0;bottom: 0;">
+                        <!-- <button class="btn btn-warning">Đồng ý</button> -->
+                        <!-- BEGIN EDIT CAM-SV -->
+                        <!-- sửa lại thành icon search + chỉnh lại vị trí bottom-right-->
+                        <button type="submit" class="btn btn-primary">
+                            <span>
+                                <img src="resources/imgs/icons/search.png" />
+                            </span>
+                        </button>
+                        <!-- END EDIT CAM-SV -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal Advance Search -->
+<!-- END ADD BAO-TQ -->
+
+</html>
