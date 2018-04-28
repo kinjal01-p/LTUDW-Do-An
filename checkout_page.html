@@ -2,21 +2,21 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
-<link rel="stylesheet" href="css/global_style.css">
-<link rel="stylesheet" href="css/checkout_page.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+    <link rel="stylesheet" href="css/global_style.css">
+    <link rel="stylesheet" href="css/checkout_page.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
     <script src="js/checkout.js"></script>
     <script src="js/common.js"></script>
@@ -34,7 +34,7 @@
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-    
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="mr-auto mt-2 mt-lg-0" style="display: flex;">
                 <form class="form-inline">
@@ -54,7 +54,7 @@
                     <span>Nâng cao</span>
                 </button>
             </div>
-    
+
             <div class="navbar-nav my-2 my-lg-0">
                 <div style="display: block; margin: auto 10px;">
                     <a class="check_out" href="">
@@ -277,6 +277,108 @@
         </div>
     </div>
 </footer>
+
+<!-- BEGIN Modal account -->
+<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                    Thông tin tài khoản
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Điện thoại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập số điện thoại để tiện trong việc giao hàng" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" disabled/>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giới tính</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;">Nam</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;" checked>Nữ</label>
+                    </div>
+                    <div class="col-md-3 entry_information"></div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input type="date" class="form-control">
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Địa chỉ</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Nhập địa chỉ nơi bạn sinh sống" />
+                    </div>
+
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9 entry_information">
+                        <label>
+                            <input type="checkbox" value="" id="isChangePassword">
+                            <span style="margin-left: 10px">Thay đổi mật khẩu</span>
+                        </label>
+                    </div>
+
+                    <div class="row area_password" id="areaChangePassword">
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu cũ</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Mật khẩu cũ" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu mới</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Mật khẩu từ 8 đến 32 ký tự" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Nhập lại</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Nhập lại mật khẩu mới" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin: 0 auto;">
+                        <button class="btn btn-warning">Thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal account info -->
 
 <!-- BEGIN ADD BAO-TQ -->
 <!-- BEGIN Modal Advance Search -->
