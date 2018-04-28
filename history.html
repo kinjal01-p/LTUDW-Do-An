@@ -104,3 +104,225 @@
         </div>
     </div>
 </footer>
+
+<!-- BEGIN ADD BAO-TQ -->
+<!-- BEGIN Modal Account -->
+<div class="modal fade" id="modalInformation" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" id="myModalLabel" style="float: left; display: flex;">
+                    Thông tin tài khoản
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Điện thoại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập số điện thoại để tiện trong việc giao hàng" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Email</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" disabled/>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giới tính</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;">Nam</label>
+                    </div>
+                    <div class="col-md-3 entry_information">
+                        <label class="radio-inline">
+                            <input type="radio" name="optradio" style="margin-right: 10px;" checked>Nữ</label>
+                    </div>
+                    <div class="col-md-3 entry_information"></div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input type="date" class="form-control">
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Địa chỉ</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Nhập địa chỉ nơi bạn sinh sống" />
+                    </div>
+
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9 entry_information">
+                        <label>
+                            <input type="checkbox" value="" id="isChangePassword">
+                            <span style="margin-left: 10px">Thay đổi mật khẩu</span>
+                        </label>
+                    </div>
+
+                    <div class="row area_password" id="areaChangePassword">
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu cũ</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Mật khẩu cũ" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Mật khẩu mới</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Mật khẩu từ 8 đến 32 ký tự" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Nhập lại</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="password" placeholder="Nhập lại mật khẩu mới" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin: 0 auto;">
+                        <button class="btn btn-warning">Thay đổi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal Account -->
+
+<!-- BEGIN Modal Advance Search -->
+<div class="modal fade" id="modalAdvanceSearch" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
+                    Tìm kiếm nâng cao
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <div class="modal-body modal_information">
+                <div class="row">
+                    <div class="col-md-3 entry_information">
+                        <label>Tiêu đề</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên tựa sách, báo, ..." />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Tác giả</label>
+                    </div>
+
+                    <div class="col-md-9 entry_information">
+                        <input class="form-control" type="text" placeholder="Hãy nhập tên tác giả" />
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Nhà xuất bản</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
+                            <option value="kd">NXB Kim Đồng</option>
+                            <option value="tre">NXB Trẻ</option>
+                            <option value="sm">Nhà sách Sao Mai</option>
+                            <option value="dt">Đinh Tị</option>
+                            <option value="vl">Văn Lang</option>
+                            <option value="tv">First News - Trí Việt</option>
+                            <option value="kv">Khang Việt Book</option>
+                            <option value="tv">Tân Việt</option>
+                            <option value="alpha">Alphabooks</option>
+                            <option value="mt">Nhà sách Minh Trí</option>
+                            <option value="nn">Nhã Nam</option>
+                            <option value="ml">Minh Long</option>
+                            <option value="pn">Phương Nam</option>
+                            <option value="tn">Nhà sách Thị Nghè</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Thể loại</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn thể loại sách</option>
+                            <option value="scienceFiction">Khoa học viễn tưởng</option>
+                            <option value="foreignLanguage">Ngoại ngữ</option>
+                            <option value="psychology">Tâm lý học</option>
+                            <option value="comics">Truyện tranh</option>
+                            <option value="actionAndAdventure">Hành động và phiêu lưu</option>
+                            <option value="romance">Lãng mạn</option>
+                            <option value="horror">Kinh dị</option>
+                            <option value="cookbooks">Dạy nấu ăn</option>
+                            <option value="health">Sức khỏe, Thể chất</option>
+                            <option value="history">Lịch sử</option>
+                            <option value="encyclopedias">Sách giáo khoa</option>
+                            <option value="art">Nghệ thuật</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3 entry_information">
+                        <label>Giá</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                        <select class="form-control" required>
+                            <option value="" disabled selected hidden>Chọn giá tiền</option>
+                            <option value="less50">Dưới 50 ngàn</option>
+                            <option value="50to100">Từ 50 - 100 ngàn</option>
+                            <option value="100to300">Từ 100 - 300 ngàn</option>
+                            <option value="300to500">Từ 300 - 500 ngàn</option>
+                            <option value="greater500">Trên 500 ngàn</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">MỚI
+                            <input type="checkbox" id="c1" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">GIẢM GIÁ
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="col-md-4 entry_information control-group">
+                        <label class="control control--checkbox">BÁN CHẠY
+                            <input type="checkbox" />
+                            <div class="control__indicator"></div>
+                        </label>
+                    </div>
+                    <div class="row" style="margin-right: 10px;margin-bottom: 5px;position: fixed;right: 0;bottom: 0;">
+                        <button type="submit" class="btn btn-primary">
+                            <span>
+                                <img src="resources/imgs/icons/search.png" />
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END Modal Advance Search -->
+<!-- END ADD BAO-TQ -->
