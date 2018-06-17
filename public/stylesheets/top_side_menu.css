@@ -1,0 +1,25 @@
+
+/* BEGIN EDIT DANH-HN */
+#imgResize {
+    box-shadow: 0 0 3px #b2bec3;
+    padding: 5px;
+    width: 9.65%;
+    background-color:white; 
+    margin: auto;
+    cursor: pointer;
+}
+#imgResize:hover {
+    box-shadow: 0 0 8px #1abc9c;    
+}
+
+.instruction-text {
+    color: #1abc9c;
+    font-weight: bold;
+}
+.top_ten_row {
+    margin: 0!important;
+    padding: 10px 5px 20px 5px;
+    border: 1px solid #dfe6e9;
+    border-style: solid none none none;
+}
+/* END EDIT DANH-HN */

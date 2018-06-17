@@ -1,10 +1,280 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="stylesheets/global_style.css">
+  <link rel="stylesheet" href="stylesheets/anmoc.css">
+  <link rel="stylesheet" href="stylesheets/left_side_menu.css">
+  <link rel="stylesheet" href="stylesheets/top_side_menu.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+  <script src="js/common.js"></script>
+  {{!-- <script src="js/product_item_list.js"></script> --}}
+  {{!-- <script src="js/left_side_menu.js"></script> --}}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
+    <a class="navbar-brand" href="#">
+      <img src="resources/imgs/logo.png" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="mr-auto mt-2 mt-lg-0" style="display: flex;">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
+            aria-label="Search">
+          <button class="btn btn-danger my-2 my-sm-0" type="submit">
+            <i>
+              <img src="resources/imgs/icons/search.png" />
+            </i>
+            <span>Tìm kiếm</span>
+          </button>
+        </form>
+        <button class="btn btn-danger advance_search" id="btnAdvanceSearch">
+          <i>
+            <img src="resources/imgs/icons/search.png" />
+          </i>
+          <span>Nâng cao</span>
+        </button>
+      </div>
+
+      <div class="navbar-nav my-2 my-lg-0">
+        <div style="display: block; margin: auto 20px;">
+          <a class="check_out" href="">
+            <i>
+              <img src="resources/imgs/icons/checkout.png" />
+            </i>
+            <span class="text">Giỏ hàng</span>
+            <span class="count">0</span>
+          </a>
+        </div>
+        <div style="display: block; margin: auto 20px;">
+          <button class="btn btn-primary" id="btnLogin">
+            <!-- CAM-SV: thêm id btnLogIn để trigger modal -->
+            <i>
+              <img src="resources/imgs/icons/user.png" />
+            </i>
+            <span>Đăng nhập</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  {{{body}}}
+
+  <div style="clear: both;"></div>
+  <div class="web_footer_wraper">
+    <div class="color_footer">
+      <div>Copyright © 2018. Đây là một sản phẩm của nhóm LTUDWeb - CNTT KHTN K2015</div>
+    </div>
+  </div>
+</body>
+
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="float: left; display: flex;">
+        <h4 class="modal-title" id="myModalLoginTitle" style="float: left; display: flex;">
+          Đăng nhập
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          ×</button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a id="tabLogIn" class="nav-link active" href="#Login" data-toggle="tab">Đăng nhập</a>
+              </li>
+              <li class="nav-item">
+                <a id="tabSignUp" class="nav-link" href="#Registration" data-toggle="tab">Đăng ký</a>
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="Login">
+                <form role="form" class="form-horizontal">
+                  <div class="form-group">
+                    <label for="reEmail" class="col-sm-12 control-label">
+                      Email</label>
+                    <div class="col-sm-12">
+                      <input type="email" class="form-control" id="reEmail" placeholder="Email" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="rePassword" class="col-sm-12 control-label">
+                      Mật khẩu</label>
+                    <div class="col-sm-12">
+                      <input type="password" class="form-control" id="rePassword" placeholder="Mật khẩu" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="container">
+                      <button type="submit" class="btn btn-primary">
+                        Đăng nhập</button>
+                      <a href="javascript:;">Quên mật khẩu?</a>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane" id="Registration">
+                <form role="form" class="form-horizontal">
+                  <div class="form-group">
+                    <label for="name" class="col-md-12 control-label">
+                      Họ tên</label>
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input type="text" class="form-control" id="name" placeholder="Nhập họ tên" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-sm-12 control-label">
+                      Email</label>
+                    <div class="col-sm-12">
+                      <input type="email" class="form-control" id="email" placeholder="Nhập email" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="mobile" class="col-sm-12 control-label">
+                      Di động</label>
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control" id="mobile" placeholder="Nhập di động" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-sm-12 control-label">
+                      Mật khẩu</label>
+                    <div class="col-sm-12">
+                      <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="container">
+                      <div class="g-recaptcha" data-sitekey="6LdOB1YUAAAAAINaWeglCZ6OjoHSNxfrg9P4hoDn"></div>
+                      <button type="button" class="btn btn-primary">
+                        Đăng ký</button>
+                      <button type="button" class="btn btn-default">
+                        Cancel</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END Modal Login -->
+
+<!-- BEGIN Modal Advance Search -->
+<div class="modal fade" id="modalAdvanceSearch" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header" style="float: left; display: flex;">
+        <h4 class="modal-title" style="float: left; display: flex;">
+          Tìm kiếm nâng cao
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          ×</button>
+      </div>
+      <div class="modal-body modal_information">
+        <div class="row">
+          <div class="col-md-3 entry_information">
+            <label>Tiêu đề</label>
+          </div>
+          <div class="col-md-9 entry_information">
+            <input class="form-control" type="text" placeholder="Hãy nhập tên tựa sách, báo, ..." />
+          </div>
+
+          <!-- thêm thông tin Tác giá -->
+          <div class="col-md-3 entry_information">
+            <label>Tác giả</label>
+          </div>
+
+          <div class="col-md-9 entry_information">
+            <input class="form-control" type="text" placeholder="Hãy nhập tên tác giả" />
+          </div>
+
+          <div class="col-md-3 entry_information">
+            <label>Nhà xuất bản</label>
+          </div>
+          <div class="col-md-9 entry_information">
+            <select class="form-control" required>
+              <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
+              {{#each manufactorer}}
+              <option value="{{this.name}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col-md-3 entry_information">
+            <label>Thể loại</label>
+          </div>
+          <div class="col-md-9 entry_information">
+            <select class="form-control" required>
+              <option value="" disabled selected hidden>Chọn thể loại sách</option>
+              {{#each type_book}}
+              <option value="{{this.name}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="col-md-3 entry_information">
+            <label>Giá</label>
+          </div>
+          <div class="col-md-9 entry_information">
+            <!-- Sửa lại thành comboBox giá tiền -->
+            <select class="form-control" required>
+              <option value="" disabled selected hidden>Chọn giá tiền</option>
+              <option value="less50">Dưới 50 ngàn</option>
+              <option value="50to100">Từ 50 - 100 ngàn</option>
+              <option value="100to300">Từ 100 - 300 ngàn</option>
+              <option value="300to500">Từ 300 - 500 ngàn</option>
+              <option value="greater500">Trên 500 ngàn</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin: 20px; position: relative; text-align: center;">
+          <button type="submit" class="btn btn-primary col-md-12">
+            <span>
+              <img src="resources/imgs/icons/search.png" />
+              <span>Tìm kiếm</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END Modal Advance Search -->
+
 </html>
