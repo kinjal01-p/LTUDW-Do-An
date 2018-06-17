@@ -1,2 +1,107 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container">
+      <div>
+            <div class="instruction-text">Top 10 sản phẩm mới nhất</div>
+            <div class="top_ten_row row">
+                  {{#each top_new}}
+                  <div class="top_ten_product" id="imgResize">
+                        <div class="top_ten_img">
+                              <img src="resources/imgs/small/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                        </div>
+                  </div>
+                  {{/each}}
+            </div>
+
+            <div class="instruction-text">Top 10 sản phẩm bán chạy nhất</div>
+            <div class="top_ten_row row">
+                  {{#each top_sale}}
+                  <div class="top_ten_product" id="imgResize">
+                        <div class="top_ten_img">
+                              <img src="resources/imgs/small/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                        </div>
+                  </div>
+                  {{/each}}
+            </div>
+
+            <div class="instruction-text">Top 10 sản phẩm xem nhiều nhất</div>
+            <div class="top_ten_row row">
+                  {{#each top_viewed}}
+                  <div class="top_ten_product" id="imgResize">
+                        <div class="top_ten_img">
+                              <img src="resources/imgs/small/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                        </div>
+                  </div>
+                  {{/each}}
+            </div>
+      </div>
+
+      <div class="left_side_menu">
+            <div class="left_side_menu_title">Danh mục sản phẩm</div>
+            <div class="left_side_child_menu_title">Thể loại</div>
+            <div class="product_type_menu_list">
+                  <div id="bookTypeMenuItem">
+                        {{#each type_book}}
+                        <div class="product_type menu_item">{{this.name}} ({{this.count}})</div>
+                        {{/each}}
+                  </div>
+
+            </div>
+
+            <div class="left_side_child_menu_title">Nhà xuất bản</div>
+            <div class="producer_menu_list">
+                  <div id="nxbMenuItem">
+                        {{#each manufactorer}}
+                        <div class="product_type menu_item">{{this.name}} ({{this.count}})</div>
+                        {{/each}}
+                  </div>
+            </div>
+
+            <div class="left_side_child_menu_title">Giá</div>
+            <div class="producer_menu_list">
+                  <div id="pricingMenuItem">
+                        <div class="producter menu_item">Dưới 50 ngàn (987)</div>
+                        <div class="producter menu_item">Từ 50 - 100 ngàn (653)</div>
+                        <div class="producter menu_item">Từ 100 - 300 ngàn (204)</div>
+                        <div class="producter menu_item">Từ 300 - 500 ngàn (71)</div>
+                        <div class="producter menu_item">Trên 500 ngàn (27)</div>
+                  </div>
+            </div>
+      </div>
+
+      <div class="product_container">
+            <div class="container-flexbox">
+                  {{#each products}}
+                  <div class="box">
+                        <a href="#">
+                              <span class="image">
+                                    <img src="resources/imgs/small/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
+                              </span>
+                              <span class="title">
+                                    {{this.name}}
+                              </span>
+                              <h4 style="color: orange;">{{this.price}} đ</h4>
+                              <button style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
+                                    <span>
+                                          <img src="resources/imgs/icons/checkout.png" />
+                                    </span>
+                              </button>
+                        </a>
+                  </div>
+                  {{/each}}
+            </div>
+
+            {{!--
+            <div class="btn-group btn-divide-page" role="group">
+                  <button class="prev btn btn-outline-dark btn-sm">
+
+                        <span>❮</span>
+
+                  </button>
+
+                  <button class="next btn btn-outline-dark btn-sm" style="margin-left:5px ">
+
+                        <span>❯</span>
+
+                  </button>
+            </div> --}}
+      </div>
+</div>
