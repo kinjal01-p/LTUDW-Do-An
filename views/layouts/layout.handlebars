@@ -12,25 +12,22 @@
   <link rel="stylesheet" href="stylesheets/left_side_menu.css">
   <link rel="stylesheet" href="stylesheets/top_side_menu.css">
 
-  <link href='https://fonts.googleapis.com/css?family=Assistant' rel='stylesheet'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-    crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="stylesheets/assets/bootstrap-4.1.1/css/bootstrap.min.css">
+
+  <script src="stylesheets/assets/jquery-3.3.1.slim.min.js"></script>
+  <script src="stylesheets/assets/popper.min.js"></script>
+  <script src="stylesheets/assets/bootstrap-4.1.1/js/bootstrap.min.js"></script>
+
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
   <script src="js/common.js"></script>
-  {{!-- <script src="js/product_item_list.js"></script> --}}
-  {{!-- <script src="js/left_side_menu.js"></script> --}}
+
+  {{{block "pageCSS"}}}
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="resources/imgs/logo.png" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -244,21 +241,6 @@
               {{#each type_book}}
               <option value="{{this.name}}">{{this.name}}</option>
               {{/each}}
-            </select>
-          </div>
-
-          <div class="col-md-3 entry_information">
-            <label>Giá</label>
-          </div>
-          <div class="col-md-9 entry_information">
-            <!-- Sửa lại thành comboBox giá tiền -->
-            <select class="form-control" required>
-              <option value="" disabled selected hidden>Chọn giá tiền</option>
-              <option value="less50">Dưới 50 ngàn</option>
-              <option value="50to100">Từ 50 - 100 ngàn</option>
-              <option value="100to300">Từ 100 - 300 ngàn</option>
-              <option value="300to500">Từ 300 - 500 ngàn</option>
-              <option value="greater500">Trên 500 ngàn</option>
             </select>
           </div>
         </div>
