@@ -1,11 +1,16 @@
 var createError = require('http-errors');
 var express = require('express');
+var exphbs = require('express-handlebars');
+var express_handlebars_sections = require('express-handlebars-sections');
+var wnumb = require('wnumb');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
+
+var config = require('./config/config.js');
 
 var handle_layout = require('./middle-wares/handle_layout.js');
 var restrict = require('./middle-wares/restrict');
@@ -16,6 +21,34 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+app.engine('hbs', exphbs({
+  defaultLayout: 'layout',
+  layoutsDir: 'views/layouts/',
+  helpers: {
+    section: express_handlebars_sections(),
+    
+    number_format: n => {
+      var nf = wnumb({
+        thousand: ','
+      });
+      return nf.to(n);
+    },
+
+    block: function (name) {
+      var blocks = this._blocks,
+        content = blocks && blocks[name];
+
+      return content ? content.join('\n') : null;
+    },
+
+    contentFor: function (name, options) {
+      var blocks = this._blocks || (this._blocks = {}),
+        block = blocks[name] || (blocks[name] = []);
+
+      block.push(options.fn(this));
+    }
+  }
+}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -28,22 +61,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // session
-var sessionStore = new MySQLStore({
-  host: 'localhost',
-  port: 8889,
-  user: 'root',
-  password: 'root',
-  database: 'store',
-  createDatabaseTable: true,
-  schema: {
-    tableName: 'sessions',
-    columnNames: {
-      session_id: 'session_id',
-      expires: 'expires',
-      data: 'data'
-    }
-  }
-});
+var sessionStore = new MySQLStore(config.mysqlSessionConfig);
 
 app.use(session({
   key: 'session_cookie_name',
@@ -55,7 +73,7 @@ app.use(session({
 //
 
 // handle layout
-app.use(handle_layout);
+//app.use(handle_layout);
 //
 
 app.use('/', indexRouter);
