@@ -1,30 +1,40 @@
 'use strict';
 
-const mysql = require("mysql");
+var mysql = require('mysql');
+var config = require('../config/config.js');
 
-var database = {
-      initDatabase: function() {
-            this.pool = mysql.createPool({
+exports.load = sql => {
+      return new Promise((resolve, reject) => {
+            var cn = mysql.createConnection(config.mysqlConfig);
 
-            });
-      },
+            cn.connect();
 
-      query: function(query, callback) {
-            this.pool.query(query, function(err, res) {
-                  if (err) {
-                        this.initDatabase();
-                        callback(err, res);
+            cn.query(sql, function (error, rows, fields) {
+                  if (error) {
+                        reject(error);
                   } else {
-                        callback(err, res);
+                        resolve(rows);
                   }
+
+                  cn.end();
             });
-      },
+      });
+}
 
-      disconnect: function() {
-            if (this.pool) {
-                  this.pool.end();
-            }
-      }
-};
+exports.save = sql => {
+      return new Promise((resolve, reject) => {
+            var cn = mysql.createConnection(config.mysqlConfig);
 
-module.exports = database;
+            cn.connect();
+
+            cn.query(sql, function (error, value) {
+                  if (error) {
+                        reject(error);
+                  } else {
+                        resolve(value);
+                  }
+
+                  cn.end();
+            });
+      });
+}
