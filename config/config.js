@@ -1,16 +1,16 @@
 exports.mysqlConfig = {
       host: 'localhost',
-      port: 8889,
+      port: 3306,
       user: 'root',
-      password: 'root',
+      password: '123456',
       database: 'store'
 }
 
 exports.mysqlSessionConfig = {
       host: 'localhost',
-      port: 8889,
+      port: 3306,
       user: 'root',
-      password: 'root',
+      password: '123456',
       database: 'store',
       createDatabaseTable: true,
       schema: {
@@ -24,5 +24,8 @@ exports.mysqlSessionConfig = {
 }
 
 exports.appConfig = {
-      PRODUCTS_PER_PAGE: 20
+      PRODUCTS_PER_PAGE: 20,
+      PRODUCTS_SAME_TYPE: 5,
+      PRODUCTS_SAME_CATEGORIES: 5
 }
+

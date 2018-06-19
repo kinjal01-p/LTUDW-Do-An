@@ -27,24 +27,21 @@
             <div class="info_box">
                 <div class="general_info_container">
                     <div class="product_name">{{this.name}}</div>
-                    <div class="product_price">{{this.price}}</div>
+                    <div class="product_price">{{this.price}} đ</div>
                     <div class="product_origin_info row">
-                        <div class="product_type_info">
-                            <a href="#">{{this.type}}</a>
-                        </div>
-                        {{#with manufacturer}}
+                                          
                         <div class="product_producer_info">
-                            <a href="#">{{this.NXB}}</a>
+                            <a href="#">{{this.author}}</a>
                         </div>
 
                         <div class="product_country_info">
-                            <a href="#">{{this.country}}</a>
+                            <a href="#">{{this.manufacturer}}</a>
                         </div>
-                        {{/with}}
+                        
                     </div>
                     <div class="product_rating row">
-                        <div class="product_viewed">{{this.viewCount}}</div>
-                        <div class="product_sold">Đã bán: 1000</div>
+                        <div class="product_viewed">Lượt xem: {{this.view_count}}</div>
+                        <div class="product_sold">Đã bán: {{this.sell_amount}}</div>
                     </div>
                 </div>
             </div>
@@ -53,7 +50,7 @@
                     <div class="descript_title">Mô tả</div>
                     <div class="descript">
                         <p>
-                            {{this.Description}}
+                            {{this.description}}
                         </p>
                     </div>
                 </div>
@@ -73,5 +70,42 @@
 
         </div>
         {{/with}}
+
+        <div style="padding-top: 10px; border: 1px solid #dfe6e9; border-style: solid none none none;font-size: 20px; color:#1abc9c;">
+            Các sản phẩm cùng loại
+        </div>
+
+        <div class="same_type_list">
+            <div class="relate_product_row row">
+                 {{#each typeProductList}}
+                <div class="relate_product_wraper">
+                    <div class="relate_product_img_warper">
+                        <img id="relate_product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan Tập 67 (Tái Bản 2014)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                            alt="">
+                    </div>
+                    <div class="relate_product_name">{{this.name}}</div>
+                    <div class="relate_product_price">{{this.price}} đ</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div style="padding-top: 5px; border: 1px solid #dfe6e9; border-style: solid none none none; font-size: 20px; color:#1abc9c;">
+            Các sản phẩm cùng nhà sản xuất
+        </div>
+        <div class="same_producer_list">
+            <div class="relate_product_row row">
+                 {{#each caregoryProductList}}
+                <div class="relate_product_wraper">
+                    <div class="relate_product_img_warper">
+                        <img id="relate_product_img" src="resources/imgs/big/Tôi Thấy Hoa Vàng Trên Cỏ Xanh (Nguyễn Nhật Ánh)_Nhà Xuất Bản Trẻ_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                            alt="">
+                    </div>
+                    <div class="relate_product_name">{{this.name}}</div>
+                    <div class="relate_product_price">{{this.price}} đ</div>
+                </div>
+                 {{/each}}
+            </div>
+        </div>
         <!-- END RIGHT COLUMN - PRODUCT INFO -->
     </div>

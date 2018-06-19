@@ -3,25 +3,54 @@ var router = express.Router();
 
 /* GET users listing. */
 
+var db = require('../database/repos/detailsRepo.js');
 
-let product = {
-    name: "Thám Tử Lừng Danh Conan (Tập 93)",
-    price: "10.000đ",
-    viewCount: "2000",
-    manufacturer: {
-        NXB: "Kim đồng",
-        country:"Nhật Bản"
-    },
-    type: "Truyện tranh",
-    Description: "Thi thể đã biến đi đâu!? “Vụ án xác chết biến mất trong bể bơi” sẽ được làm sáng tỏ! Bên cạnh đó, bóng dáng “Rum”, nhân vật quyền lực thứ 2 của tổ chức Áo Đen sẽ theo sát Conan và Haibara!? Cũng trong tập này, “vụ án người cô thân thiết”, vụ án mạng quái vật “Kamaitachi” với sự tham gia của Heiji... và sự mở đầu của “án mạng Kawanakajima” nơi máu của các cảnh sát hình sự sẽ đổ xuống chiến trường xưa ở tỉnh Nagano... hứa hẹn sẽ mang tới nhiều điều bất ngờ!"
-}
+var productDetails = db.details(2536274226658);
+var productTypes = db.sameTypes(10003);
+var productNXBs = db.sameCategories(20007);
+
+
+let product = {};
+let typeProductList = [];
+let caregoryProductList = [];
+
+productDetails.then(
+        function (val) {
+            product = val[0];
+        })
+    .catch(
+        function (reason) {
+            console.log('Handle rejected promise (' + reason + ') here.');
+        });
+
+productTypes.then(
+        function (val) {
+            //console.log(val);
+            typeProductList = [...val];
+        })
+    .catch(
+        function (reason) {
+            console.log('Handle rejected promise (' + reason + ') here.');
+        });
+
+productNXBs.then(
+        function (val) {
+            caregoryProductList = [...val];
+        })
+    .catch(
+        function (reason) {
+            console.log('Handle rejected promise (' + reason + ') here.');
+        });
+
 
 router.get('/', function (req, res, next) {
-
+    console.log(product);
     // var userName = req.session.passport.user;
     res.render('details_product', {
         title: 'Product',
-        product
+        product,
+        typeProductList,
+        caregoryProductList
     });
 
 });
