@@ -16,6 +16,20 @@ exports.countByType = typeId => {
       return db.load(sql);
 }
 
+exports.countPerType = () =>{
+      var sql = `select class_product.name as type_name, count(product.id_product) as quantity
+      from product inner join class_product on product.id_class = class_product.id_class
+      group by product.id_class`;
+      return db.load(sql);
+}
+
+exports.loadTotalRevenuePerType = () => {
+      var sql = `select class_product.name as type_name, sum(product.sell_amount*product.price) as revenue
+      from product inner join class_product on product.id_class = class_product.id_class
+      group by product.id_class`;
+      return db.load(sql);
+}
+
 exports.single = proId => {
       var sql = `select * from product where id_product = ${proId}`;
       return db.load(sql);
