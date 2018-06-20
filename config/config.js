@@ -3,7 +3,8 @@ exports.mysqlConfig = {
       port: 8889,
       user: 'root',
       password: 'root',
-      database: 'store'
+      database: 'store',
+      port: '3306'
 }
 
 exports.mysqlSessionConfig = {
@@ -12,6 +13,7 @@ exports.mysqlSessionConfig = {
       user: 'root',
       password: 'root',
       database: 'store',
+      port: '3306',
       createDatabaseTable: true,
       schema: {
             tableName: 'sessions',
