@@ -1,31 +1,9 @@
 var express = require('express');
+var productRepo = require('../database/repos/productRepo.js');
 var router = express.Router();
 
 // Demo data
-var manufactorers = [
-  {
-    name: "NXB Kim Dong",
-    count: 1000
-  }, 
-  {
-    name: "NXB Tre",
-    count: 2123
-  }
-]
-
-var type_books = [
-  {
-    name: "Trinh tham",
-    count: 1213
-  }, 
-  {
-    name: "Van hoc",
-    count: 1231,
-  }
-]
-
-var top_ten = [
-  {
+var top_ten = [{
     name: "7 Thoi quen...",
     id_product: 1,
     price: 60000
@@ -78,8 +56,19 @@ var top_ten = [
 ]
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Book store',  manufactorer: manufactorers, type_book: type_books, top_new: top_ten, top_sale: top_ten, top_viewed: top_ten, products: top_ten});
+router.get('/', function (req, res, next) {
+  Promise.all([productRepo.top_sale(), productRepo.top_viewed()]).then(values => {
+    //console.log(values[0]);
+    //console.log(values[1]);
+
+    res.render('index', {
+      title: 'Book store',
+      top_new: top_ten,
+      top_sale: values[0],
+      top_viewed: values[1],
+      products: top_ten
+    });
+  })
 });
 
 module.exports = router;

@@ -25,6 +25,7 @@ exports.mysqlSessionConfig = {
 
 exports.appConfig = {
       PRODUCTS_PER_PAGE: 20,
+      PRODUCTS_PER_TOP: 10,
       PRODUCTS_SAME_TYPE: 5,
       PRODUCTS_SAME_CATEGORIES: 5
 }

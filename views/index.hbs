@@ -5,7 +5,7 @@
                   {{#each top_new}}
                   <div class="top_ten_product" id="imgResize">
                         <div class="top_ten_img">
-                              <img src="resources/imgs/small/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                              <img src="resources/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
                         </div>
                   </div>
                   {{/each}}
@@ -16,7 +16,7 @@
                   {{#each top_sale}}
                   <div class="top_ten_product" id="imgResize">
                         <div class="top_ten_img">
-                              <img src="resources/imgs/small/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                              <img src="resources/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
                         </div>
                   </div>
                   {{/each}}
@@ -27,7 +27,7 @@
                   {{#each top_viewed}}
                   <div class="top_ten_product" id="imgResize">
                         <div class="top_ten_img">
-                              <img src="resources/imgs/small/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                              <img src="resources/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
                         </div>
                   </div>
                   {{/each}}
@@ -79,11 +79,13 @@
                                     {{this.name}}
                               </span>
                               <h4 style="color: orange;">{{this.price}} đ</h4>
+                              {{#if layoutVM.isLogged}}
                               <button style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
                                     <span>
                                           <img src="resources/imgs/icons/checkout.png" />
                                     </span>
                               </button>
+                              {{/if}}
                         </a>
                   </div>
                   {{/each}}
