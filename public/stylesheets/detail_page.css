@@ -109,7 +109,9 @@
     cursor: pointer;
 }
 .product_type_info {
-    width: 30%;
+    /* BEGIN EDIT AN - MT */
+    width: 50%;
+    /* END AN - MT */
     padding: 5px 15px 5px 20px;
     font-size: 20px;
     color: white;
@@ -120,7 +122,8 @@
     cursor: pointer;
 }
 .product_country_info {
-    width: 30%;
+    
+    width: 50%;
     padding: 5px 0px 5px 30px;
     color: white;
     font-size: 20px;

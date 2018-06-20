@@ -7,10 +7,13 @@ exports.load = sql => {
       return new Promise((resolve, reject) => {
             var cn = mysql.createConnection(config.mysqlConfig);
 
-            cn.connect();
+           cn.connect(function (err) {
+                 if (err) throw err;
+                 
+           });
 
             cn.query(sql, function (error, rows, fields) {
-                  if (error) {
+                  if (error) {            
                         reject(error);
                   } else {
                         resolve(rows);

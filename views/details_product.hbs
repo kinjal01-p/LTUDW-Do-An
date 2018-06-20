@@ -1,0 +1,111 @@
+<!-- begin body -->
+<div class="detail_container">
+    <div class="breadcrumb_container row">
+        <div class="breadcrumb_item">
+            <a href="#">Home</a>
+        </div>
+        <div class="path_seperator">❯</div>
+        <div class="breadcrumb_item">
+            <a href="#">Truyện tranh</a>
+        </div>
+        <div class="path_seperator">❯</div>
+        <div class="breadcrumb_item">Thám Tử Lừng Danh Conan (Tập 93)</div>
+
+    </div>
+    <div class="row product_detail_container">
+        <!--BEGIN LEFT COLUMN - BIG IMG -->
+        <div class="col-md-4  product_image_wraper">
+            <div class="product_image_div">
+                <img class="product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                    alt="">
+            </div>
+        </div>
+        <!-- END LEFT COLUMN - BIG IMG -->
+        <!-- BEGIN RIGHT COLUMN - PRODUCT INFO -->
+        {{#with product}}
+        <div class="col-md-8 product_info_wraper">
+            <div class="info_box">
+                <div class="general_info_container">
+                    <div class="product_name">{{this.name}}</div>
+                    <div class="product_price">{{this.price}} đ</div>
+                    <div class="product_origin_info row">
+                                          
+                        <div class="product_producer_info">
+                            <a href="#">{{this.author}}</a>
+                        </div>
+
+                        <div class="product_country_info">
+                            <a href="#">{{this.manufacturer}}</a>
+                        </div>
+                        
+                    </div>
+                    <div class="product_rating row">
+                        <div class="product_viewed">Lượt xem: {{this.view_count}}</div>
+                        <div class="product_sold">Đã bán: {{this.sell_amount}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="add_cart_and_descript_container row">
+                <div class="col-md-8 descript_box">
+                    <div class="descript_title">Mô tả</div>
+                    <div class="descript">
+                        <p>
+                            {{this.description}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4 add_cart_box">
+                    <div class="add_cart_background">
+                        <div class="order_quantity_row row">
+                            <div id="quantity_label">Số lượng:</div>
+                            <div class="decrease_btn">-</div>
+                            <input id="quantity_input" type="text" value="1" name="order_quantity" />
+                            <div class="increase_btn">+</div>
+                        </div>
+                        <div class="buy_now">Mua ngay</div>
+                        <div class="add_to_cart">Cho vào giỏ</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {{/with}}
+
+        <div style="padding-top: 10px; border: 1px solid #dfe6e9; border-style: solid none none none;font-size: 20px; color:#1abc9c;">
+            Các sản phẩm cùng loại
+        </div>
+
+        <div class="same_type_list">
+            <div class="relate_product_row row">
+                 {{#each typeProductList}}
+                <div class="relate_product_wraper">
+                    <div class="relate_product_img_warper">
+                        <img id="relate_product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan Tập 67 (Tái Bản 2014)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                            alt="">
+                    </div>
+                    <div class="relate_product_name">{{this.name}}</div>
+                    <div class="relate_product_price">{{this.price}} đ</div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div style="padding-top: 5px; border: 1px solid #dfe6e9; border-style: solid none none none; font-size: 20px; color:#1abc9c;">
+            Các sản phẩm cùng nhà sản xuất
+        </div>
+        <div class="same_producer_list">
+            <div class="relate_product_row row">
+                 {{#each caregoryProductList}}
+                <div class="relate_product_wraper">
+                    <div class="relate_product_img_warper">
+                        <img id="relate_product_img" src="resources/imgs/big/Tôi Thấy Hoa Vàng Trên Cỏ Xanh (Nguyễn Nhật Ánh)_Nhà Xuất Bản Trẻ_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                            alt="">
+                    </div>
+                    <div class="relate_product_name">{{this.name}}</div>
+                    <div class="relate_product_price">{{this.price}} đ</div>
+                </div>
+                 {{/each}}
+            </div>
+        </div>
+        <!-- END RIGHT COLUMN - PRODUCT INFO -->
+    </div>
