@@ -74,7 +74,7 @@ app.use(session({
 //
 
 // handle layout
-//app.use(handle_layout);
+app.use(handle_layout);
 //
 
 app.use('/', indexRouter);
