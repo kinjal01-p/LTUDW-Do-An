@@ -68,7 +68,7 @@ router.get('/', function (req, res, next) {
       top_viewed: values[2],
       products: top_ten
     });
-  })
+  });
 });
 
 module.exports = router;

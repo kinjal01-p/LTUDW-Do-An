@@ -1,41 +1,42 @@
 <!-- begin body -->
 <div class="detail_container">
+    {{#with product}}
     <div class="breadcrumb_container row">
         <div class="breadcrumb_item">
-            <a href="#">Home</a>
+            <a href="/"> Trang chủ </a>
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item">
-            <a href="#">Truyện tranh</a>
+            {{!-- TODO by type --}}
+            <a href="/"> {{this.manufacturer_name}} </a>
         </div>
         <div class="path_seperator">❯</div>
-        <div class="breadcrumb_item">Thám Tử Lừng Danh Conan (Tập 93)</div>
+        <div class="breadcrumb_item"> {{this.name}} </div>
 
     </div>
     <div class="row product_detail_container">
         <!--BEGIN LEFT COLUMN - BIG IMG -->
         <div class="col-md-4  product_image_wraper">
             <div class="product_image_div">
-                <img class="product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                <img class="product_img" src="/resources/{{this.id_product}}.jpg"
                     alt="">
             </div>
         </div>
         <!-- END LEFT COLUMN - BIG IMG -->
         <!-- BEGIN RIGHT COLUMN - PRODUCT INFO -->
-        {{#with product}}
         <div class="col-md-8 product_info_wraper">
             <div class="info_box">
                 <div class="general_info_container">
                     <div class="product_name">{{this.name}}</div>
-                    <div class="product_price">{{this.price}} đ</div>
+                    <div class="product_price">{{number_format this.price}} đ</div>
                     <div class="product_origin_info row">
 
                         <div class="product_producer_info">
-                            <a href="#">{{this.author}}</a>
+                            <a href="#">{{this.author_name}}</a>
                         </div>
 
                         <div class="product_country_info">
-                            <a href="#">{{this.manufacturer}}</a>
+                            <a href="#">{{this.manufacturer_name}}</a>
                         </div>
 
                     </div>
@@ -77,15 +78,15 @@
 
         <div class="same_type_list">
             <div class="relate_product_row row">
-                {{#each typeProductList}}
-                <div class="relate_product_wraper">
+                {{#each sameTypeProducts}}
+                <a href="/details/{{this.id_product}}" class="relate_product_wraper">
                     <div class="relate_product_img_warper">
-                        <img id="relate_product_img" src="resources/imgs/big/Thám Tử Lừng Danh Conan Tập 67 (Tái Bản 2014)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                        <img id="relate_product_img" src="/resources/{{this.id_product}}.jpg"
                             alt="">
                     </div>
                     <div class="relate_product_name">{{this.name}}</div>
-                    <div class="relate_product_price">{{this.price}} đ</div>
-                </div>
+                    <div class="relate_product_price">{{number_format this.price}} đ</div>
+                </a>
                 {{/each}}
             </div>
         </div>
@@ -95,15 +96,15 @@
         </div>
         <div class="same_producer_list">
             <div class="relate_product_row row">
-                {{#each caregoryProductList}}
-                <div class="relate_product_wraper">
+                {{#each sameManufacturerProducts}}
+                <a href="/details/{{this.id_product}}" class="relate_product_wraper">
                     <div class="relate_product_img_warper">
-                        <img id="relate_product_img" src="resources/imgs/big/Tôi Thấy Hoa Vàng Trên Cỏ Xanh (Nguyễn Nhật Ánh)_Nhà Xuất Bản Trẻ_Nhà Sách Tiki Sách tiếng Việt Sách văn học_big.jpg"
+                        <img id="relate_product_img" src="/resources/{{this.id_product}}.jpg"
                             alt="">
                     </div>
                     <div class="relate_product_name">{{this.name}}</div>
-                    <div class="relate_product_price">{{this.price}} đ</div>
-                </div>
+                    <div class="relate_product_price">{{number_format this.price}} đ</div>
+                </a>
                 {{/each}}
             </div>
         </div>
