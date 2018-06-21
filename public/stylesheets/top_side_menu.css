@@ -6,8 +6,8 @@
     width: 9.65%;
     background-color:white; 
     margin: auto;
-    cursor: pointer;
 }
+
 #imgResize:hover {
     box-shadow: 0 0 8px #1abc9c;    
 }
