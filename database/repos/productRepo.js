@@ -35,3 +35,22 @@ exports.top_viewed = () => {
       var sql = `select * from product ORDER BY view_count DESC limit ${config.appConfig.PRODUCTS_PER_TOP} offset 0`;
       return db.load(sql);
 }
+
+exports.details = proId => {
+      var sql = `SELECT pro.*, manu.name as manufacturer_name, au.name as author_name
+          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
+          join author as au on pro.id_author = au.id_author
+          where id_product = ${proId} limit 1`;
+
+      return db.load(sql);
+}
+
+exports.getSameTypes = typeId => {
+      var sql = `select * from product where id_class = ${typeId} ORDER BY RAND() limit ${config.appConfig.PRODUCTS_SAME_TYPE}`;
+      return db.load(sql);
+}
+
+exports.getSameManufacturer = manufacturerId => {
+      var sql = `select * from product where id_manufacturer = ${manufacturerId} ORDER BY RAND() limit ${config.appConfig.PRODUCTS_SAME_TYPE}`;
+      return db.load(sql);
+}
