@@ -18,6 +18,7 @@ var restrict = require('./middle-wares/restrict');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var detailsRouter = require('./routes/details_product');
+var cartRouter = require('./routes/cart_page');
 
 var app = express();
 
@@ -80,6 +81,7 @@ app.use(handle_layout);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/details', detailsRouter);
+app.use('/cartpage', cartRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

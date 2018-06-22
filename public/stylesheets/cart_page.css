@@ -1,6 +1,12 @@
 .cart_body {
     width: 95%;
-    margin: auto;
+    /* BEGIN EDIT AN-MT
+    
+    margin :auto;
+    */
+
+    margin-left: 30px !important;
+    /* END EDIT AN-MT */
 }
 .cart_label span {
     color: #bdc3c7;
@@ -93,8 +99,17 @@
 .cart_checkout_container {
     position: -webkit-sticky;
     position: sticky;
+
+     /* BEGIN EDIT AN-MT
+    
     top: 150px;
     margin-top: 97px;
+    */
+
+     top: 97px;
+     /* END EDIT AN-MT */
+    
+    
     max-height: 200px;
     background: white;
     padding: 20px;
