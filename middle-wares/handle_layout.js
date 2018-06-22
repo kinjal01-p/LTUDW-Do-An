@@ -8,12 +8,11 @@ module.exports = (req, res, next) => {
 
       Promise.all([typeRepo.loadAll(), manufacturerRepo.loadAll()]).then(values => {
             res.locals.layoutVM = {
-                  typo: values[0],
+                  type: values[0],
                   manufacturer: values[1],
                   isLogged: req.session.isLogged,
                   curUser: req.session.user
             };
-            console.log(values[0]);
 
             next();
       });

@@ -7,22 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+<<<<<<< HEAD
   <link rel="stylesheet" href="stylesheets/global_style.css">
   <link rel="stylesheet" href="stylesheets/product_item.css">
   <link rel="stylesheet" href="stylesheets/left_side_menu.css">
   <link rel="stylesheet" href="stylesheets/top_side_menu.css">
   <link rel="stylesheet" href="stylesheets/detail_page.css">
   <link rel="stylesheet" href="stylesheets/cart_page.css">
+=======
+  <link rel="stylesheet" href="/stylesheets/global_style.css">
+  <link rel="stylesheet" href="/stylesheets/product_item.css">
+  <link rel="stylesheet" href="/stylesheets/left_side_menu.css">
+  <link rel="stylesheet" href="/stylesheets/top_side_menu.css">
+  <link rel="stylesheet" href="/stylesheets/detail_page.css">
+>>>>>>> 1.1.0
 
-  <link rel="stylesheet" href="stylesheets/assets/bootstrap-4.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/assets/bootstrap-4.1.1/css/bootstrap.min.css">
 
-  <script src="stylesheets/assets/jquery-3.3.1.slim.min.js"></script>
-  <script src="stylesheets/assets/popper.min.js"></script>
-  <script src="stylesheets/assets/bootstrap-4.1.1/js/bootstrap.min.js"></script>
+  <script src="/stylesheets/assets/jquery-3.3.1.slim.min.js"></script>
+  <script src="/stylesheets/assets/popper.min.js"></script>
+  <script src="/stylesheets/assets/bootstrap-4.1.1/js/bootstrap.min.js"></script>
 
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
-  <script src="js/common.js"></script>
+  <script src="/js/common.js"></script>
   {{!-- <script src="js/product_item_list.js"></script> --}}
   {{!-- <script src="js/left_side_menu.js"></script> --}}
   
@@ -34,7 +42,7 @@
 <body>
   <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
     <a class="navbar-brand" href="/">
-      <img src="resources/imgs/logo.png" />
+      <img src="/resources/imgs/logo.png" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -48,34 +56,36 @@
             aria-label="Search">
           <button class="btn btn-danger my-2 my-sm-0" type="submit">
             <i>
-              <img src="resources/imgs/icons/search.png" />
+              <img src="/resources/imgs/icons/search.png" />
             </i>
             <span>Tìm kiếm</span>
           </button>
         </form>
         <button class="btn btn-danger advance_search" id="btnAdvanceSearch">
           <i>
-            <img src="resources/imgs/icons/search.png" />
+            <img src="/resources/imgs/icons/search.png" />
           </i>
           <span>Nâng cao</span>
         </button>
       </div>
 
       <div class="navbar-nav my-2 my-lg-0">
+        {{#if layoutVM.isLogged}}
         <div style="display: block; margin: auto 20px;">
           <a class="check_out" href="">
             <i>
-              <img src="resources/imgs/icons/checkout.png" />
+              <img src="/resources/imgs/icons/checkout.png" />
             </i>
             <span class="text">Giỏ hàng</span>
             <span class="count">0</span>
           </a>
         </div>
+        {{/if}}
         <div style="display: block; margin: auto 20px;">
           <button class="btn btn-primary" id="btnLogin">
             <!-- CAM-SV: thêm id btnLogIn để trigger modal -->
             <i>
-              <img src="resources/imgs/icons/user.png" />
+              <img src="/resources/imgs/icons/user.png" />
             </i>
             <span>Đăng nhập</span>
           </button>
@@ -94,6 +104,8 @@
   </div>
 </body>
 
+{{#if layoutVM.isLogged}}
+{{else}}
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -196,6 +208,7 @@
   </div>
 </div>
 <!-- END Modal Login -->
+{{/if}}
 
 <!-- BEGIN Modal Advance Search -->
 <div class="modal fade" id="modalAdvanceSearch" tabindex="-1" role="dialog" aria-hidden="true">
@@ -232,7 +245,7 @@
           <div class="col-md-9 entry_information">
             <select class="form-control" required>
               <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
-              {{#each manufactorer}}
+              {{#each layoutVM.manufacturer}}
               <option value="{{this.name}}">{{this.name}}</option>
               {{/each}}
             </select>
@@ -244,7 +257,7 @@
           <div class="col-md-9 entry_information">
             <select class="form-control" required>
               <option value="" disabled selected hidden>Chọn thể loại sách</option>
-              {{#each type_book}}
+              {{#each layoutVM.type}}
               <option value="{{this.name}}">{{this.name}}</option>
               {{/each}}
             </select>
@@ -254,7 +267,7 @@
         <div style="margin: 20px; position: relative; text-align: center;">
           <button type="submit" class="btn btn-primary col-md-12">
             <span>
-              <img src="resources/imgs/icons/search.png" />
+              <img src="/resources/imgs/icons/search.png" />
               <span>Tìm kiếm</span>
             </span>
           </button>
