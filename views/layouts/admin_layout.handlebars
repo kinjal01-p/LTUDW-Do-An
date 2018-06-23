@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="stylesheets/global_style.css">
+    <link rel="stylesheet" href="/stylesheets/global_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-    {{!-- <script src="js/admin_funcs.js"></script> --}}
+    <script src="/js/admin_funcs.js"></script>
     <title>Admin page</title>
 </head>
 
@@ -22,8 +21,8 @@
 
 <body>
     <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
-        <a class="navbar-brand" href="#">
-            <img src="resources/imgs/logo.png" />
+        <a class="navbar-brand" href="/">
+            <img src="/resources/imgs/logo.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +32,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" id="linkDashboard">Dashboard</a>
+                    <a class="nav-link" href="/admin/dashboard" id="linkDashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="linkItemManager">Quản lý sản phẩm</a>
+                    <a class="nav-link" href="/admin/product_manage" id="linkItemManager">Quản lý sản phẩm</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" id="linkOrderManager">Quản lý đơn hàng</a>
@@ -47,7 +46,7 @@
                     aria-expanded="false">
                     <button class="btn btn-primary">
                         <i>
-                            <img src="resources/imgs/icons/user.png" />
+                            <img src="/resources/imgs/icons/user.png" />
                         </i>
                         <span>Chào, admin</span>
                     </button>
@@ -65,10 +64,20 @@
     {{{body}}}
     <!-- END Modal Edit Item -->
 
-    {{!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> --}}
-    {{!-- <script type="text/javascript" src="js/admin_data_visualization.js"></script> --}}
+    {{!--
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> --}} {{!--
+    <script type="text/javascript" src="js/admin_data_visualization.js"></script> --}}
 
     <!-- END ADD BAO-TQ -->
+    <div style="clear: both;"></div>
+</body>
+<footer>
+    <div class="web_footer_wraper">
+        <div class="color_footer">
+            <div>Copyright © 2018. Đây là một sản phẩm của nhóm LTUDWeb - CNTT KHTN K2015</div>
+        </div>
+    </div>
+</footer>
 
 </html>

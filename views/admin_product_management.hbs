@@ -1,0 +1,159 @@
+<div class="web_container" style="width: 95%;">
+    <div class="web_body_wraper">
+        <div id="itemManager">
+            <h1>Quản lý sản phẩm</h1>
+            <button class="btn btn-success" style="float: right; margin: 20px;" id="btnAddItem">
+                <span>Thêm</span>
+            </button>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                <i class="fa fa-list" aria-hidden="true"></i>No.
+                            </th>
+                            <th>ID</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Mô tả</th>
+                            <th>Tác giả</th>
+                            <th>Ngày xuất bản</th>
+                            <th>Nhà sản xuất</th>
+                            <th>Loại</th>
+                            <th>Giá bán (VND)</th>
+                            <th>Giá nhập (VND)</th>
+                            <th>Số lượng tồn</th>
+                            <th>Doanh thu (VND)</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr>
+                            <td>{{this.numberic}}</td>
+                            <td>{{this.id}}</td>
+                            <td>
+                                <img src="/resources/{{this.id}}.jpg" width="72px">
+                            </td>
+                            <td>{{this.prod_name}}</td>
+                            <td>{{this.description}}</td>
+                            <td>{{this.author}}</td>
+                            <td>{{this.publish_date}}</td>
+                            <td>{{this.manufacturer}}</td>
+                            <td>{{this.prod_type}}</td>
+                            <td>{{this.price}}</td>
+                            <td>{{this.import_price}}</td>
+                            <td>{{this.in_stock}}</td>
+                            <td>0</td>
+                            <td>
+                                <button class="btn btn-warning" id="btnEditItem">Edit</button>
+                                <br>
+                                <br>
+                                <br>
+                                <button class="btn btn-danger" id="btnEditItem">Delete</button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                {{#if prevPage.isMinimum}}
+                  <div><a href="javascript:;">prev</a></div>
+                {{else}}
+                  <div><a href="?page={{prevPage.value}}">prev</a></div>
+                {{/if}}  
+                {{#each pageNumbers}}
+                    {{#if this.isCurrentPage}}
+                         <div><a href="javascript:;">{{this.value}}</a></div>
+                    {{else}}
+                        <div><a href="?page={{this.value}}">{{this.value}}</a></div>
+                    {{/if}}
+                {{/each}}
+                {{#if nextPage.isMaximum}}
+                  <div><a href="javascript:;">next</a></div>
+                {{else}}
+                  <div><a href="?page={{nextPage.value}}">next</a></div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BEGIN Modal Add Item -->
+<div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                  <div class="modal-header" style="float: left; display: flex;">
+                        <h4 class="modal-title" style="float: left; display: flex;">
+                              Thêm sản phẩm
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                              ×</button>
+                  </div>
+                  <div class="modal-body modal_information">
+                        <div class="row">
+                              <div class="col-md-3 entry_information">
+                                    <label>Hình nhỏ (200x200)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input type="file" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Hình lớn (550x550)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input type="file" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Tên sản phẩm</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Nhà sản xuất (NXB)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Loại</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="text" placeholder="Nhập loại sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Giá bán (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập giá bán của sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Giá nhập (VND)</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập giá nhập về của sản phẩm" />
+                              </div>
+
+                              <div class="col-md-3 entry_information">
+                                    <label>Số lượng tồn</label>
+                              </div>
+                              <div class="col-md-9 entry_information">
+                                    <input class="form-control" type="number" placeholder="Nhập số lượng có trong kho" />
+                              </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer modal_information">
+                        <button class="btn btn-success">Xong</button>
+                        <button class="btn btn-info">Hủy</button>
+                  </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Add Item -->

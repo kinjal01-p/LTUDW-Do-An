@@ -11,6 +11,11 @@ exports.loadAllByType = (typeId, offset) => {
       return db.load(sql);
 }
 
+exports.countAll = () => {
+      var sql = `select count(product.id_product) as productNumber from product;`;
+      return db.load(sql);
+}
+
 exports.countByType = typeId => {
       var sql = `select count(*) as total from product where id_class = ${typeId}`;
       return db.load(sql);
@@ -24,9 +29,26 @@ exports.countPerType = () =>{
 }
 
 exports.loadTotalRevenuePerType = () => {
-      var sql = `select class_product.name as type_name, sum(product.sell_amount*product.price) as revenue
+      var sql = `select class_product.name as type_name, sum(product.sell_amount*(product.price - product.import_price)) as revenue
       from product inner join class_product on product.id_class = class_product.id_class
       group by product.id_class`;
+      return db.load(sql);
+}
+exports.loadByOffSet = offSet => {
+      var sql = `select product.id_product as id,
+      product.name as prod_name, 
+      product.description as description,
+      product.price as price, 
+      product.import_price as import_price, 
+      date_format(product.publish_date, "%d-%m-%Y") as publish_date,
+      product.in_stock as in_stock,
+      class_product.name as prod_type,
+      manufacturer.name as manufacturer,
+      author.name as author
+      from product inner join class_product on class_product.id_class = product.id_class
+      inner join manufacturer on manufacturer.id_manufacturer = product.id_manufacturer
+      inner join author on author.id_author = product.id_author 
+      where product.id_product != 0  limit ${config.appConfig.PRODUCTS_PER_TABLE} offset ${offSet}`;
       return db.load(sql);
 }
 
