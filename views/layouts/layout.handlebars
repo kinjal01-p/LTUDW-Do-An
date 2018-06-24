@@ -7,20 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<<<<<<< HEAD
-  <link rel="stylesheet" href="stylesheets/global_style.css">
-  <link rel="stylesheet" href="stylesheets/product_item.css">
-  <link rel="stylesheet" href="stylesheets/left_side_menu.css">
-  <link rel="stylesheet" href="stylesheets/top_side_menu.css">
-  <link rel="stylesheet" href="stylesheets/detail_page.css">
-  <link rel="stylesheet" href="stylesheets/cart_page.css">
-=======
   <link rel="stylesheet" href="/stylesheets/global_style.css">
   <link rel="stylesheet" href="/stylesheets/product_item.css">
   <link rel="stylesheet" href="/stylesheets/left_side_menu.css">
   <link rel="stylesheet" href="/stylesheets/top_side_menu.css">
   <link rel="stylesheet" href="/stylesheets/detail_page.css">
->>>>>>> 1.1.0
+  <link rel="stylesheet" href="/stylesheets/cart_page.css">
+  <link rel="stylesheet" href="/stylesheets/checkout_page.css">
+
 
   <link rel="stylesheet" href="/stylesheets/assets/bootstrap-4.1.1/css/bootstrap.min.css">
 
@@ -31,11 +25,11 @@
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
   <script src="/js/common.js"></script>
-  {{!-- <script src="js/product_item_list.js"></script> --}}
-  {{!-- <script src="js/left_side_menu.js"></script> --}}
-  
+  <script src="/js/cart_page.js"></script>
 
-  {{{block "pageCSS"}}}
+  {{!--
+  <script src="js/product_item_list.js"></script> --}} {{!--
+  <script src="js/left_side_menu.js"></script> --}} {{{block "pageCSS"}}}
 
 </head>
 
@@ -51,9 +45,10 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="mr-auto mt-2 mt-lg-0" style="display: flex;">
-        <form class="form-inline">
+        <!--BEGIN AN-MT: them tìm kiếm -->
+        <form class="form-inline" method="get" action="/search/normal">
           <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
-            aria-label="Search">
+            aria-label="Search" name="q">
           <button class="btn btn-danger my-2 my-sm-0" type="submit">
             <i>
               <img src="/resources/imgs/icons/search.png" />
@@ -61,6 +56,7 @@
             <span>Tìm kiếm</span>
           </button>
         </form>
+        <!--END AN-MT: them tìm kiếm -->
         <button class="btn btn-danger advance_search" id="btnAdvanceSearch">
           <i>
             <img src="/resources/imgs/icons/search.png" />
@@ -104,8 +100,7 @@
   </div>
 </body>
 
-{{#if layoutVM.isLogged}}
-{{else}}
+{{#if layoutVM.isLogged}} {{else}}
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -223,55 +218,61 @@
       </div>
       <div class="modal-body modal_information">
         <div class="row">
-          <div class="col-md-3 entry_information">
-            <label>Tiêu đề</label>
-          </div>
-          <div class="col-md-9 entry_information">
-            <input class="form-control" type="text" placeholder="Hãy nhập tên tựa sách, báo, ..." />
-          </div>
 
-          <!-- thêm thông tin Tác giá -->
-          <div class="col-md-3 entry_information">
-            <label>Tác giả</label>
-          </div>
+          <form class="form-inline" method="get" action="/search/advanded">
 
-          <div class="col-md-9 entry_information">
-            <input class="form-control" type="text" placeholder="Hãy nhập tên tác giả" />
-          </div>
+            <div class="col-md-3 entry_information">
+              <label>Tiêu đề</label>
+            </div>
+            <div class="col-md-9 entry_information" >
+              <input class="form-control" type="text" name="title" placeholder="Hãy nhập tên tựa sách, báo, ..." />
+            </div>
 
-          <div class="col-md-3 entry_information">
-            <label>Nhà xuất bản</label>
-          </div>
-          <div class="col-md-9 entry_information">
-            <select class="form-control" required>
-              <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
-              {{#each layoutVM.manufacturer}}
-              <option value="{{this.name}}">{{this.name}}</option>
-              {{/each}}
-            </select>
-          </div>
+            <!-- thêm thông tin Tác giá -->
+            <div class="col-md-3 entry_information">
+              <label>Tác giả</label>
+            </div>
 
-          <div class="col-md-3 entry_information">
-            <label>Thể loại</label>
-          </div>
-          <div class="col-md-9 entry_information">
-            <select class="form-control" required>
-              <option value="" disabled selected hidden>Chọn thể loại sách</option>
-              {{#each layoutVM.type}}
-              <option value="{{this.name}}">{{this.name}}</option>
-              {{/each}}
-            </select>
-          </div>
+            <div class="col-md-9 entry_information">
+              <input class="form-control" type="text" name="author" placeholder="Hãy nhập tên tác giả" />
+            </div>
+
+            <div class="col-md-3 entry_information">
+              <label>Nhà xuất bản</label>
+            </div>
+            <div class="col-md-9 entry_information">
+              <select class="form-control" name="manufacturer" required>
+                <option value="" disabled selected hidden>Chọn nhà xuất bản</option>
+                {{#each layoutVM.manufacturer}}
+                <option value="{{this.name}}">{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+
+            <div class="col-md-3 entry_information">
+              <label>Thể loại</label>
+            </div>
+            <div class="col-md-9 entry_information">
+              <select class="form-control" name="class" required>
+                <option value="" disabled selected hidden>Chọn thể loại sách</option>
+                {{#each layoutVM.type}}
+                <option value="{{this.name}}">{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+
+            <div style="margin: 0 auto; position: relative; text-align: center;width: 100%">
+              <button type="submit" class="btn btn-primary col-md-12">
+                <span>
+                  <img src="/resources/imgs/icons/search.png" />
+                  <span>Tìm kiếm</span>
+                </span>
+              </button>
+            </div>
+          </form>
         </div>
 
-        <div style="margin: 20px; position: relative; text-align: center;">
-          <button type="submit" class="btn btn-primary col-md-12">
-            <span>
-              <img src="/resources/imgs/icons/search.png" />
-              <span>Tìm kiếm</span>
-            </span>
-          </button>
-        </div>
+
       </div>
     </div>
   </div>

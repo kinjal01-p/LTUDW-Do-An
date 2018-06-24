@@ -59,3 +59,9 @@ a {
 .box:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, .3);
 }
+
+.product-box{
+  
+    margin-left: 10px;
+    
+}
