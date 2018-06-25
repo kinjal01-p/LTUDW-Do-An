@@ -25,10 +25,10 @@ a {
     text-align: left;
     margin: 10px auto 0;
     letter-spacing: .1px;
-    font-size: 13px;
+    font-size: 14px;
     color: #242424;
     overflow: hidden;
-    height: 35px;
+    height: 60px;
     display: block;
 }
 
@@ -58,4 +58,10 @@ a {
 
 .box:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+}
+
+.product-box{
+  
+    margin-left: 10px;
+    
 }

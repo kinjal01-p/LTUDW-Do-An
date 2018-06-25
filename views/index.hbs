@@ -71,14 +71,14 @@
             <div class="container-flexbox">
                   {{#each products}}
                   <div class="box">
-                        <a href="#">
+                        <a href="/details/{{this.id_product}}">
                               <span class="image">
-                                    <img src="/resources/imgs/small/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
+                                    <img src="/resources/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
                               </span>
                               <span class="title">
                                     {{this.name}}
                               </span>
-                              <h4 style="color: orange;">{{number_format this.price}} đ</h4>
+                              <h4 style="color: orange; margin-top: 10px;">{{number_format this.price}} đ</h4>
                               {{#if layoutVM.isLogged}}
                               <button style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
                                     <span>
@@ -91,19 +91,34 @@
                   {{/each}}
             </div>
 
-            {{!--
-            <div class="btn-group btn-divide-page" role="group">
-                  <button class="prev btn btn-outline-dark btn-sm">
 
-                        <span>❮</span>
+            {{!-- <div class="btn-group btn-divide-page" role="group">
+                  <ul>
+                        <li class="prev btn btn-outline-dark btn-sm">
 
-                  </button>
+                              <a href="#">❮</a>
 
-                  <button class="next btn btn-outline-dark btn-sm" style="margin-left:5px ">
+                        </li>
 
-                        <span>❯</span>
+                        {{#each pages}} 
+                              {{#if this.isCurPage}}
+                                    <li class="active btn btn-outline-dark btn-sm">
+                                          <a href="{{this.url}}">{{this.val}}</a>
+                                    </li>
+                              {{else}}
+                                    <li class="btn btn-outline-dark btn-sm">
+                                          <a href="{{this.url}}">{{this.val}}</a>
+                                    </li>
+                              {{/if}} 
+                        {{/each}}
 
-                  </button>
+                        <li class="next btn btn-outline-dark btn-sm" style="margin-left:5px ">
+
+                              <a href="#">❯</a>
+
+                        </li>
+                  </ul>
+
             </div> --}}
       </div>
 </div>
