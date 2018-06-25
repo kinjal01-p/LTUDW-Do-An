@@ -37,9 +37,10 @@ exports.top_viewed = () => {
 }
 
 exports.details = proId => {
-      var sql = `SELECT pro.*, manu.name as manufacturer_name, au.name as author_name
+      var sql = `SELECT pro.*, manu.name as manufacturer_name, au.name as author_name, type.name as type_name
           FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
           join author as au on pro.id_author = au.id_author
+          join class_product as type on pro.id_class = type.id_class
           where id_product = ${proId} limit 1`;
 
       return db.load(sql);
