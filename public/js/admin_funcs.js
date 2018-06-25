@@ -14,9 +14,11 @@ $(document).ready(function() {
     $("#modalEditOrder").modal('show');
   });
 
-  $('#btnEditItem').click(function () {
-    $("#modalEditItem").modal('show');
-  });
+  // $('#btnEditItem').click(function () {
+  //   var $row =  $(this).closest('tr');
+  //   var $data = $row.find("td")
+  //   $("#modalEditItem").modal('show');
+  // });
 
   $('#btnEditItem2').click(function () {
     $("#modalEditItem").modal('show');

@@ -1,7 +1,7 @@
 <div class="web_container" style="width: 95%;">
     <div class="web_body_wraper">
         <div id="itemManager">
-            <h1>Quản lý sản phẩm</h1>
+            <h1>Quản lý loại sản phẩm</h1>
             <button class="btn btn-success" style="float: right; margin: 20px;" id="btnAddItem">
                 <span>Thêm</span>
             </button>
@@ -13,38 +13,16 @@
                                 <i class="fa fa-list" aria-hidden="true"></i>No.
                             </th>
                             <th>ID</th>
-                            <th>Hình ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Mô tả</th>
-                            <th>Tác giả</th>
-                            <th>Ngày xuất bản</th>
-                            <th>Nhà sản xuất</th>
-                            <th>Loại</th>
-                            <th>Giá bán (VND)</th>
-                            <th>Giá nhập (VND)</th>
-                            <th>Số lượng tồn</th>
-                            <th>Doanh thu (VND)</th>
+                            <th>Tên loại</th>
                             <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each products}}
+                        {{#each types}}
                         <tr>
                             <td>{{this.numberic}}</td>
                             <td>{{this.id}}</td>
-                            <td>
-                                <img src="/resources/{{this.id}}.jpg" width="72px">
-                            </td>
-                            <td>{{this.prod_name}}</td>
-                            <td>{{this.description}}</td>
-                            <td>{{this.author}}</td>
-                            <td>{{this.publish_date}}</td>
-                            <td>{{this.manufacturer}}</td>
-                            <td>{{this.prod_type}}</td>
-                            <td>{{this.price}}</td>
-                            <td>{{this.import_price}}</td>
-                            <td>{{this.in_stock}}</td>
-                            <td>0</td>
+                            <td>{{this.type_name}}</td>
                             <td>
                                 <button class="btn btn-warning" id="btnEditItem">Edit</button>
                                 <br>
