@@ -27,10 +27,7 @@
   <script src="/js/common.js"></script>
   <script src="/js/cart_page.js"></script>
 
-  {{!--
-  <script src="js/product_item_list.js"></script> --}} {{!--
-  <script src="js/left_side_menu.js"></script> --}} {{{block "pageCSS"}}}
-
+  {{{block "pageCSS"}}}
 </head>
 
 <body>
@@ -47,7 +44,7 @@
       <div class="mr-auto mt-2 mt-lg-0" style="display: flex;">
         <!--BEGIN AN-MT: them tìm kiếm -->
         <form class="form-inline" method="get" action="/search/normal">
-          <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm, nhà xuất bản, ..."
+          <input class="form-control mr-sm-2" style="min-width: 300px;" type="search" placeholder="Tìm sản phẩm..."
             aria-label="Search" name="q">
           <button class="btn btn-danger my-2 my-sm-0" type="submit">
             <i>

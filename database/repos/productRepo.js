@@ -46,6 +46,11 @@ exports.details = proId => {
       return db.load(sql);
 }
 
+exports.getSamples = () => {
+      var sql = `select * from product ORDER BY RAND() limit ${config.appConfig.PRODUCTS_SAMPLE}`;
+      return db.load(sql);
+}
+
 exports.getSameTypes = typeId => {
       var sql = `select * from product where id_class = ${typeId} ORDER BY RAND() limit ${config.appConfig.PRODUCTS_SAME_TYPE}`;
       return db.load(sql);
@@ -57,31 +62,12 @@ exports.getSameManufacturer = manufacturerId => {
 }
 
 exports.search = (name, offset) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author 
-           where `;
-
-      for (let i = 0; i < name.length; ++i) {
-            sql += `pro.name like '%${name[i]}%' or manu.name like '%${name[i]}%' or au.name like '%${name[i]}%'`;
-            sql += (i >= name.length - 1) ? `` : ` or `;
-      }
-
-      sql += ` limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset}`;
+      var sql = `SELECT DISTINCT * FROM product where name like '%${name}%' limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
 
       return db.load(sql);
 }
-exports.searchAll = (name) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author where `;
-
-      for (let i = 0; i < name.length; ++i) {
-            sql += `pro.name like '%${name[i]}%' or manu.name like '%${name[i]}%' or au.name like '%${name[i]}%'`;
-            sql += (i >= name.length - 1) ? `` : ` or `;
-      }
+exports.countAll = (name) => {
+      var sql = `SELECT COUNT(*) AS TOTAL FROM product where name like '%${name}%'`;
 
       return db.load(sql);
 }
