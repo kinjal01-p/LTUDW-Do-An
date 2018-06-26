@@ -1,0 +1,56 @@
+<div class="container">
+      <h1>Đăng kí tài khoản mới</h1>
+      <form method="POST" action="/account/register" style="margin: 20px; padding: 20px; background: #dfe6e9;">
+            <div class="form-group row">
+                  <div class="col-md-3 entry_information">
+                        <label>Họ và tên</label>
+                  </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="text" class="form-control" name="name" placeholder="Hãy nhập họ và tên của bạn..." value="{{name}}" />
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                  <div class="col-md-3 entry_information">
+                        <label>Email</label>
+                  </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="email" class="form-control" name="email" placeholder="Hãy nhập email của bạn..." value="{{email}}" />
+                        {{#if isError}}
+                        <span id="error_message" style="color:orangered; display: block">* Email is exist. Please try another.</span>
+                        {{/if}}
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                  <div class="col-md-3 entry_information">
+                        <label>Địa chỉ</label>
+                  </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="text" class="form-control" name="address" placeholder="Hãy nhập địa chỉ của bạn..." value="{{address}}" />
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                  <div class="col-md-3 entry_information">
+                        <label>Mật khẩu</label>
+                  </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="password" class="form-control" name="password" placeholder="Hãy nhập mật khẩu của bạn..." />
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                  <div class="col-md-3 entry_information">
+                        <label>Nhập lại mật khẩu</label>
+                  </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="password" class="form-control" name="repassword" placeholder="Hãy nhập lại mật khẩu của bạn..." />
+                  </div>
+            </div>
+
+            <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
+                  <button type="submit" class="btn btn-success col-md-12">Đăng kí</button>
+            </div>
+      </form>
+</div>

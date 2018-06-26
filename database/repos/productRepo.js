@@ -81,36 +81,29 @@ exports.search = (name, offset) => {
 
       return db.load(sql);
 }
-exports.countAll = (name) => {
+exports.countAllSearch = (name) => {
       var sql = `SELECT COUNT(*) AS TOTAL FROM product where name like '%${name}%'`;
 
       return db.load(sql);
 }
 
-exports.searchAdvanded_All = (data) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author join class_product as class on pro.id_class = class.id_class 
-           where pro.name like '%${data.title}%'
-           and manu.name like '%${data.manufacturer}%'
-           and au.name like '%${data.author}%'
-           and class.name like '%${data.class}%'
-           `;
+exports.countAllSearchAdvanded = (data) => {
+      var sql = `SELECT COUNT(*) AS TOTAL
+      FROM product
+      where name like '%${data.title}%'
+      and id_manufacturer like '%${data.id_manufacturer}%'
+      and id_class like '%${data.id_class}%'`;
 
       return db.load(sql);
 }
 
 exports.searchAdvanded = (data, offset) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author join class_product as class on pro.id_class = class.id_class 
-           where pro.name like '%${data.title}%'
-           and manu.name like '%${data.manufacturer}%'
-           and au.name like '%${data.author}%'
-           and class.name like '%${data.class}%'
-             limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset}`;
+      var sql = `SELECT *
+      FROM product
+      where name like '%${data.title}%'
+      and id_manufacturer like '%${data.id_manufacturer}%'
+      and id_class like '%${data.id_class}%'
+      limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
 
       return db.load(sql);
 }
