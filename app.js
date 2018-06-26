@@ -22,6 +22,9 @@ var cartRouter = require('./routes/cart_page');
 var shipRouter = require('./routes/shipping');
 var historyRouter = require('./routes/history.js');
 
+var searchRouter = require('./routes/search.js');
+var productsRouter = require('./routes/list_product.js');
+var accountRouter = require('./routes/account.js');
 
 var app = express();
 
@@ -57,6 +60,8 @@ app.engine('hbs', exphbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.enable('view cache');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
@@ -88,7 +93,9 @@ app.use('/checkout', cartRouter);
 app.use('/shipping', shipRouter);
 app.use('/history', historyRouter);
 
-
+app.use('/search', searchRouter);
+app.use('/products', productsRouter);
+app.use('/account', accountRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

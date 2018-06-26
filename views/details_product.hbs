@@ -1,48 +1,42 @@
 <!-- begin body -->
 <div class="detail_container">
-    {{#with product}}
     <div class="breadcrumb_container row">
         <div class="breadcrumb_item">
             <a  class="text-primary" href="/"> Trang chủ </a>
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item">
-            {{!-- TODO by type --}}
-            <a class="text-primary" href="/"> {{this.manufacturer_name}} </a>
+            <a class="text-primary" href="/products/byClass/{{product.id_class}}"> {{product.type_name}} </a>
         </div>
         <div class="path_seperator">❯</div>
-        <div class="breadcrumb_item"> {{this.name}} </div>
+        <div class="breadcrumb_item"> {{product.name}} </div>
 
     </div>
     <div class="row product_detail_container">
-        <!--BEGIN LEFT COLUMN - BIG IMG -->
         <div class="col-md-4  product_image_wraper">
             <div class="product_image_div">
-                <img class="product_img" src="/resources/{{this.id_product}}.jpg"
-                    alt="">
+                <img class="product_img" src="/resources/{{product.id_product}}.jpg" alt="">
             </div>
         </div>
-        <!-- END LEFT COLUMN - BIG IMG -->
-        <!-- BEGIN RIGHT COLUMN - PRODUCT INFO -->
         <div class="col-md-8 product_info_wraper">
             <div class="info_box">
                 <div class="general_info_container">
-                    <div class="product_name">{{this.name}}</div>
-                    <div class="product_price">{{number_format this.price}} đ</div>
+                    <div class="product_name">{{product.name}}</div>
+                    <div class="product_price">{{number_format product.price}} đ</div>
                     <div class="product_origin_info row">
 
                         <div class="product_producer_info">
-                            <a href="#">{{this.author_name}}</a>
+                            <a href="#">{{product.author_name}}</a>
                         </div>
 
                         <div class="product_country_info">
-                            <a href="#">{{this.manufacturer_name}}</a>
+                            <a href="#">{{product.manufacturer_name}}</a>
                         </div>
 
                     </div>
                     <div class="product_rating row">
-                        <div class="product_viewed">Lượt xem: {{this.view_count}}</div>
-                        <div class="product_sold">Đã bán: {{this.sell_amount}}</div>
+                        <div class="product_viewed">Lượt xem: {{product.view_count}}</div>
+                        <div class="product_sold">Đã bán: {{product.sell_amount}}</div>
                     </div>
                 </div>
             </div>
@@ -51,38 +45,43 @@
                     <div class="descript_title">Mô tả</div>
                     <div class="descript">
                         <p>
-                            {{this.description}}
+                            {{product.description}}
                         </p>
-                    </div>
-                </div>
-                <div class="col-md-4 add_cart_box">
-                    <div class="add_cart_background">
-                        <div class="order_quantity_row row">
-                            <div id="quantity_label">Số lượng:</div>
-                            <div class="decrease_btn">-</div>
-                            <input id="quantity_input" type="text" value="1" name="order_quantity" />
-                            <div class="increase_btn">+</div>
-                        </div>
-                       <a href="/shipping"><div class="buy_now text-white">Mua ngay</div></a>
-                        <div class="add_to_cart text-white" data-toggle="modal" data-target="#exampleModal">Cho vào giỏ</div>
                     </div>
                 </div>
             </div>
 
+            {{#if layoutVM.isLogged}}
+            <div style="background:#dfe6e9; width: 50%; padding: 20px;">
+                <form method="POST" action="/cart/add">
+                    <input name="id_product" type="hidden" value="{{product.id_product}}">
+                    <div class="form-group row">
+                        <div class="col-md-3 entry_information">
+                            <label>Số lượng</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input required type="number" class="form-control" name="amount" value="1" />
+                        </div>
+                       <a href="/shipping"><div class="buy_now text-white">Mua ngay</div></a>
+                        <div class="add_to_cart text-white" data-toggle="modal" data-target="#exampleModal">Cho vào giỏ</div>
+                    </div>
+                    {{!-- <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
+                        <button type="submit" class="btn btn-primary col-md-12">Cho vào giỏ hàng</button>
+                    </div> --}}
+                </form>
+            </div>
+            {{/if}}
         </div>
-        {{/with}}
 
         <div style="padding-top: 10px; border: 1px solid #dfe6e9; border-style: solid none none none;font-size: 20px; color:#1abc9c;">
             Các sản phẩm cùng loại
         </div>
-
         <div class="same_type_list">
             <div class="relate_product_row row">
                 {{#each sameTypeProducts}}
                 <a href="/details/{{this.id_product}}" class="relate_product_wraper">
                     <div class="relate_product_img_warper">
-                        <img id="relate_product_img" src="/resources/{{this.id_product}}.jpg"
-                            alt="">
+                        <img id="relate_product_img" src="/resources/{{this.id_product}}.jpg" alt="">
                     </div>
                     <div class="relate_product_name">{{this.name}}</div>
                     <div class="relate_product_price">{{number_format this.price}} đ</div>
@@ -99,8 +98,7 @@
                 {{#each sameManufacturerProducts}}
                 <a href="/details/{{this.id_product}}" class="relate_product_wraper">
                     <div class="relate_product_img_warper">
-                        <img id="relate_product_img" src="/resources/{{this.id_product}}.jpg"
-                            alt="">
+                        <img id="relate_product_img" src="/resources/{{this.id_product}}.jpg" alt="">
                     </div>
                     <div class="relate_product_name">{{this.name}}</div>
                     <div class="relate_product_price">{{number_format this.price}} đ</div>
@@ -108,7 +106,6 @@
                 {{/each}}
             </div>
         </div>
-        <!-- END RIGHT COLUMN - PRODUCT INFO -->
     </div>
 </div>
 

@@ -1,18 +1,33 @@
 var db = require('../db.js');
 var config = require('../../config/config.js');
 
-exports.loadAll = () => {
-      var sql = 'select * from product';
+exports.loadAll = offset => {
+      var sql = `select * from product limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
+      return db.load(sql);
+}
+
+exports.countAllProducts = () => {
+      var sql = `select count(*) as TOTAL from product`;
       return db.load(sql);
 }
 
 exports.loadAllByType = (typeId, offset) => {
-      var sql = `select * from product where id_class = ${typeId} limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset}`;
+      var sql = `select * from product where id_class = ${typeId} limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
       return db.load(sql);
 }
 
 exports.countByType = typeId => {
-      var sql = `select count(*) as total from product where id_class = ${typeId}`;
+      var sql = `select count(*) as TOTAL from product where id_class = ${typeId}`;
+      return db.load(sql);
+}
+
+exports.loadAllByManufacturer = (manufacturerId, offset) => {
+      var sql = `select * from product where id_manufacturer = ${manufacturerId} limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
+      return db.load(sql);
+}
+
+exports.countByManufacturer = manufacturerId => {
+      var sql = `select count(*) as TOTAL from product where id_manufacturer = ${manufacturerId}`;
       return db.load(sql);
 }
 
@@ -37,11 +52,17 @@ exports.top_viewed = () => {
 }
 
 exports.details = proId => {
-      var sql = `SELECT pro.*, manu.name as manufacturer_name, au.name as author_name
+      var sql = `SELECT pro.*, manu.name as manufacturer_name, au.name as author_name, type.name as type_name
           FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
           join author as au on pro.id_author = au.id_author
+          join class_product as type on pro.id_class = type.id_class
           where id_product = ${proId} limit 1`;
 
+      return db.load(sql);
+}
+
+exports.getSamples = () => {
+      var sql = `select * from product ORDER BY RAND() limit ${config.appConfig.PRODUCTS_SAMPLE}`;
       return db.load(sql);
 }
 
@@ -56,59 +77,33 @@ exports.getSameManufacturer = manufacturerId => {
 }
 
 exports.search = (name, offset) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author 
-           where `;
-
-      for (let i = 0; i < name.length; ++i) {
-            sql += `pro.name like '%${name[i]}%' or manu.name like '%${name[i]}%' or au.name like '%${name[i]}%'`;
-            sql += (i >= name.length - 1) ? `` : ` or `;
-      }
-
-      sql += ` limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset}`;
+      var sql = `SELECT DISTINCT * FROM product where name like '%${name}%' limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
 
       return db.load(sql);
 }
-exports.searchAll = (name) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author where `;
-
-      for (let i = 0; i < name.length; ++i) {
-            sql += `pro.name like '%${name[i]}%' or manu.name like '%${name[i]}%' or au.name like '%${name[i]}%'`;
-            sql += (i >= name.length - 1) ? `` : ` or `;
-      }
+exports.countAllSearch = (name) => {
+      var sql = `SELECT COUNT(*) AS TOTAL FROM product where name like '%${name}%'`;
 
       return db.load(sql);
 }
 
-exports.searchAdvanded_All = (data) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author join class_product as class on pro.id_class = class.id_class 
-           where pro.name like '%${data.title}%'
-           and manu.name like '%${data.manufacturer}%'
-           and au.name like '%${data.author}%'
-           and class.name like '%${data.class}%'
-           `;
+exports.countAllSearchAdvanded = (data) => {
+      var sql = `SELECT COUNT(*) AS TOTAL
+      FROM product
+      where name like '%${data.title}%'
+      and id_manufacturer like '%${data.id_manufacturer}%'
+      and id_class like '%${data.id_class}%'`;
 
       return db.load(sql);
 }
 
 exports.searchAdvanded = (data, offset) => {
-
-      var sql = `SELECT DISTINCT pro.* , manu.name as manufacturer_name, au.name as author_name
-          FROM product as pro join manufacturer as manu on pro.id_manufacturer = manu.id_manufacturer 
-          join author as au on pro.id_author = au.id_author join class_product as class on pro.id_class = class.id_class 
-           where pro.name like '%${data.title}%'
-           and manu.name like '%${data.manufacturer}%'
-           and au.name like '%${data.author}%'
-           and class.name like '%${data.class}%'
-             limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset}`;
+      var sql = `SELECT *
+      FROM product
+      where name like '%${data.title}%'
+      and id_manufacturer like '%${data.id_manufacturer}%'
+      and id_class like '%${data.id_class}%'
+      limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
 
       return db.load(sql);
 }
