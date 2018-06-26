@@ -161,4 +161,58 @@ router.get('/byClass/:id_Class', function (req, res) {
       });
 });
 
+router.get('/byPrice', function (req, res) {
+      var url = '/products' + req.url;
+      var page = req.query.page;
+      var min = req.query.min;
+      var max = req.query.max;
+
+      if (url.lastIndexOf('&page') != -1)
+            url = url.substr(0, url.lastIndexOf('&page'));
+
+      if (!page) page = 1;
+
+      let offset = (page - 1);
+
+      let pageList = [];
+
+      Promise.all([productRepo.countAllByPrice(min, max), productRepo.loadAllByPrice(min, max, offset)]).then(values => {
+            let total = values[0][0].TOTAL;
+
+            let result = {
+                  instruction: 'Có tổng cộng',
+                  total: `${total} sản phẩm`
+            }
+
+            let numberOfPages = Math.ceil((total / config.appConfig.PRODUCTS_PER_PAGE));
+
+            for (let i = 0; i < numberOfPages; i++) {
+                  pageList.push({
+                        url: `${url}&page=${i + 1}`,
+                        isCurPage: (i + 1) === +page,
+                        val: i + 1
+                  });
+            }
+
+            var prevPage = {
+                  url: `${url}&page=${+page - 1}`,
+                  isOK: 1 !== +page
+            }
+
+            var nextPage = {
+                  url: `${url}&page=${+page + 1}`,
+                  isOK: numberOfPages !== +page
+            }
+
+            res.render('list_product', {
+                  title: 'Book store',
+                  products: values[1],
+                  pages: pageList,
+                  result,
+                  prevPage,
+                  nextPage
+            });
+      });
+});
+
 module.exports = router;

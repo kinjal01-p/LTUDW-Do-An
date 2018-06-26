@@ -107,3 +107,20 @@ exports.searchAdvanded = (data, offset) => {
 
       return db.load(sql);
 }
+
+exports.loadAllByPrice = (minPrice, maxPrice, offset) => {
+      var sql = `SELECT *
+      FROM product
+      where ${minPrice} <= price
+      and price < ${maxPrice}
+      limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
+      return db.load(sql);
+}
+
+exports.countAllByPrice = (minPrice, maxPrice) => {
+      var sql = `SELECT COUNT(*) AS TOTAL
+      FROM product
+      where ${minPrice} <= price
+      and price < ${maxPrice}`;
+      return db.load(sql);
+}
