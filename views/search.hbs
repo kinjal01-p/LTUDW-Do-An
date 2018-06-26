@@ -69,23 +69,23 @@
             <ul>
                 <li class="prev btn btn-outline-dark btn-sm">
 
-                    <a href="#">❮</a>
+                    <a class="text-primary" href="#">❮</a>
 
                 </li>
 
                 {{#each pages}} {{#if this.isCurPage}}
                 <li class="active btn btn-outline-dark btn-sm">
-                    <a href="{{this.url}}">{{this.val}}</a>
+                    <a class="text-primary" href="{{this.url}}">{{this.val}}</a>
                 </li>
                 {{else}}
                 <li class="btn btn-outline-dark btn-sm">
-                    <a href="{{this.url}}">{{this.val}}</a>
+                    <a class="text-primary" href="{{this.url}}">{{this.val}}</a>
                 </li>
                 {{/if}} {{/each}}
 
                 <li class="next btn btn-outline-dark btn-sm" style="margin-left:5px ">
 
-                    <a href="#">❯</a>
+                    <a class="text-primary" href="#">❯</a>
 
                 </li>
             </ul>

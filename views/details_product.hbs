@@ -3,12 +3,12 @@
     {{#with product}}
     <div class="breadcrumb_container row">
         <div class="breadcrumb_item">
-            <a href="/"> Trang chủ </a>
+            <a  class="text-primary" href="/"> Trang chủ </a>
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item">
             {{!-- TODO by type --}}
-            <a href="/"> {{this.manufacturer_name}} </a>
+            <a class="text-primary" href="/"> {{this.manufacturer_name}} </a>
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item"> {{this.name}} </div>
@@ -63,8 +63,8 @@
                             <input id="quantity_input" type="text" value="1" name="order_quantity" />
                             <div class="increase_btn">+</div>
                         </div>
-                        <div class="buy_now">Mua ngay</div>
-                        <div class="add_to_cart">Cho vào giỏ</div>
+                       <a href="/shipping"><div class="buy_now text-white">Mua ngay</div></a>
+                        <div class="add_to_cart text-white" data-toggle="modal" data-target="#exampleModal">Cho vào giỏ</div>
                     </div>
                 </div>
             </div>
@@ -109,5 +109,25 @@
             </div>
         </div>
         <!-- END RIGHT COLUMN - PRODUCT INFO -->
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm vào giỏ hàng thành công</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{!-- <div class="modal-body">
+
+            </div> --}}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"><a href="/checkout/cart">Xem giỏ hàng và thành toán</a> </button>
+            </div>
+        </div>
     </div>
 </div>

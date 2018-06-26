@@ -3,6 +3,19 @@
 var tmpQuantity = "";
 var maxQuantity = 20;
 $(document).ready(function () {
+
+
+    $('.add_to_cart').click(function () {
+          $.post("/checkout/add", {
+                    amount: $("#quantity_input").val()
+                   
+              },
+              function (data, status) {
+                  alert("Data: " + data + "\nStatus: " + status);
+              });
+    });
+
+
     // BEGIN TAG HOVER EVENT
     var width_type = $('.product_type_info').outerWidth();
     width_type = width_type.toString() + "px";
@@ -63,6 +76,9 @@ $(document).ready(function () {
         }
     });
     //END QUANTITY INPUT EVENT
+
+
+
 });
 // THIS BELOW FUNCTION MAKE INPUT FIELD ONLY TAKE NUMBERIC
 function inputQuantity() {

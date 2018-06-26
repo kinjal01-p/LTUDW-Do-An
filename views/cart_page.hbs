@@ -12,7 +12,7 @@
              {{#each products}}
             <div class="cart_product_row col-md-12 row">
                 <div class="cart_product_img col-md-2">
-                    <img src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
+                    <img src="/resources/{{this.id_product}}.jpg"
                         width="100%" alt="">
                 </div>
                 <div class="cart_product_info col-md-6">
@@ -24,7 +24,11 @@
                         {{this.author}}
                     </div>
                 </div>
-                <div class="cart_product_price col-md-2" data-price="20000">{{this.price}} đ</div>
+                <div class="cart_product_price col-md-2" data-price="20000">
+                    {{number_format this.price}} đ
+                    </br>
+                    <h6> Còn lại: {{this.in_stock}}</h6>
+                    </div>
                 <div class="cart_extend_info col-md-2">
                     <div class="cart_product_remove">
                         <i class="fa fa-times fa-2x" aria-hidden="true"></i>
@@ -43,8 +47,10 @@
             <div class="total_price_label">Tổng tiền:
                 <span class="total_price">100.000 đ</span>
             </div>
-            <div class="cart_btn_checkout">Đặt hàng</div>
+            <a href="/shipping"><div class="cart_btn_checkout"> Đặt hàng</div></a>
         </div>
     </div>
     <!-- END ADD DANH-NH -->
 </div>
+
+
