@@ -1,18 +1,33 @@
 var db = require('../db.js');
 var config = require('../../config/config.js');
 
-exports.loadAll = () => {
-      var sql = 'select * from product';
+exports.loadAll = offset => {
+      var sql = `select * from product limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
+      return db.load(sql);
+}
+
+exports.countAllProducts = () => {
+      var sql = `select count(*) as TOTAL from product`;
       return db.load(sql);
 }
 
 exports.loadAllByType = (typeId, offset) => {
-      var sql = `select * from product where id_class = ${typeId} limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset}`;
+      var sql = `select * from product where id_class = ${typeId} limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
       return db.load(sql);
 }
 
 exports.countByType = typeId => {
-      var sql = `select count(*) as total from product where id_class = ${typeId}`;
+      var sql = `select count(*) as TOTAL from product where id_class = ${typeId}`;
+      return db.load(sql);
+}
+
+exports.loadAllByManufacturer = (manufacturerId, offset) => {
+      var sql = `select * from product where id_manufacturer = ${manufacturerId} limit ${config.appConfig.PRODUCTS_PER_PAGE} offset ${offset * config.appConfig.PRODUCTS_PER_PAGE}`;
+      return db.load(sql);
+}
+
+exports.countByManufacturer = manufacturerId => {
+      var sql = `select count(*) as TOTAL from product where id_manufacturer = ${manufacturerId}`;
       return db.load(sql);
 }
 

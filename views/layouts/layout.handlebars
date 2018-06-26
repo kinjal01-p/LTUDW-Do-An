@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <link rel="shortcut icon" type="image/png" href="/resources/imgs/logo.png" />
+
   <link rel="stylesheet" href="/stylesheets/global_style.css">
   <link rel="stylesheet" href="/stylesheets/product_item.css">
   <link rel="stylesheet" href="/stylesheets/left_side_menu.css">
@@ -21,6 +23,7 @@
   <script src="/stylesheets/assets/jquery-3.3.1.slim.min.js"></script>
   <script src="/stylesheets/assets/popper.min.js"></script>
   <script src="/stylesheets/assets/bootstrap-4.1.1/js/bootstrap.min.js"></script>
+  <script src="/stylesheets/assets/responsive-paginate.js"></script>
 
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
@@ -96,6 +99,12 @@
     </div>
   </div>
 </body>
+
+<script>
+  $(document).ready(function() {
+    $(".pagination").rPage();
+  });
+</script>
 
 {{#if layoutVM.isLogged}} {{else}}
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
