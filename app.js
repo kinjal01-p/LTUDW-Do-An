@@ -19,6 +19,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var detailsRouter = require('./routes/details_product');
 var cartRouter = require('./routes/cart_page');
+var shipRouter = require('./routes/shipping');
+var historyRouter = require('./routes/history.js');
+
 var searchRouter = require('./routes/search.js');
 var productsRouter = require('./routes/list_product.js');
 var accountRouter = require('./routes/account.js');
@@ -86,8 +89,11 @@ app.use(handle_layout);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/details', detailsRouter);
+app.use('/checkout', cartRouter);
+app.use('/shipping', shipRouter);
+app.use('/history', historyRouter);
+
 app.use('/search', searchRouter);
-app.use('/cartpage', cartRouter);
 app.use('/products', productsRouter);
 app.use('/account', accountRouter);
 

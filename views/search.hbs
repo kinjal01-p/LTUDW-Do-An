@@ -1,0 +1,95 @@
+<div class="container">
+    <div>
+      
+    <div class="left_side_menu">
+        <div class="left_side_menu_title">Danh mục sản phẩm</div>
+        <div class="left_side_child_menu_title">Thể loại</div>
+        <div class="product_type_menu_list">
+            <div id="bookTypeMenuItem">
+                {{#each layoutVM.type}}
+                <div class="product_type menu_item">{{this.name}} ({{this.count}})</div>
+                {{/each}}
+            </div>
+
+        </div>
+
+        <div class="left_side_child_menu_title">Nhà xuất bản</div>
+        <div class="producer_menu_list">
+            <div id="nxbMenuItem">
+                {{#each layoutVM.manufacturer}}
+                <div class="product_type menu_item">{{this.name}} ({{this.count}})</div>
+                {{/each}}
+            </div>
+        </div>
+
+        <div class="left_side_child_menu_title">Giá</div>
+        <div class="producer_menu_list">
+            <div id="pricingMenuItem">
+                <div class="producter menu_item">Dưới 50 ngàn (987)</div>
+                <div class="producter menu_item">Từ 50 - 100 ngàn (653)</div>
+                <div class="producter menu_item">Từ 100 - 300 ngàn (204)</div>
+                <div class="producter menu_item">Từ 300 - 500 ngàn (71)</div>
+                <div class="producter menu_item">Trên 500 ngàn (27)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product_container">
+        <div class="product-box">
+            {{#with result}}
+            <h4>Kết quả tìm kiếm cho '{{this.key}}': {{this.size}} kết quả </h4>
+            {{/with}}
+        </div>
+        <div class="container-flexbox">
+           
+            {{#each products}}
+            <div class="box">
+                <a href="/details/{{this.id_product}}">
+                    <span class="image">
+                        <img src="/resources/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
+                    </span>
+                    <span class="title">
+                        {{this.name}}
+                    </span>
+                    <h4 style="color: orange;">{{number_format this.price}} đ</h4>
+                    {{#if layoutVM.isLogged}}
+                    <button style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
+                        <span>
+                            <img src="/resources/imgs/icons/checkout.png" />
+                        </span>
+                    </button>
+                    {{/if}}
+                </a>
+            </div>
+            {{/each}}
+        </div>
+
+
+        <div class="btn-group btn-divide-page" role="group">
+            <ul>
+                <li class="prev btn btn-outline-dark btn-sm">
+
+                    <a class="text-primary" href="#">❮</a>
+
+                </li>
+
+                {{#each pages}} {{#if this.isCurPage}}
+                <li class="active btn btn-outline-dark btn-sm">
+                    <a class="text-primary" href="{{this.url}}">{{this.val}}</a>
+                </li>
+                {{else}}
+                <li class="btn btn-outline-dark btn-sm">
+                    <a class="text-primary" href="{{this.url}}">{{this.val}}</a>
+                </li>
+                {{/if}} {{/each}}
+
+                <li class="next btn btn-outline-dark btn-sm" style="margin-left:5px ">
+
+                    <a class="text-primary" href="#">❯</a>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
