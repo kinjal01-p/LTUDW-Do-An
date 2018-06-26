@@ -91,12 +91,12 @@
                                     {{this.name}}
                               </span>
                               <h4 style="color: orange; margin-top: 10px;">{{number_format this.price}} đ</h4>    
-                              {{#if layoutVM.isLogged}}
-                              <button style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
+                              {{#if ../layoutVM.isLogged}}
+                              <a style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
                                     <span>
                                           <img src="/resources/imgs/icons/checkout.png" />
                                     </span>
-                              </button>
+                              </a>
                               {{/if}}
                         </a>
                   </div>
