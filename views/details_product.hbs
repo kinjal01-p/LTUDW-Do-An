@@ -2,11 +2,11 @@
 <div class="detail_container">
     <div class="breadcrumb_container row">
         <div class="breadcrumb_item">
-            <a  class="text-primary" href="/"> Trang chủ </a>
+            <a href="/"> Trang chủ </a>
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item">
-            <a class="text-primary" href="/products/byClass/{{product.id_class}}"> {{product.type_name}} </a>
+            <a href="/products/byClass/{{product.id_class}}"> {{product.type_name}} </a>
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item"> {{product.name}} </div>
@@ -62,12 +62,10 @@
                         <div class="col-md-9 entry_information">
                             <input required type="number" class="form-control" name="amount" value="1" />
                         </div>
-                       <a href="/shipping"><div class="buy_now text-white">Mua ngay</div></a>
-                        <div class="add_to_cart text-white" data-toggle="modal" data-target="#exampleModal">Cho vào giỏ</div>
                     </div>
-                    {{!-- <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
+                    <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
                         <button type="submit" class="btn btn-primary col-md-12">Cho vào giỏ hàng</button>
-                    </div> --}}
+                    </div>
                 </form>
             </div>
             {{/if}}
@@ -104,26 +102,6 @@
                     <div class="relate_product_price">{{number_format this.price}} đ</div>
                 </a>
                 {{/each}}
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm vào giỏ hàng thành công</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {{!-- <div class="modal-body">
-
-            </div> --}}
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary"><a href="/checkout/cart">Xem giỏ hàng và thành toán</a> </button>
             </div>
         </div>
     </div>

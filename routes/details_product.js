@@ -5,8 +5,6 @@ var productRepo = require('../database/repos/productRepo.js');
 
 router.get('/:id_product', function (req, res, next) {
     var id_product = req.params.id_product;
-    req.session.id_product = id_product;
-
 
     productRepo.details(id_product).then(rows => {
         var product = rows[0];
@@ -20,7 +18,5 @@ router.get('/:id_product', function (req, res, next) {
         });
     });
 });
-
-
 
 module.exports = router;

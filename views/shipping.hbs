@@ -9,8 +9,9 @@
                         <div class="panel-title">
                             <h4 class="text-info">1. Địa chỉ giao hàng</h4>
                         </div>
-                        <div id="collapseInfo">
-                            <div class="card border-secondary">
+
+                        <div class="collapse" id="collapseInfo">
+                            <div class="card border-secondary collapse">
 
                                 <div class="card-body text-secondary ">
 
@@ -133,16 +134,9 @@
                                     <hr>
                                 </div>
 
-
-                                {{#each client}}
                                 <div class="information">
-                                    <h6>{{this.name}}</h6>
-                                    <p>{{this.address}}</p>
 
-                                    <span class="text-success">SĐT: 0169999999</span>
                                 </div>
-                                {{/each}}
-
                             </div>
                         </div>
                         <div class="panel-default"></div>
@@ -153,22 +147,13 @@
                                     <hr>
                                 </div>
 
-
                                 <div class="product">
-                                    {{#each products}}
-                                    <div class="row">
-                                        <strong class="col-2">{{this.amount}} x</strong>
-                                        <p class="col-10">{{this.product_name}}</p>
-                                    </div>
 
-                                    {{/each}}
                                 </div>
                                 <hr>
                                 <p class="list-info-price">
                                     Tạm tính
-
-                                    <span style="float: right;">{{ number_format total}}&nbsp;đ</span>
-
+                                    <span style="float: right;">40.000&nbsp;đ</span>
                                 </p>
 
                                 <p class="list-info-price">
@@ -179,7 +164,7 @@
 
                                 <div class="list-info-price">
                                     <b>Thành tiền</b>
-                                    <span class="text-danger" style="float: right;">{{ number_format total}}&nbsp;đ</span>
+                                    <span class="text-danger" style="float: right;">40.000&nbsp;đ</span>
 
                                 </div>
 

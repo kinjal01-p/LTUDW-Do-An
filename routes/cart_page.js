@@ -2,38 +2,25 @@ var express = require('express');
 var router = express.Router();
 
 
-var cartRepo = require('../database/repos/cartRepo.js');
+var db = require('../database/repos/cartRepo.js');
 
+// email client
+var productList = db.cart('2001');
 
-router.get('/cart', function (req, res, next) {
+let products = [];
 
-      cartRepo.cart('2001').then(rows => {
-          res.render('cart_page', {
-              title: "Cart",
-              products: rows
-          });
-      }).catch(
-          function (reason) {
-              console.log('Handle rejected promise (' + reason + ') here.');
-          });
-    
-});
-
-router.post('/add', function (req, res, next) {
-   
-    let order = {
-        id_product: req.session.id_product,
-        amount: req.body.amount
-    }
-     
-    cartRepo.add_cart('2001', order.id_product, order.amount).then(rows => {
-      
-        console.log('successfully !');   
-    }).catch(
+productList.then(
+        function (val) {
+            products = [...val];
+        })
+    .catch(
         function (reason) {
             console.log('Handle rejected promise (' + reason + ') here.');
         });
-   
+
+/* GET users listing. */
+router.get('/', function (req, res, next) {
+    res.render('cart_page',{title:"Cart" , products});
 });
 
 module.exports = router;
