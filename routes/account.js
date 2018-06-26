@@ -2,11 +2,13 @@ var express = require('express');
 var accountRepo = require('../database/repos/accountRepo.js');
 var SHA256 = require('crypto-js/sha256');
 var router = express.Router();
+var moment = require('moment');
 
 var retrict_logged = require('../middle-wares/restrict_logged.js');
+var retrict = require('../middle-wares/restrict.js');
 
 router.get('/register', retrict_logged, (req, res) => {
-      res.render('account_register', {isError: false, name: "", email: "", address: ""});
+      res.render('account_register', {isError: false, isNotMatch: false, name: "", email: "", address: "", phone: "", dob: ""});
 });
 
 router.post('/register', (req, res) => {
@@ -14,14 +16,21 @@ router.post('/register', (req, res) => {
             password: SHA256(req.body.password + req.body.email).toString(),
             name: req.body.name,
             email: req.body.email,
-            address: req.body.address
+            address: req.body.address,
+            phone: req.body.phone,
+            dob: moment(req.body.dob, 'YYYY-MM-DD').format('YYYY-MM-DDTHH:mm')
       };
-      
-      accountRepo.add(user).then(value => {
-            res.redirect('/');
-      }).catch(error => {
-            res.render('account_register', {isError: true, name: req.body.name, email: req.body.email, address: req.body.address});
-      });
+
+      if (req.body.password != req.body.repassword) {
+            res.render('account_register', {isError: false, isNotMatch: true, name: req.body.name, email: req.body.email, address: req.body.address, phone: req.body.phone, dob: req.body.dob});
+      }
+      else {
+            accountRepo.add(user).then(value => {
+                  res.redirect('/');
+            }).catch(error => {
+                  res.render('account_register', {isError: true, isNotMatch: false, name: req.body.name, email: req.body.email, address: req.body.address, phone: req.body.phone, dob: req.body.dob});
+            });
+      }
 });
 
 router.post('/login', (req, res) => {
@@ -48,6 +57,10 @@ router.post('/logout', (req, res) => {
       req.session.user = null;
 
       res.redirect('/');
+});
+
+router.get('/profile', retrict, (req, res) => {
+      res.render('account_profile');
 });
 
 module.exports = router;

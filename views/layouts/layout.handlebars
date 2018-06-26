@@ -18,9 +18,7 @@
   <script src="/stylesheets/assets/bootstrap-4.1.1/js/bootstrap.min.js"></script>
   <script src="/stylesheets/assets/responsive-paginate.js"></script>
 
-  <script src='https://www.google.com/recaptcha/api.js'></script>
-
-  {{{block "pageCSS"}}}
+  <script src='https://www.google.com/recaptcha/api.js'></script> {{{block "pageCSS"}}}
 </head>
 
 <body>
@@ -77,11 +75,11 @@
             </button>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#" id="refMyAccount">Tài khoản của tôi</a>
+            <a class="dropdown-item" href="/account/profile">Tài khoản của tôi</a>
             <a class="dropdown-item" href="#">Đơn hàng của tôi</a>
             <div class="dropdown-divider"></div>
             <form action="/account/logout" method="POST">
-              <a class="dropdown-item" onclick="this.parentNode.submit()">Thoát tài khoản</a>
+              <a class="dropdown-item" onclick="this.parentNode.submit()" href="#">Thoát tài khoản</a>
             </form>
           </div>
         </div>
@@ -196,6 +194,24 @@
                     </div>
                     <div class="col-md-9 entry_information">
                       <input required type="email" class="form-control" name="email" placeholder="Hãy nhập email của bạn..." />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-3 entry_information">
+                      <label>SDT</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                      <input required type="text" class="form-control" name="phone" placeholder="Hãy nhập sdt của bạn..." value="{{phone}}" />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-3 entry_information">
+                      <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                      <input required type="date" class="form-control" name="dob" placeholder="Hãy nhập ngày sinh của bạn..." value="{{dob}}" />
                     </div>
                   </div>
 

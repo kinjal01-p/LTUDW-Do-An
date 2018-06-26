@@ -24,6 +24,24 @@
 
             <div class="form-group row">
                   <div class="col-md-3 entry_information">
+                        <label>SDT</label>
+                  </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="text" class="form-control" name="phone" placeholder="Hãy nhập sdt của bạn..." value="{{phone}}" />
+                  </div>
+            </div>
+
+            <div class="form-group row">
+                    <div class="col-md-3 entry_information">
+                      <label>Ngày sinh</label>
+                    </div>
+                    <div class="col-md-9 entry_information">
+                      <input required type="date" class="form-control" name="dob" placeholder="Hãy nhập ngày sinh của bạn..." value="{{dob}}" />
+                    </div>
+                  </div>
+
+            <div class="form-group row">
+                  <div class="col-md-3 entry_information">
                         <label>Địa chỉ</label>
                   </div>
                   <div class="col-md-9 entry_information">
@@ -46,6 +64,9 @@
                   </div>
                   <div class="col-md-9 entry_information">
                         <input required type="password" class="form-control" name="repassword" placeholder="Hãy nhập lại mật khẩu của bạn..." />
+                        {{#if isNotMatch}}
+                        <span id="error_message" style="color:orangered; display: block">* Repassword doesn't match. Please try again.</span>
+                        {{/if}}
                   </div>
             </div>
 

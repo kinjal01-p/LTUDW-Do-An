@@ -1,7 +1,7 @@
 var db = require('../db.js');
 
 exports.add = user => {
-      var sql = `insert into client(email, name, address, password) values('${user.email}', '${user.name}', '${user.address}', '${user.password}')`;
+      var sql = `insert into client(email, name, address, password, phone_number, date_of_birth) values('${user.email}', '${user.name}', '${user.address}', '${user.password}', '${user.phone}', '${user.dob}')`;
       return db.save(sql);
 }
 
