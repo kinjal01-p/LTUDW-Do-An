@@ -6,7 +6,9 @@
             <div class="product_type_menu_list">
                 <div id="bookTypeMenuItem">
                     {{#each layoutVM.type}}
-                    <div class="product_type menu_item">{{this.name}} ({{this.count}})</div>
+                    <div class="product_type menu_item">
+                        <a href="/products/byClass/{{this.id_class}}">{{this.name}}</a>
+                    </div>
                     {{/each}}
                 </div>
 
@@ -16,7 +18,9 @@
             <div class="producer_menu_list">
                 <div id="nxbMenuItem">
                     {{#each layoutVM.manufacturer}}
-                    <div class="product_type menu_item">{{this.name}} ({{this.count}})</div>
+                    <div class="product_type menu_item">
+                        <a href="/products/byManu/{{this.id_manufacturer}}">{{this.name}}</a>
+                    </div>
                     {{/each}}
                 </div>
             </div>
@@ -34,12 +38,17 @@
         </div>
 
         <div class="product_container">
+            <div class="product-box">
+                {{#with result}}
+                <h4>{{this.instruction}}: {{this.total}}</h4>
+                {{/with}}
+            </div>
             <div class="container-flexbox">
                 {{#each products}}
                 <div class="box">
-                    <a href="#">
+                    <a href="/details/{{this.id_product}}">
                         <span class="image">
-                            <img src="/resources/imgs/small/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
+                            <img src="/resources/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
                         </span>
                         <span class="title">
                             {{this.name}}
@@ -57,19 +66,34 @@
                 {{/each}}
             </div>
 
-            {{!--
-            <div class="btn-group btn-divide-page" role="group">
-                <button class="prev btn btn-outline-dark btn-sm">
-
-                    <span>❮</span>
-
-                </button>
-
-                <button class="next btn btn-outline-dark btn-sm" style="margin-left:5px ">
-
-                    <span>❯</span>
-
-                </button>
-            </div> --}}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-end">
+                    {{#with prevPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{/if}} {{/with}} {{#each pages}} {{#if this.isCurPage}}
+                    <li class="page-item active">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{/if}} {{/each}} {{#with nextPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{/if}} {{/with}}
+                </ul>
+            </nav>
         </div>
     </div>
