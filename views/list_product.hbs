@@ -6,8 +6,8 @@
     <div>
         <div class="left_side_menu">
             <div class="left_side_menu_title">Danh mục sản phẩm</div>
-            <div class="left_side_child_menu_title">Thể loại</div>
-            <div class="product_type_menu_list">
+            <div class="left_side_child_menu_title drop_cat" target="d_theloai">Thể loại</div>
+            <div class="product_type_menu_list" id="d_theloai">
                 <div id="bookTypeMenuItem">
                     {{#each layoutVM.type}}
                     <div class="product_type menu_item">
@@ -18,8 +18,8 @@
 
             </div>
 
-            <div class="left_side_child_menu_title">Nhà xuất bản</div>
-            <div class="producer_menu_list">
+            <div class="left_side_child_menu_title drop_cat" target="d_nxb">Nhà xuất bản</div>
+            <div class="producer_menu_list" id="d_nxb">
                 <div id="nxbMenuItem">
                     {{#each layoutVM.manufacturer}}
                     <div class="product_type menu_item">
@@ -29,8 +29,8 @@
                 </div>
             </div>
 
-            <div class="left_side_child_menu_title">Giá</div>
-            <div class="producer_menu_list">
+            <div class="left_side_child_menu_title drop_cat" target="d_gia">Giá</div>
+            <div class="producer_menu_list" id="d_gia">
                 <div id="pricingMenuItem">
                     <div class="producter menu_item">
                         <a href="/products/byPrice?min=0&max=50000">Dưới 50 ngàn</a>
@@ -119,3 +119,13 @@
         </div>
     </div>
 </div>
+
+<script>
+      $(function(){
+            $('.drop_cat').click((event) => {
+                  var target = $(event.target).attr('target');
+                  target = '#' + target;
+                  $(''+target).toggle(400);
+            })
+      });
+</script>
