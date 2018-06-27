@@ -11,7 +11,8 @@ module.exports = (req, res, next) => {
                   type: values[0],
                   manufacturer: values[1],
                   isLogged: req.session.isLogged,
-                  curUser: req.session.user
+                  curUser: req.session.user,
+                  countCart: req.session.cart === undefined ? 0 : req.session.cart.length
             };
 
             next();

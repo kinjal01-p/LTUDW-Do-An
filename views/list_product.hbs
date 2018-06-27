@@ -1,7 +1,6 @@
 {{#contentFor "pageCSS"}}
 <link rel="stylesheet" href="/stylesheets/product_item.css">
-<link rel="stylesheet" href="/stylesheets/left_side_menu.css">
-{{/contentFor}}
+<link rel="stylesheet" href="/stylesheets/left_side_menu.css"> {{/contentFor}}
 
 <div class="container">
     <div>
@@ -70,11 +69,15 @@
                         </span>
                         <h4 style="color: orange;">{{number_format this.price}} đ</h4>
                         {{#if ../layoutVM.isLogged}}
-                        <a style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
-                            <span>
-                                <img src="/resources/imgs/icons/checkout.png" />
-                            </span>
-                        </a>
+                        <form method="POST" action="/cart/add">
+                            <input name="id_product" type="hidden" value="{{this.id_product}}">
+                            <input name="amount" type="hidden" value="1">
+                            <button style="width: 100%; margin-top: 10px; text-align: center;" type="submit" class="btn btn-info">
+                                <span>
+                                    <img src="/resources/imgs/icons/checkout.png" />
+                                </span>
+                            </button>
+                        </form>
                         {{/if}}
                     </a>
                 </div>
@@ -112,3 +115,4 @@
             </nav>
         </div>
     </div>
+</div>

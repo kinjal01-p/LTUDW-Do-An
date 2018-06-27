@@ -26,7 +26,7 @@ router.post('/register', (req, res) => {
       }
       else {
             accountRepo.add(user).then(value => {
-                  res.redirect('/');
+                  res.redirect(req.headers.referer);
             }).catch(error => {
                   res.render('account_register', {isError: true, isNotMatch: false, name: req.body.name, email: req.body.email, address: req.body.address, phone: req.body.phone, dob: req.body.dob});
             });
@@ -45,7 +45,7 @@ router.post('/login', (req, res) => {
                   req.session.user = rows[0];
                   req.session.cart = [];
 
-                  res.redirect('/');
+                  res.redirect(req.headers.referer);
             } else {
                   res.render('account_login', {isError: true, email: req.body.email});
             }
@@ -56,7 +56,7 @@ router.post('/logout', (req, res) => {
       req.session.isLogged = false;
       req.session.user = null;
 
-      res.redirect('/');
+      res.redirect(req.headers.referer);
 });
 
 router.get('/profile', retrict, (req, res) => {
