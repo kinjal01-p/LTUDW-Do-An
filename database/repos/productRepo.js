@@ -131,3 +131,11 @@ exports.updateViewCount = id_product => {
       where id_product = '${id_product}'`;
       return db.save(sql);
 }
+
+exports.updateAmount = (id_product, amount) => {
+      var sql = `update product
+      set sell_amount = sell_amount + ${amount},
+      in_stock = in_stock - ${amount}
+      where id_product = '${id_product}'`;
+      return db.save(sql);
+}
