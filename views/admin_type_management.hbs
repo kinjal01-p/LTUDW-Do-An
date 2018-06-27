@@ -24,11 +24,15 @@
                             <td>{{this.id}}</td>
                             <td>{{this.type_name}}</td>
                             <td>
-                                <button class="btn btn-warning" id="btnEditItem">Edit</button>
+                                <button class="btn btn-warning btnEditItem">Edit</button>
                                 <br>
                                 <br>
                                 <br>
-                                <button class="btn btn-danger" id="btnEditItem">Delete</button>
+                              {{#if this.using_products}}
+                                   
+                              {{else}}
+                                    <button class="btn btn-danger btnDeleteItem">Delete</button>
+                              {{/if}}
                             </td>
                         </tr>
                         {{/each}}
@@ -63,7 +67,7 @@
             <div class="modal-content">
                   <div class="modal-header" style="float: left; display: flex;">
                         <h4 class="modal-title" style="float: left; display: flex;">
-                              Thêm sản phẩm
+                              Thêm Loại sản phẩm
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                               ×</button>
@@ -71,67 +75,180 @@
                   <div class="modal-body modal_information">
                         <div class="row">
                               <div class="col-md-3 entry_information">
-                                    <label>Hình nhỏ (200x200)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input type="file" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Hình lớn (550x550)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input type="file" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Tên sản phẩm</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="text" placeholder="Nhập tên sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Nhà sản xuất (NXB)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
                                     <label>Loại</label>
                               </div>
                               <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="text" placeholder="Nhập loại sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Giá bán (VND)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="number" placeholder="Nhập giá bán của sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Giá nhập (VND)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="number" placeholder="Nhập giá nhập về của sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Số lượng tồn</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="number" placeholder="Nhập số lượng có trong kho" />
+                                    <input class="form-control" id="typeName" name="typeName" type="text" placeholder="Nhập tên loại sản phẩm" />
                               </div>
                         </div>
                   </div>
                   <div class="modal-footer modal_information">
-                        <button class="btn btn-success">Xong</button>
-                        <button class="btn btn-info">Hủy</button>
+                        <div id="submit_result_add" style="margin-right: 40%; width: 60%;"></div>
+                        <button id="btn_submit_add" class="btn btn-success">Xong</button>
+                        <button id ="btn_cancel_add" class="btn btn-info">Hủy</button>
                   </div>
             </div>
       </div>
 </div>
+<!-- BEGIN Modal Edit Item -->
+<div class="modal fade" id="modalEditItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="float: left; display: flex;">
+                    <h4 class="modal-title" style="float: left; display: flex;">
+                            Chỉnh sửa nhà xuất bản
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×</button>
+                </div>
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Tên loại sản phẩm</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" id="typeNameToEdit" name="typeNameToEdit" type="text" placeholder="Nhập tên loại sản phẩm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_edit" style="margin-right: 40%; width: 60%;"></div>
+                    <button  id="btn_submit_edit" type="submit" class="btn btn-success">Xong</button>
+                    <button  id="btn_cancel_edit" class="btn btn-info">Hủy</button>
+                 </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Item -->
+<!-- BEGIN Modal delete Item -->
+<div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="float: left; display: flex;">
+                    <h4 class="modal-title" style="float: left; display: flex; color: red;">
+                            Xóa nhà loại sản phẩm
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×</button>
+                </div>
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Tên loại sản phẩm</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" id="typeNameToDelete" name="typeNameToDelete" readonly="true" type="text" placeholder="Nhập tên loại sản phẩm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_delete" style="margin-right: 40%; width: 60%;"></div>
+                    <button  id="btn_submit_delete" type="submit" class="btn btn-success">Ok, Xóa</button>
+                    <button  id="btn_cancel_delete" class="btn btn-info">Hủy</button>
+                 </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Item -->
+<script>
+   $(document).ready(function(){
+    
+    $('#btn_cancel_add').click(function () {
+        $("#modalAddItem").modal('hide');
+    });
+
+    $('#btn_cancel_edit').click(function () {
+        $("#modalEditItem").modal('hide');
+    });
+    //ajax for add type
+    $("#btn_submit_add").click(function(){
+        var typeName = $("#typeName").val();
+        if(typeName === ""){
+            $("#submit_result_edit").text("Vui lòng điền tên loại sản phẩm");
+            $("#submit_result_edit").css({"color":"#f1c40f","font-size":"20px"});
+            return;
+        }
+        $.post("/admin/type_manage/add",
+        {
+          typeName: typeName
+        },
+        function(data,status){
+            $("#submit_result_add").text(data.feedback);
+            if(data.isSuccess === true){
+                $("#submit_result_add").css({"color":"#4cd137","font-size":"20px"});
+            }
+            else
+            {
+                $("#submit_result_add").css({"color":"red","font-size":"20px"});
+            }
+        });
+    });
+
+    //ajax for edit type
+    $('.btnEditItem').click(function () {
+        $("#modalEditItem").modal('show');
+        var $row =  $(this).closest('tr');
+        var $data = $row.find("td");
+        var typeNameToEdit = $data.eq(2).text();
+        var typeId = $data.eq(1).text();
+        $("#typeNameToEdit").val(typeNameToEdit);
+        $("#btn_submit_edit").click(function(){
+            var newTypeName = $("#typeNameToEdit").val();
+            if(newTypeName === typeNameToEdit){
+                $("#submit_result_edit").text("Không có thay đổi gì cả!");
+                $("#submit_result_edit").css({"color":"#f1c40f","font-size":"20px"});
+                return;
+            }
+            if(newTypeName === ""){
+                $("#submit_result_edit").text("Vui lòng điền tên loại sản phẩm");
+                $("#submit_result_edit").css({"color":"#f1c40f","font-size":"20px"});
+                return;
+            }
+            $.post("/admin/type_manage/edit",
+            {
+                newTypeName: newTypeName,
+                typeId: typeId
+            },
+            function(data,status){
+                $("#submit_result_edit").text(data.feedback);
+                if(data.isSuccess === true){
+                    $("#submit_result_edit").css({"color":"#4cd137","font-size":"20px"});
+                }
+                else
+                {
+                    $("#submit_result_edit").css({"color":"red","font-size":"20px"});
+                }
+            });
+        });
+    });
+
+    //ajax for delete menu
+    $('.btnDeleteItem').click(function () {
+        $("#modalDeleteItem").modal('show');
+        var $row =  $(this).closest('tr');
+        var $data = $row.find("td");
+        var typeNameToDelete = $data.eq(2).text();
+        var typeIdToDelete = $data.eq(1).text();
+        $("#typeNameToDelete").val(typeNameToDelete);
+        $("#btn_submit_delete").click(function(){
+            
+            $.post("/admin/type_manage/delete",
+            {
+                typeNameToDelete: typeNameToDelete,
+                typeIdToDelete: typeIdToDelete
+            },
+            function(data,status){
+                $("#submit_result_delete").text(data.feedback);
+                if(data.isSuccess === true){
+                    $("#submit_result_delete").css({"color":"#4cd137","font-size":"20px"});
+                }
+                else
+                {
+                    $("#submit_result_delete").css({"color":"red","font-size":"20px"});
+                }
+            });
+        });
+    });
+});
+</script>
 <!-- END Modal Add Item -->

@@ -59,21 +59,29 @@
             </div>
             <div class="row">
                 {{#if prevPage.isMinimum}}
-                  <div class="paging_button"><a href="javascript:;">prev</a></div>
+                <div class="paging_button">
+                    <a href="javascript:;">prev</a>
+                </div>
                 {{else}}
-                  <div class="paging_button"><a href="?page={{prevPage.value}}">prev</a></div>
-                {{/if}}  
-                {{#each pageNumbers}}
-                    {{#if this.isCurrentPage}}
-                         <div><a href="javascript:;">{{this.value}}</a></div>
-                    {{else}}
-                        <div><a href="?page={{this.value}}">{{this.value}}</a></div>
-                    {{/if}}
-                {{/each}}
-                {{#if nextPage.isMaximum}}
-                  <div class="paging_button"><a href="javascript:;">next</a></div>
+                <div class="paging_button">
+                    <a href="?page={{prevPage.value}}">prev</a>
+                </div>
+                {{/if}} {{#each pageNumbers}} {{#if this.isCurrentPage}}
+                <div>
+                    <a href="javascript:;">{{this.value}}</a>
+                </div>
                 {{else}}
-                  <div class="paging_button"><a href="?page={{nextPage.value}}">next</a></div>
+                <div>
+                    <a href="?page={{this.value}}">{{this.value}}</a>
+                </div>
+                {{/if}} {{/each}} {{#if nextPage.isMaximum}}
+                <div class="paging_button">
+                    <a href="javascript:;">next</a>
+                </div>
+                {{else}}
+                <div class="paging_button">
+                    <a href="?page={{nextPage.value}}">next</a>
+                </div>
                 {{/if}}
             </div>
         </div>
@@ -81,79 +89,142 @@
 </div>
 <!-- BEGIN Modal Add Item -->
 <div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                  <div class="modal-header" style="float: left; display: flex;">
-                        <h4 class="modal-title" style="float: left; display: flex;">
-                              Thêm sản phẩm
-                        </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                              ×</button>
-                  </div>
-                  <div class="modal-body modal_information">
-                        <div class="row">
-                              <div class="col-md-3 entry_information">
-                                    <label>Hình nhỏ (200x200)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input type="file" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Hình lớn (550x550)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input type="file" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Tên sản phẩm</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="text" placeholder="Nhập tên sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Nhà sản xuất (NXB)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Loại</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="text" placeholder="Nhập loại sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Giá bán (VND)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="number" placeholder="Nhập giá bán của sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Giá nhập (VND)</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="number" placeholder="Nhập giá nhập về của sản phẩm" />
-                              </div>
-
-                              <div class="col-md-3 entry_information">
-                                    <label>Số lượng tồn</label>
-                              </div>
-                              <div class="col-md-9 entry_information">
-                                    <input class="form-control" type="number" placeholder="Nhập số lượng có trong kho" />
-                              </div>
-                        </div>
-                  </div>
-                  <div class="modal-footer modal_information">
-                        <button class="btn btn-success">Xong</button>
-                        <button class="btn btn-info">Hủy</button>
-                  </div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
+                    Thêm sản phẩm
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
             </div>
-      </div>
+            <form id="addProductForm" enctype="multipart/form-data" action="/admin/product_manage/upload" method="POST">
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Hình lớn (550x550)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input type="file" accept=".jpg" id="product_img_add" name="product_img" />
+                        </div>
+
+
+                        <div class="col-md-3 entry_information">
+                            <label>Tên sản phẩm</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" id="product_name_add" name="product_name" placeholder="Nhập tên sản phẩm" />
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Mô tả</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <textarea class="form-control" type="text" id="decription" name="decription" placeholder="Nhập mô tả"></textarea>
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Tác giả</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" id="author_add" name="author" placeholder="Nhập tên tác giả" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Ngày xuất bản (dd-mm-YYYY)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" id="publish_date_add" name="publish_date" placeholder="Nhập ngày xuất bản" />
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <select class="form-control" name="product_manu" id="product_manu_add">
+                                {{#each manus}}
+                                    <option selected="selected" value="{{this.id_manufacturer}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Loại</label>
+                        </div>
+
+                        <div class="col-md-9 entry_information">
+                            <select class="form-control" name="product_type" id="product_type_add">
+                                {{#each types}}
+                                    <option selected="selected" value="{{this.id_class}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Giá bán (VND)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" id="price_add" name="price" placeholder="Nhập giá bán của sản phẩm" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Giá nhập (VND)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" id="import_price_add" name="import_price" placeholder="Nhập giá nhập về của sản phẩm"
+                            />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Số lượng tồn</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" id="in_stock_add" name="in_stock" placeholder="Nhập số lượng có trong kho" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_add" style="margin-right: 40%; width: 60%;"></div>
+                    <button type="submit" id="btn_submit_add" class="btn btn-success">Xong</button>
+                    <button class="btn btn-info">Hủy</button>
+                </div>
+        </div>
+        </form>
+    </div>
 </div>
+<script>
+    $(document).ready(function () {
+
+        $('#btn_cancel_add').click(function () {
+            $("#modalAddItem").modal('hide');
+        });
+
+        $('#btn_cancel_edit').click(function () {
+            $("#modalEditItem").modal('hide');
+        });
+
+        $('#addProductForm').submit(function () {
+            var fileInput = document.getElementById("product_img_add").files.length;
+            var product_name = $('#product_name_add').val();
+            var author = $('#author_add').val();
+            var publish_date = $('#publish_date_add').val();
+            var price = $('#price_add').val();
+            var import_price = $('#import_price_add').val();
+            var in_stock = $('#in_stock_add').val();
+
+
+            if (fileInput == 0) {
+                $('#submit_result_add').text("Vui lòng chọn file")
+                return false;
+            }
+            $(this).ajaxSubmit({
+                error: function (xhr) {
+                    console.log(xhr.status);
+                },
+                success: function (response) {
+                    console.log(response.feedback);
+                }
+            });
+            return false;
+        });
+    });
+
+</script>
 <!-- END Modal Add Item -->

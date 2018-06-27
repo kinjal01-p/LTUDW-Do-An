@@ -1,3 +1,33 @@
+{{#contentFor "pageCSS"}}
+<link rel="stylesheet" href="/stylesheets/product_item.css">
+<link rel="stylesheet" href="/stylesheets/left_side_menu.css">
+<style>
+      #imgResize {
+            box-shadow: 0 0 3px #b2bec3;
+            padding: 5px;
+            width: 9.65%;
+            background-color: white;
+            margin: auto;
+      }
+
+      #imgResize:hover {
+            box-shadow: 0 0 8px #1abc9c;
+      }
+
+      .instruction-text {
+            color: #1abc9c;
+            font-weight: bold;
+      }
+
+      .top_ten_row {
+            margin: 0 !important;
+            padding: 10px 5px 20px 5px;
+            border: 1px solid #dfe6e9;
+            border-style: solid none none none;
+      }
+</style>
+{{/contentFor}}
+
 <div class="container">
       <div>
             <div class="instruction-text">Top 10 sản phẩm mới nhất</div>
@@ -36,8 +66,8 @@
 
       <div class="left_side_menu">
             <div class="left_side_menu_title">Danh mục sản phẩm</div>
-            <div class="left_side_child_menu_title">Thể loại</div>
-            <div class="product_type_menu_list">
+            <div class="left_side_child_menu_title drop_cat" target="d_theloai">Thể loại</div>
+            <div class="product_type_menu_list" id="d_theloai">
                   <div id="bookTypeMenuItem">
                         {{#each layoutVM.type}}
                         <div class="product_type menu_item">
@@ -48,8 +78,8 @@
 
             </div>
 
-            <div class="left_side_child_menu_title">Nhà xuất bản</div>
-            <div class="producer_menu_list">
+            <div class="left_side_child_menu_title drop_cat" target="d_nxb">Nhà xuất bản</div>
+            <div class="producer_menu_list" id="d_nxb">
                   <div id="nxbMenuItem">
                         {{#each layoutVM.manufacturer}}
                         <div class="product_type menu_item">
@@ -59,27 +89,37 @@
                   </div>
             </div>
 
-            <div class="left_side_child_menu_title">Giá</div>
-            <div class="producer_menu_list">
+            <div class="left_side_child_menu_title drop_cat" target="d_gia">Giá</div>
+            <div class="producer_menu_list" id="d_gia">
                   <div id="pricingMenuItem">
-                        <div class="producter menu_item">Dưới 50 ngàn (987)</div>
-                        <div class="producter menu_item">Từ 50 - 100 ngàn (653)</div>
-                        <div class="producter menu_item">Từ 100 - 300 ngàn (204)</div>
-                        <div class="producter menu_item">Từ 300 - 500 ngàn (71)</div>
-                        <div class="producter menu_item">Trên 500 ngàn (27)</div>
+                        <div class="producter menu_item">
+                              <a href="/products/byPrice?min=0&max=50000">Dưới 50 ngàn</a>
+                        </div>
+                        <div class="producter menu_item">
+                              <a href="/products/byPrice?min=50000&max=100000">Từ 50 - 100 ngàn</a>
+                        </div>
+                        <div class="producter menu_item">
+                              <a href="/products/byPrice?min=100000&max=300000">Từ 100 - 300 ngàn</a>
+                        </div>
+                        <div class="producter menu_item">
+                              <a href="/products/byPrice?min=300000&max=500000">Từ 300 - 500 ngàn</a>
+                        </div>
+                        <div class="producter menu_item">
+                              <a href="/products/byPrice?min=500000&max=100000000">Trên 500 ngàn</a>
+                        </div>
                   </div>
             </div>
       </div>
 
       <div class="product_container">
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-end">
-                    <li>
-                        <a href="/products/all">Xem thêm sản phẩm...</a>
-                    </li>
-                </ul>
+                  <ul class="pagination justify-content-end">
+                        <li>
+                              <a href="/products/all">Xem thêm sản phẩm...</a>
+                        </li>
+                  </ul>
             </nav>
-            
+
             <div class="container-flexbox">
                   {{#each products}}
                   <div class="box">
@@ -90,25 +130,41 @@
                               <span class="title">
                                     {{this.name}}
                               </span>
-                              <h4 style="color: orange; margin-top: 10px;">{{number_format this.price}} đ</h4>    
-                              {{#if layoutVM.isLogged}}
-                              <button style="width: 100%; margin-top: 10px; text-align: center;" class="btn btn-info">
-                                    <span>
-                                          <img src="/resources/imgs/icons/checkout.png" />
-                                    </span>
-                              </button>
-                              {{/if}}
+                              {{#if this.out_of_stock}}
+                              <h4 style="color: red;">Hết hàng</h4>
+                              {{else}}
+                              <h4 style="color: orange;">{{number_format this.price}} đ</h4>
+                              {{#if ../layoutVM.isLogged}}
+                              <form method="POST" action="/cart/add">
+                                    <input name="id_product" type="hidden" value="{{this.id_product}}">
+                                    <input name="amount" type="hidden" value="1">
+                                    <button style="width: 100%; margin-top: 10px; text-align: center;" type="submit" class="btn btn-info">
+                                          <span>
+                                                <img src="/resources/imgs/icons/checkout.png" />
+                                          </span>
+                                    </button>
+                              </form>
+                              {{/if}} {{/if}}
                         </a>
                   </div>
                   {{/each}}
             </div>
 
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-end">
-                    <li>
-                        <a href="/products/all">Xem thêm sản phẩm...</a>
-                    </li>
-                </ul>
+                  <ul class="pagination justify-content-end">
+                        <li>
+                              <a href="/products/all">Xem thêm sản phẩm...</a>
+                        </li>
+                  </ul>
             </nav>
       </div>
 </div>
+<script>
+      $(function(){
+            $('.drop_cat').click((event) => {
+                  var target = $(event.target).attr('target');
+                  target = '#' + target;
+                  $(''+target).toggle(400);
+            })
+      });
+</script>

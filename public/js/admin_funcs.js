@@ -13,6 +13,7 @@ $(document).ready(function() {
   $('#btnEditOrder').click(function () {
     $("#modalEditOrder").modal('show');
   });
+ 
 
   // $('#btnEditItem').click(function () {
   //   var $row =  $(this).closest('tr');

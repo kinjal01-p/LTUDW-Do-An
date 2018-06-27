@@ -1,4 +1,6 @@
-<!-- begin body -->
+{{#contentFor "pageCSS"}}
+<link rel="stylesheet" href="/stylesheets/detail_page.css"> {{/contentFor}}
+
 <div class="detail_container">
     <div class="breadcrumb_container row">
         <div class="breadcrumb_item">
@@ -6,7 +8,6 @@
         </div>
         <div class="path_seperator">❯</div>
         <div class="breadcrumb_item">
-            {{!-- TODO by type --}}
             <a href="/products/byClass/{{product.id_class}}"> {{product.type_name}} </a>
         </div>
         <div class="path_seperator">❯</div>
@@ -23,7 +24,11 @@
             <div class="info_box">
                 <div class="general_info_container">
                     <div class="product_name">{{product.name}}</div>
+                    {{#if product.out_of_stock}}
+                    <div class="product_price">Hết hàng</div>
+                    {{else}}
                     <div class="product_price">{{number_format product.price}} đ</div>
+                    {{/if}}
                     <div class="product_origin_info row">
 
                         <div class="product_producer_info">
@@ -52,7 +57,7 @@
                 </div>
             </div>
 
-            {{#if layoutVM.isLogged}}
+            {{#if product.out_of_stock}} {{else}} {{#if layoutVM.isLogged}}
             <div style="background:#dfe6e9; width: 50%; padding: 20px;">
                 <form method="POST" action="/cart/add">
                     <input name="id_product" type="hidden" value="{{product.id_product}}">
@@ -69,7 +74,7 @@
                     </div>
                 </form>
             </div>
-            {{/if}}
+            {{/if}} {{/if}}
         </div>
 
         <div style="padding-top: 10px; border: 1px solid #dfe6e9; border-style: solid none none none;font-size: 20px; color:#1abc9c;">

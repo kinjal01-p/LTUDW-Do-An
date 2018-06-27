@@ -6,6 +6,7 @@ var wnumb = require('wnumb');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var moment = require('moment');
 
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
@@ -13,18 +14,22 @@ var MySQLStore = require('express-mysql-session')(session);
 var config = require('./config/config.js');
 
 var handle_layout = require('./middle-wares/handle_layout.js');
-var restrict = require('./middle-wares/restrict');
+var restrict = require('./middle-wares/restrict.js');
+var restrict_checkout = require('./middle-wares/restrict_check_out.js');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var detailsRouter = require('./routes/details_product');
-var cartRouter = require('./routes/cart_page');
+var cartRouter = require('./routes/cart.js');
 var searchRouter = require('./routes/search.js');
 var productsRouter = require('./routes/list_product.js');
 var accountRouter = require('./routes/account.js');
+var checkoutRouter = require('./routes/check_out.js');
+var history = require('./routes/history.js');
 
 var adminRouter = require('./routes/admin');
 var app = express();
+
+const order_status_str = ['Chưa giao', 'Đang giao', 'Đã giao', 'Đã huỷ'];
 
 // view engine setup
 app.engine('hbs', exphbs({
@@ -32,7 +37,23 @@ app.engine('hbs', exphbs({
   layoutsDir: 'views/layouts/',
   helpers: {
     section: express_handlebars_sections(),
-    
+
+    date_format: date => {
+      var dob = new Date(date);
+      //dob.setTime(dob.getTime() + (24 * 60 * 60 * 1000));
+      return moment(dob, 'YYYY-MM-DDTHH:mm').format('YYYY-MM-DD');
+    },
+
+    order_status: n => {
+      var number = +n;
+      return order_status_str[number];
+    },
+
+    date_time_format: date => {
+      var dob = new Date(date);
+      return moment(dob, 'YYYY-MM-DDTHH:mm').format('YYYY-MM-DD HH:mm:ss');
+    },
+
     number_format: n => {
       var nf = wnumb({
         thousand: ','
@@ -85,12 +106,13 @@ app.use(handle_layout);
 //
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/details', detailsRouter);
 app.use('/search', searchRouter);
-app.use('/cartpage', cartRouter);
+app.use('/cart', restrict, cartRouter);
 app.use('/products', productsRouter);
 app.use('/account', accountRouter);
+app.use('/check_out', restrict_checkout, checkoutRouter);
+app.use('/history', restrict, history);
 
 app.use('/admin', adminRouter);
 // catch 404 and forward to error handler

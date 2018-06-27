@@ -1,50 +1,53 @@
+{{#contentFor "pageCSS"}}
+<link rel="stylesheet" href="/stylesheets/cart_page.css"> {{/contentFor}}
+
 <div class="web_container">
-    <!-- BEGIN ADD DANH-NH -->
     <div class="cart_body row">
-        <!-- code web-body at here -->
         <div class="col-md-9 cart_container">
             <div class="cart_label_row">
                 <div class="cart_label" style="padding: 20px 0 20px 0; font-size:25px; color: #0984e3;">
                     Giỏ hàng
-                    <span class="cart_quantity_label"></span>
                 </div>
             </div>
-             {{#each products}}
+            {{#each products}}
             <div class="cart_product_row col-md-12 row">
                 <div class="cart_product_img col-md-2">
-                    <img src="resources/imgs/big/Thám Tử Lừng Danh Conan (Tập 93)_Nhà Xuất Bản Kim Đồng_Nhà Sách Tiki Sách tiếng Việt Truyện Tranh, Manga, Comic_big.jpg"
-                        width="100%" alt="">
+                    <img src="/resources/{{this.product.id_product}}.jpg" width="100%" alt="{{this.product.id_product}}.jpg">
                 </div>
-                <div class="cart_product_info col-md-6">
+                <a href="/details/{{this.product.id_product}}" class="cart_product_info col-md-6">
                     <div class="cart_product_name">
-                        {{this.name}}
+                        {{this.product.name}}
                     </div>
-                    <div class="cart_product_type">{{this.manufacturer}}</div>
-                    <div class="cart_product_producer">
-                        {{this.author}}
-                    </div>
+                </a>
+                <div class="cart_product_price col-md-2">
+                    {{number_format this.product.price}} đ
+                    </br>
+                    <h6> Còn lại: {{this.product.in_stock}}</h6>
                 </div>
-                <div class="cart_product_price col-md-2" data-price="20000">{{this.price}} đ</div>
                 <div class="cart_extend_info col-md-2">
-                    <div class="cart_product_remove">
-                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
-                    </div>
                     <div class="cart_product_quantity_row row">
-                        <div class="decrease_btn">-</div>
-                        <input id="quantity_input" type="text" value="1" name="order_quantity" />
-                        <div class="increase_btn">+</div>
+                        <form action="/cart/edit" method="POST" style="margin-top: 20px;">
+                            <input name="id_product" type="hidden" value="{{this.product.id_product}}">
+                            <input type="number" class="form-control" min="1" value="{{this.amount}}" name="amount" />
+                            <button type="submit" class="btn btn-success" style="margin-top: 10px;">Update</button>
+                        </form>
                     </div>
+                    <form action="/cart/remove" method="POST" style="margin-top: 20px;">
+                        <input name="id_product" type="hidden" value="{{this.product.id_product}}">
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
                 </div>
             </div>
-             {{/each}}
+            {{/each}}
         </div>
-        
-        <div class="col-md-3 cart_checkout_container">
+
+        <div class="col-md-3 cart_checkout_container" style="margin-top: 100px;">
             <div class="total_price_label">Tổng tiền:
-                <span class="total_price">100.000 đ</span>
+                <span class="total_price">{{number_format total}} đ</span>
             </div>
-            <div class="cart_btn_checkout">Đặt hàng</div>
+            <a href="/check_out">
+                <div class="cart_btn_checkout" data-toggle="modal" data-target="#exampleModal"> Đặt hàng</div>
+            </a>
         </div>
     </div>
-    <!-- END ADD DANH-NH -->
 </div>

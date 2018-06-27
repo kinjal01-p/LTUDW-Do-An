@@ -6,12 +6,21 @@ module.exports = (req, res, next) => {
             req.session.isLogged = false;
       }
 
+      var totalInCart = 0;
+
+      if (req.session.cart !== undefined) {
+            for (var i = 0; i < req.session.cart.length; i++) {
+                  totalInCart += +req.session.cart[i].amount;
+            }
+      }
+
       Promise.all([typeRepo.loadAll(), manufacturerRepo.loadAll()]).then(values => {
             res.locals.layoutVM = {
                   type: values[0],
                   manufacturer: values[1],
                   isLogged: req.session.isLogged,
-                  curUser: req.session.user
+                  curUser: req.session.user,
+                  countCart: totalInCart
             };
 
             next();

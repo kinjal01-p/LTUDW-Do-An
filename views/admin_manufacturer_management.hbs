@@ -28,7 +28,11 @@
                                 <br>
                                 <br>
                                 <br>
-                                <button class="btn btn-danger" id="btnDeleteItem">Delete</button>
+                               {{#if this.using_products}}
+                                   
+                               {{else}}
+                                    <button class="btn btn-danger btnDeleteItem">Delete</button>
+                               {{/if}}
                             </td>
                         </tr>
                         {{/each}}
@@ -80,7 +84,7 @@
                 </div>
                 <div class="modal-footer modal_information">
                     <div id="submit_result_add" style="margin-right: 40%; width: 60%;"></div>
-                    <button  id="btn_submit_add" type="submit" class="btn btn-success">Xong</button>
+                    <button  id="btn_submit_add" type="submit" class="btn btn-success">Thêm</button>
                     <button  id="btn_cancel_add" class="btn btn-info">Hủy</button>
                  </div>
             </div>
@@ -110,8 +114,38 @@
                 </div>
                 <div class="modal-footer modal_information">
                     <div id="submit_result_edit" style="margin-right: 40%; width: 60%;"></div>
-                    <button  id="btn_submit_edit" type="submit" class="btn btn-success">Xong</button>
+                    <button  id="btn_submit_edit" type="submit" class="btn btn-success">Sửa</button>
                     <button  id="btn_cancel_edit" class="btn btn-info">Hủy</button>
+                 </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Item -->
+<!-- BEGIN Modal delete Item -->
+<div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="float: left; display: flex;">
+                    <h4 class="modal-title" style="float: left; display: flex; color: red;">
+                            Xóa nhà xuất bản
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×</button>
+                </div>
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Tên nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" id="manuNameToDelete" name="manuNameToDelete" readonly="true" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_delete" style="margin-right: 40%; width: 60%;"></div>
+                    <button  id="btn_submit_delete" type="submit" class="btn btn-success">Ok, Xóa</button>
+                    <button  id="btn_cancel_delete" class="btn btn-info">Hủy</button>
                  </div>
             </div>
       </div>
@@ -127,6 +161,10 @@
     $('#btn_cancel_edit').click(function () {
         $("#modalEditItem").modal('hide');
     });
+
+    $('#btn_cancel_delete').click(function () {
+        $("#modalDeleteItem").modal('hide');
+    });
     //ajax for add manu
     $("#btn_submit_add").click(function(){
         var manuName = $("#manuName").val();
@@ -141,7 +179,7 @@
         },
         function(data,status){
             $("#submit_result_add").text(data.feedback);
-            if(data.isSuccess === 'true'){
+            if(data.isSuccess === true){
                 $("#submit_result_add").css({"color":"#4cd137","font-size":"20px"});
             }
             else
@@ -184,6 +222,34 @@
                 else
                 {
                     $("#submit_result_edit").css({"color":"red","font-size":"20px"});
+                }
+            });
+        });
+    });
+
+    //ajax for delete menu
+    $('.btnDeleteItem').click(function () {
+        $("#modalDeleteItem").modal('show');
+        var $row =  $(this).closest('tr');
+        var $data = $row.find("td");
+        var manuNameToDelete = $data.eq(2).text();
+        var manuIdToDelete = $data.eq(1).text();
+        $("#manuNameToDelete").val(manuNameToDelete);
+        $("#btn_submit_delete").click(function(){
+            
+            $.post("/admin/manufacturer_manage/delete",
+            {
+                manuNameToDelete: manuNameToDelete,
+                manuIdToDelete: manuIdToDelete
+            },
+            function(data,status){
+                $("#submit_result_delete").text(data.feedback);
+                if(data.isSuccess === true){
+                    $("#submit_result_delete").css({"color":"#4cd137","font-size":"20px"});
+                }
+                else
+                {
+                    $("#submit_result_delete").css({"color":"red","font-size":"20px"});
                 }
             });
         });
