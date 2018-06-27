@@ -6,6 +6,7 @@ var wnumb = require('wnumb');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var moment = require('moment');
 
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
@@ -30,7 +31,13 @@ app.engine('hbs', exphbs({
   layoutsDir: 'views/layouts/',
   helpers: {
     section: express_handlebars_sections(),
-    
+
+    date_format: date => {
+      var dob = new Date(date);
+      //dob.setTime(dob.getTime() + (24 * 60 * 60 * 1000));
+      return moment(dob, 'YYYY-MM-DDTHH:mm').format('YYYY-MM-DD');
+    },
+
     number_format: n => {
       var nf = wnumb({
         thousand: ','
