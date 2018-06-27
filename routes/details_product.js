@@ -3,15 +3,10 @@ var router = express.Router();
 
 var productRepo = require('../database/repos/productRepo.js');
 
-async function updateView(id_product) {
-    await productRepo.updateViewCount(id_product);
-}
-
 router.get('/:id_product', function (req, res, next) {
     var id_product = req.params.id_product;
 
-        updateView(id_product);
-
+    productRepo.updateViewCount(id_product).then(values => {
         productRepo.details(id_product).then(rows => {
             var product = rows[0];
             Promise.all([productRepo.getSameTypes(product.id_class), productRepo.getSameManufacturer(product.id_manufacturer)]).then(values => {
@@ -27,6 +22,9 @@ router.get('/:id_product', function (req, res, next) {
         }).catch(e => {
             res.render('error');
         });
+    }).catch(e => {
+        res.render('error');
+    });
 });
 
 module.exports = router;
