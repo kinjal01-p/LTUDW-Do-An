@@ -1,5 +1,7 @@
 var express = require('express');
 var productRepo = require('../database/repos/productRepo.js');
+var typeRepo = require('../database/repos/typeRepo.js');
+var manuRepo = require('../database/repos/manufacturerRepo.js');
 var config = require('../config/config.js');
 var router = express.Router();
 
@@ -20,7 +22,7 @@ router.get('/all', function (req, res) {
             let total = values[0][0].TOTAL;
 
             let result = {
-                  instruction: 'Có tổng cộng',
+                  instruction: 'Tất cả có tổng cộng',
                   total: `${total} sản phẩm`
             }
 
@@ -69,11 +71,12 @@ router.get('/byManu/:id_Manufacturer', function (req, res) {
 
       let pageList = [];
 
-      Promise.all([productRepo.countByManufacturer(id_Manufacturer), productRepo.loadAllByManufacturer(id_Manufacturer, offset)]).then(values => {
+      Promise.all([productRepo.countByManufacturer(id_Manufacturer), productRepo.loadAllByManufacturer(id_Manufacturer, offset), manuRepo.single(id_Manufacturer)]).then(values => {
             let total = values[0][0].TOTAL;
+            var nameManufacturer = values[2][0].name;
 
             let result = {
-                  instruction: 'Có tổng cộng',
+                  instruction: `"${nameManufacturer}" có tổng cộng`,
                   total: `${total} sản phẩm`
             }
 
@@ -122,11 +125,12 @@ router.get('/byClass/:id_Class', function (req, res) {
 
       let pageList = [];
 
-      Promise.all([productRepo.countByType(id_Class), productRepo.loadAllByType(id_Class, offset)]).then(values => {
+      Promise.all([productRepo.countByType(id_Class), productRepo.loadAllByType(id_Class, offset), typeRepo.single(id_Class)]).then(values => {
             let total = values[0][0].TOTAL;
+            var nameType = values[2][0].name;
 
             let result = {
-                  instruction: 'Có tổng cộng',
+                  instruction: `Loại sách "${nameType}" có tổng cộng`,
                   total: `${total} sản phẩm`
             }
 

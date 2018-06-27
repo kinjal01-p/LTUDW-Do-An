@@ -124,3 +124,10 @@ exports.countAllByPrice = (minPrice, maxPrice) => {
       and price < ${maxPrice}`;
       return db.load(sql);
 }
+
+exports.updateViewCount = id_product => {
+      var sql = `update product
+      set view_count = view_count + 1
+      where id_product = '${id_product}'`;
+      return db.save(sql);
+}
