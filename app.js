@@ -18,7 +18,7 @@ var restrict = require('./middle-wares/restrict');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var detailsRouter = require('./routes/details_product');
-var cartRouter = require('./routes/cart_page');
+var cartRouter = require('./routes/cart.js');
 var searchRouter = require('./routes/search.js');
 var productsRouter = require('./routes/list_product.js');
 var accountRouter = require('./routes/account.js');
@@ -87,7 +87,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/details', detailsRouter);
 app.use('/search', searchRouter);
-app.use('/cartpage', cartRouter);
+app.use('/cart', cartRouter);
 app.use('/products', productsRouter);
 app.use('/account', accountRouter);
 
