@@ -28,6 +28,8 @@ var history = require('./routes/history.js');
 
 var app = express();
 
+const order_status_str = ['Chưa giao', 'Đang giao', 'Đã giao', 'Đã huỷ'];
+
 // view engine setup
 app.engine('hbs', exphbs({
   defaultLayout: 'layout',
@@ -39,6 +41,16 @@ app.engine('hbs', exphbs({
       var dob = new Date(date);
       //dob.setTime(dob.getTime() + (24 * 60 * 60 * 1000));
       return moment(dob, 'YYYY-MM-DDTHH:mm').format('YYYY-MM-DD');
+    },
+
+    order_status: n => {
+      var number = +n;
+      return order_status_str[number];
+    },
+
+    date_time_format: date => {
+      var dob = new Date(date);
+      return moment(dob, 'YYYY-MM-DDTHH:mm').format('YYYY-MM-DD HH:mm:ss');
     },
 
     number_format: n => {
