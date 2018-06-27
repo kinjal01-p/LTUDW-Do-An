@@ -17,10 +17,7 @@
         <label>Email</label>
       </div>
       <div class="col-md-9 entry_information">
-        <input required type="email" class="form-control" name="email" disabled placeholder="Hãy nhập email của bạn..." value="{{this.email}}"
-        /> {{#if isError}}
-        <span id="error_message" style="color:orangered; display: block">* Email is exist. Please try another.</span>
-        {{/if}}
+        <input required type="email" class="form-control" name="email" readonly placeholder="Hãy nhập email của bạn..." value="{{this.email}}"/>
       </div>
     </div>
 
@@ -29,7 +26,8 @@
         <label>SDT</label>
       </div>
       <div class="col-md-9 entry_information">
-        <input required type="text" class="form-control" name="phone" placeholder="Hãy nhập sdt của bạn..." value="{{this.phone_number}}" />
+        <input required type="text" class="form-control" name="phone" placeholder="Hãy nhập sdt của bạn..." value="{{this.phone_number}}"
+        />
       </div>
     </div>
 
@@ -38,7 +36,8 @@
         <label>Ngày sinh</label>
       </div>
       <div class="col-md-9 entry_information">
-        <input required type="date" class="form-control" name="dob" placeholder="Hãy nhập ngày sinh của bạn..." value="{{this.date_of_birth}}" />
+        <input required type="date" class="form-control" name="dob" placeholder="Hãy nhập ngày sinh của bạn..." value="{{date_format this.date_of_birth}}"
+        />
       </div>
     </div>
 
@@ -52,9 +51,64 @@
       </div>
     </div>
 
+    <div class="form-group row">
+      <div class="col-md-3 entry_information"></div>
+      <div class="col-md-9 entry_information">
+        <label>
+          <input type="checkbox" class="form-control" name="changePassword" id="isChangePassword">
+          <span style="margin-left: 10px">Thay đổi mật khẩu</span>
+        </label>
+        {{#if ../oldError}}
+        <span id="error_message" style="color:orangered; display: block">* Old password doesn't match. Please try again.</span>
+        {{/if}}
+        {{#if ../newError}}
+        <span id="error_message" style="color:orangered; display: block">*  Repassword doesn't match. Please try again.</span>
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="form-group row" id="areaChangePassword">
+      <div class="col-md-3 entry_information">
+        <label>Mật khẩu cũ</label>
+      </div>
+      <div class="col-md-9 entry_information">
+        <input class="form-control" type="password" name="oldpassword" placeholder="Mật khẩu cũ" />
+      </div>
+
+      <div class="col-md-3 entry_information">
+        <label>Mật khẩu mới</label>
+      </div>
+      <div class="col-md-9 entry_information">
+        <input class="form-control" type="password" name="newpassword" placeholder="Nhập mật khẩu mới" />
+      </div>
+
+      <div class="col-md-3 entry_information">
+        <label>Nhập lại</label>
+      </div>
+      <div class="col-md-9 entry_information">
+        <input class="form-control" type="password" name="repassword" placeholder="Nhập lại mật khẩu mới" />
+      </div>
+    </div>
+
     <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
       <button type="submit" class="btn btn-success col-md-12">Cập nhật</button>
     </div>
   </form>
   {{/with}}
 </div>
+
+{{#contentFor "pageJS"}}
+<script>
+  $(document).ready(function () {
+    $("#areaChangePassword").hide();
+    $("#isChangePassword").change(function () {
+      if (this.checked) {
+        $("#areaChangePassword").show();
+        $("#areaChangePassword input").prop('required', true);
+      } else {
+        $("#areaChangePassword").hide();
+        $("#areaChangePassword input").prop('required', false);
+      }
+    });
+  });
+</script> {{/contentFor}}
