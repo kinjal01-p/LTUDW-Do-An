@@ -28,7 +28,7 @@
                     <div class="cart_product_quantity_row row">
                         <form action="/cart/edit" method="POST" style="margin-top: 20px;">
                             <input name="id_product" type="hidden" value="{{this.product.id_product}}">
-                            <input type="number" min="1" value="{{this.amount}}" name="amount" />
+                            <input type="number" class="form-control" min="1" value="{{this.amount}}" name="amount" />
                             <button type="submit" class="btn btn-success" style="margin-top: 10px;">Update</button>
                         </form>
                     </div>

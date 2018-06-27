@@ -32,6 +32,7 @@ router.get('/', function (req, res) {
         console.log(items);
 
         res.render('cart_page', {
+            title: 'Cart',
             products: items,
             total: total
         });

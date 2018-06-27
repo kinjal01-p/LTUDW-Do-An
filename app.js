@@ -16,7 +16,6 @@ var handle_layout = require('./middle-wares/handle_layout.js');
 var restrict = require('./middle-wares/restrict');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var detailsRouter = require('./routes/details_product');
 var cartRouter = require('./routes/cart.js');
 var searchRouter = require('./routes/search.js');
@@ -84,10 +83,9 @@ app.use(handle_layout);
 //
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/details', detailsRouter);
 app.use('/search', searchRouter);
-app.use('/cart', cartRouter);
+app.use('/cart', restrict, cartRouter);
 app.use('/products', productsRouter);
 app.use('/account', accountRouter);
 
