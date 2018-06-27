@@ -14,3 +14,18 @@ exports.changePassword = user => {
       var sql = `update client set password = '${user.password}' where email = '${user.email}'`;
       return db.save(sql);
 }
+
+exports.editProfile = user => {
+      var sql = `update client 
+      set name = '${user.name}',
+      address = '${user.address}',
+      phone_number = '${user.phone}',
+      date_of_birth = '${user.dob}'
+      where email = '${user.email}'`;
+      return db.save(sql);
+}
+
+exports.remove = user => {
+      var sql = `delete from client where password = '${user.password}' and email = '${user.email}'`;
+      return db.save(sql);
+}
