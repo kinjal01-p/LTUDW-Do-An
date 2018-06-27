@@ -67,6 +67,9 @@
                         <span class="title">
                             {{this.name}}
                         </span>
+                        {{#if this.out_of_stock}}
+                        <h4 style="color: red;">Hết hàng</h4>
+                        {{else}}
                         <h4 style="color: orange;">{{number_format this.price}} đ</h4>
                         {{#if ../layoutVM.isLogged}}
                         <form method="POST" action="/cart/add">
@@ -78,7 +81,7 @@
                                 </span>
                             </button>
                         </form>
-                        {{/if}}
+                        {{/if}} {{/if}}
                     </a>
                 </div>
                 {{/each}}

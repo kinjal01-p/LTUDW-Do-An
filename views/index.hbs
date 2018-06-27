@@ -130,7 +130,10 @@
                               <span class="title">
                                     {{this.name}}
                               </span>
-                              <h4 style="color: orange; margin-top: 10px;">{{number_format this.price}} đ</h4>
+                              {{#if this.out_of_stock}}
+                              <h4 style="color: red;">Hết hàng</h4>
+                              {{else}}
+                              <h4 style="color: orange;">{{number_format this.price}} đ</h4>
                               {{#if ../layoutVM.isLogged}}
                               <form method="POST" action="/cart/add">
                                     <input name="id_product" type="hidden" value="{{this.id_product}}">
@@ -141,7 +144,7 @@
                                           </span>
                                     </button>
                               </form>
-                              {{/if}}
+                              {{/if}} {{/if}}
                         </a>
                   </div>
                   {{/each}}
