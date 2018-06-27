@@ -9,3 +9,8 @@ exports.login = user => {
       var sql = `select * from client where email = '${user.email}' and password = '${user.password}'`;
       return db.load(sql);
 }
+
+exports.changePassword = user => {
+      var sql = `update client set password = '${user.password}' where email = '${user.email}'`;
+      return db.save(sql);
+}
