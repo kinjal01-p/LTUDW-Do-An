@@ -1,20 +1,7 @@
-//author: DANH-NH
-// BEGIN ADD DANH-NH
-
-//BEGIN ADD CAM-SV
-// Hàm xử lý format định dạng tiền VND
-function formatCurrency(number) {
-    var n = number.split('').reverse().join("");
-    var n2 = n.replace(/\d\d\d(?!$)/g, "$&.");
-    return n2.split('').reverse().join('') + 'VNĐ';
-}
-//END ADD CAM-SV
-
 var tmpQuantity = "";
 var maxQuantity = 20;
 
 $(document).ready(function () {
-    //BEGIN QUANTITY INPUT EVENT
     removeItemFromCart();
     calTotalPrice();
     inputQuantity();
@@ -26,9 +13,8 @@ $(document).ready(function () {
             this.value = 1;
         }
     });
-    //END QUANTITY INPUT EVENT
 });
-// THIS BELOW FUNCTION MAKE INPUT FIELD ONLY TAKE NUMBERIC
+
 function inputQuantity() {
     $("#quantity_input").on("input", function () {
         var quantity = this.value;
@@ -48,8 +34,7 @@ function inputQuantity() {
         }
     });
 }
-///////////////////////////////////////////////////////////////
-// THIS BELOW FUNCTION INCREASE QUANTITY BY 1
+
 function increaseQuantity() {
     $('.increase_btn').click(function () {
 
@@ -61,8 +46,7 @@ function increaseQuantity() {
         calTotalPrice();
     });
 }
-////////////////////////////////////////////////////////////////
-// THIS BELOW FUNCTION DECREASE QUANTITY BY 1
+
 function decreaseQuantity() {
     $('.decrease_btn').click(function () {
         var quantity = $(this).closest('.cart_product_quantity_row').children('#quantity_input').val();
@@ -73,8 +57,7 @@ function decreaseQuantity() {
         calTotalPrice();
     });
 }
-////////////////////////////////////////////////////////////////
-//THIS BELOW FUNCTION CALCULATE TOTAL PRICE AND QUANTITY OF PRODUDCT IN CART PAGE
+
 function calTotalPrice() {
     var sum = 0;
     var totalQuan = 0;
@@ -84,21 +67,16 @@ function calTotalPrice() {
         totalQuan = totalQuan + parseInt(tmpQuantity);
         sum = sum + (parseInt(tmpPrice) * parseInt(tmpQuantity));
     });
-    // BEGIN EDIT CAM-SV
-    // Format lại tổng tiền theo định dạng currency VND
+
     $('.total_price').text(formatCurrency(sum.toString()));
-    // END EDIT CAM-SV
     var quanText = "(" + totalQuan.toString() + " sản phẩm)"
     $('.cart_quantity_label').text(quanText);
     $('.count').text(totalQuan);
 }
-/////////////////////////////////////////////////////////////////
-// THIS BELOW FUNCTIOM REMOVE PROUCT FROM CART
+
 function removeItemFromCart() {
     $('.cart_product_remove').click(function () {
         $(this).closest('.cart_product_row').remove();
         calTotalPrice();
     })
 }
-/////////////////////////////////////////////////////////////////
-//END ADD DANH-NH
