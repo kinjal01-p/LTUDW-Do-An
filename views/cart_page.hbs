@@ -12,14 +12,14 @@
             {{#each products}}
             <div class="cart_product_row col-md-12 row">
                 <div class="cart_product_img col-md-2">
-                    <img src="/resources/{{this.product.id_product}}.jpg" width="100%" alt="">
+                    <img src="/resources/{{this.product.id_product}}.jpg" width="100%" alt="{{this.product.id_product}}.jpg">
                 </div>
                 <a href="/details/{{this.product.id_product}}" class="cart_product_info col-md-6">
                     <div class="cart_product_name">
                         {{this.product.name}}
                     </div>
                 </a>
-                <div class="cart_product_price col-md-2" data-price="20000">
+                <div class="cart_product_price col-md-2">
                     {{number_format this.product.price}} đ
                     </br>
                     <h6> Còn lại: {{this.product.in_stock}}</h6>
@@ -45,7 +45,7 @@
             <div class="total_price_label">Tổng tiền:
                 <span class="total_price">{{number_format total}} đ</span>
             </div>
-            <a href="/shipping">
+            <a href="/check_out">
                 <div class="cart_btn_checkout" data-toggle="modal" data-target="#exampleModal"> Đặt hàng</div>
             </a>
         </div>
