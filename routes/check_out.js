@@ -49,6 +49,16 @@ router.post('/', (req, res) => {
                   arr_promise.push(promise);
             }
 
+            var arr_update_amount = [];
+            for (var i = 0; i < req.session.cart.length; i++) {
+                  var cartItem = req.session.cart[i];
+
+                  var promise = productRepo.updateAmount(cartItem.id_product, cartItem.amount);
+                  arr_update_amount.push(promise);
+            }
+
+            Promise.all(arr_update_amount).then(result => {});
+
             var items = [];
             var total = 0;
             Promise.all(arr_promise).then(result => {
