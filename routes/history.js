@@ -35,9 +35,6 @@ router.get('/:id_order', (req, res) => {
                 items.push(item);
             }
 
-            console.log(values[0]);
-            console.log(items);
-
             res.render('details_order', {
                 order: values[0][0],
                 products: items
