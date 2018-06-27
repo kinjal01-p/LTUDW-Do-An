@@ -29,7 +29,7 @@ router.get('/', function (req, res) {
             items.push(item);
         }
 
-        console.log(items);
+        //console.log(items);
 
         res.render('cart_page', {
             title: 'Cart',

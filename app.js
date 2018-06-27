@@ -14,7 +14,8 @@ var MySQLStore = require('express-mysql-session')(session);
 var config = require('./config/config.js');
 
 var handle_layout = require('./middle-wares/handle_layout.js');
-var restrict = require('./middle-wares/restrict');
+var restrict = require('./middle-wares/restrict.js');
+var restrict_checkout = require('./middle-wares/restrict_check_out.js');
 
 var indexRouter = require('./routes/index');
 var detailsRouter = require('./routes/details_product');
@@ -22,6 +23,8 @@ var cartRouter = require('./routes/cart.js');
 var searchRouter = require('./routes/search.js');
 var productsRouter = require('./routes/list_product.js');
 var accountRouter = require('./routes/account.js');
+var checkoutRouter = require('./routes/check_out.js');
+var history = require('./routes/history.js');
 
 var app = express();
 
@@ -95,6 +98,8 @@ app.use('/search', searchRouter);
 app.use('/cart', restrict, cartRouter);
 app.use('/products', productsRouter);
 app.use('/account', accountRouter);
+app.use('/check_out', restrict_checkout, checkoutRouter);
+app.use('/history', restrict, history);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
