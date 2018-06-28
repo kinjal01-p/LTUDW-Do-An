@@ -1,0 +1,268 @@
+<div class="web_container" style="width: 95%;">
+    <div class="web_body_wraper">
+        <div id="itemManager">
+            <h1>Quản lý NXB</h1>
+            <button class="btn btn-success" style="float: right; margin: 20px;" id="btnAddItem">
+                <span>Thêm</span>
+            </button>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                <i class="fa fa-list" aria-hidden="true"></i>No.
+                            </th>
+                            <th>ID</th>
+                            <th>Tên NXB</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each manus}}
+                        <tr>
+                            <td>{{this.numberic}}</td>
+                            <td>{{this.id}}</td>
+                            <td>{{this.manu_name}}</td>
+                            <td>
+                                <button class="btn btn-warning btnEditItem" >Edit</button>
+                                <br>
+                                <br>
+                                <br>
+                               {{#if this.using_products}}
+                                   
+                               {{else}}
+                                    <button class="btn btn-danger btnDeleteItem">Delete</button>
+                               {{/if}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-end">
+                    {{#with prevPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{/if}} {{/with}} {{#each pages}} {{#if this.isCurPage}}
+                    <li class="page-item active">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{/if}} {{/each}} {{#with nextPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{/if}} {{/with}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- BEGIN Modal Add Item -->
+<div class="modal fade" id="modalAddItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="float: left; display: flex;">
+                    <h4 class="modal-title" style="float: left; display: flex;">
+                            Thêm nhà xuất bản
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×</button>
+                </div>
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Tên nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" id="manuName" name="manuName" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_add" style="margin-right: 40%; width: 60%;"></div>
+                    <button  id="btn_submit_add" type="submit" class="btn btn-success">Thêm</button>
+                    <button  id="btn_cancel_add" class="btn btn-info">Hủy</button>
+                 </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Add Item -->
+<!-- BEGIN Modal Edit Item -->
+<div class="modal fade" id="modalEditItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="float: left; display: flex;">
+                    <h4 class="modal-title" style="float: left; display: flex;">
+                            Chỉnh sửa nhà xuất bản
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×</button>
+                </div>
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Tên nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" id="manuNameToEdit" name="manuNameToEdit" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_edit" style="margin-right: 40%; width: 60%;"></div>
+                    <button  id="btn_submit_edit" type="submit" class="btn btn-success">Sửa</button>
+                    <button  id="btn_cancel_edit" class="btn btn-info">Hủy</button>
+                 </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Item -->
+<!-- BEGIN Modal delete Item -->
+<div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="float: left; display: flex;">
+                    <h4 class="modal-title" style="float: left; display: flex; color: red;">
+                            Xóa nhà xuất bản
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            ×</button>
+                </div>
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Tên nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" id="manuNameToDelete" name="manuNameToDelete" readonly="true" type="text" placeholder="Nhập tên nhà sản xuất (NXB)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_delete" style="margin-right: 40%; width: 60%;"></div>
+                    <button  id="btn_submit_delete" type="submit" class="btn btn-success">Ok, Xóa</button>
+                    <button  id="btn_cancel_delete" class="btn btn-info">Hủy</button>
+                 </div>
+            </div>
+      </div>
+</div>
+<!-- END Modal Edit Item -->
+<script>
+   $(document).ready(function(){
+    
+    $('#btn_cancel_add').click(function () {
+        $("#modalAddItem").modal('hide');
+    });
+
+    $('#btn_cancel_edit').click(function () {
+        $("#modalEditItem").modal('hide');
+    });
+
+    $('#btn_cancel_delete').click(function () {
+        $("#modalDeleteItem").modal('hide');
+    });
+    //ajax for add manu
+    $("#btn_submit_add").click(function(){
+        var manuName = $("#manuName").val();
+        if(manuName === ""){
+            $("#submit_result_edit").text("Vui lòng điền tên NXB");
+            $("#submit_result_edit").css({"color":"#f1c40f","font-size":"20px"});
+            return;
+        }
+        $.post("/admin/manufacturer_manage/add",
+        {
+          manuName: manuName
+        },
+        function(data,status){
+            $("#submit_result_add").text(data.feedback);
+            if(data.isSuccess === true){
+                $("#submit_result_add").css({"color":"#4cd137","font-size":"20px"});
+            }
+            else
+            {
+                $("#submit_result_add").css({"color":"red","font-size":"20px"});
+            }
+        });
+    });
+
+    //ajax for edit menu
+    $('.btnEditItem').click(function () {
+        $("#modalEditItem").modal('show');
+        var $row =  $(this).closest('tr');
+        var $data = $row.find("td");
+        var manuNameToEdit = $data.eq(2).text();
+        var manuId = $data.eq(1).text();
+        $("#manuNameToEdit").val(manuNameToEdit);
+        $("#btn_submit_edit").click(function(){
+            var newManuName = $("#manuNameToEdit").val();
+            if(newManuName === manuNameToEdit){
+                $("#submit_result_edit").text("Không có thay đổi gì cả!");
+                $("#submit_result_edit").css({"color":"#f1c40f","font-size":"20px"});
+                return;
+            }
+            if(newManuName === ""){
+                $("#submit_result_edit").text("Vui lòng điền tên NXB");
+                $("#submit_result_edit").css({"color":"#f1c40f","font-size":"20px"});
+                return;
+            }
+            $.post("/admin/manufacturer_manage/edit",
+            {
+                newManuName: newManuName,
+                manuId: manuId
+            },
+            function(data,status){
+                $("#submit_result_edit").text(data.feedback);
+                if(data.isSuccess === true){
+                    $("#submit_result_edit").css({"color":"#4cd137","font-size":"20px"});
+                }
+                else
+                {
+                    $("#submit_result_edit").css({"color":"red","font-size":"20px"});
+                }
+            });
+        });
+    });
+
+    //ajax for delete menu
+    $('.btnDeleteItem').click(function () {
+        $("#modalDeleteItem").modal('show');
+        var $row =  $(this).closest('tr');
+        var $data = $row.find("td");
+        var manuNameToDelete = $data.eq(2).text();
+        var manuIdToDelete = $data.eq(1).text();
+        $("#manuNameToDelete").val(manuNameToDelete);
+        $("#btn_submit_delete").click(function(){
+            
+            $.post("/admin/manufacturer_manage/delete",
+            {
+                manuNameToDelete: manuNameToDelete,
+                manuIdToDelete: manuIdToDelete
+            },
+            function(data,status){
+                $("#submit_result_delete").text(data.feedback);
+                if(data.isSuccess === true){
+                    $("#submit_result_delete").css({"color":"#4cd137","font-size":"20px"});
+                }
+                else
+                {
+                    $("#submit_result_delete").css({"color":"red","font-size":"20px"});
+                }
+            });
+        });
+    });
+});
+</script>

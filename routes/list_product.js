@@ -121,22 +121,22 @@ router.get('/byClass/:id_Class', function (req, res) {
 
       if (!page) page = 1;
 
-      let offset = (page - 1);
+      var offset = (page - 1);
 
-      let pageList = [];
+      var pageList = [];
 
       Promise.all([productRepo.countByType(id_Class), productRepo.loadAllByType(id_Class, offset), typeRepo.single(id_Class)]).then(values => {
             let total = values[0][0].TOTAL;
             var nameType = values[2][0].name;
 
-            let result = {
+            var result = {
                   instruction: `Loại sách "${nameType}" có tổng cộng`,
                   total: `${total} sản phẩm`
             }
 
-            let numberOfPages = Math.ceil((total / config.appConfig.PRODUCTS_PER_PAGE));
+            var numberOfPages = Math.ceil((total / config.appConfig.PRODUCTS_PER_PAGE));
 
-            for (let i = 0; i < numberOfPages; i++) {
+            for (var i = 0; i < numberOfPages; i++) {
                   pageList.push({
                         url: `${url}?page=${i + 1}`,
                         isCurPage: (i + 1) === +page,

@@ -27,6 +27,7 @@ var accountRouter = require('./routes/account.js');
 var checkoutRouter = require('./routes/check_out.js');
 var history = require('./routes/history.js');
 
+var adminRouter = require('./routes/admin');
 var app = express();
 
 const order_status_str = ['Chưa giao', 'Đang giao', 'Đã giao', 'Đã huỷ'];
@@ -118,6 +119,7 @@ app.use('/account', accountRouter);
 app.use('/check_out', restrict_checkout, checkoutRouter);
 app.use('/history', restrict, history);
 
+app.use('/admin', adminRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
