@@ -44,46 +44,50 @@
                             <td>{{this.price}}</td>
                             <td>{{this.import_price}}</td>
                             <td>{{this.in_stock}}</td>
-                            <td>0</td>
+                            <td>{{this.revenue}}</td>
                             <td>
-                                <button class="btn btn-warning" id="btnEditItem">Edit</button>
+                                <button class="btn btn-warning btnEditItem">Edit</button>
                                 <br>
                                 <br>
-                                <br>
-                                <button class="btn btn-danger" id="btnEditItem">Delete</button>
+                                <br> {{#if this.using_orders}} {{else}}
+                                <button class="btn btn-danger btnDeleteItem">Delete</button>
+
+                                {{/if}}
                             </td>
                         </tr>
                         {{/each}}
                     </tbody>
                 </table>
             </div>
-            <div class="row">
-                {{#if prevPage.isMinimum}}
-                <div class="paging_button">
-                    <a href="javascript:;">prev</a>
-                </div>
-                {{else}}
-                <div class="paging_button">
-                    <a href="?page={{prevPage.value}}">prev</a>
-                </div>
-                {{/if}} {{#each pageNumbers}} {{#if this.isCurrentPage}}
-                <div>
-                    <a href="javascript:;">{{this.value}}</a>
-                </div>
-                {{else}}
-                <div>
-                    <a href="?page={{this.value}}">{{this.value}}</a>
-                </div>
-                {{/if}} {{/each}} {{#if nextPage.isMaximum}}
-                <div class="paging_button">
-                    <a href="javascript:;">next</a>
-                </div>
-                {{else}}
-                <div class="paging_button">
-                    <a href="?page={{nextPage.value}}">next</a>
-                </div>
-                {{/if}}
-            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-end">
+                    {{#with prevPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{/if}} {{/with}} {{#each pages}} {{#if this.isCurPage}}
+                    <li class="page-item active">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{/if}} {{/each}} {{#with nextPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{/if}} {{/with}}
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -101,11 +105,12 @@
             <form id="addProductForm" enctype="multipart/form-data" action="/admin/product_manage/upload" method="POST">
                 <div class="modal-body modal_information">
                     <div class="row">
+
                         <div class="col-md-3 entry_information">
                             <label>Hình lớn (550x550)</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input type="file" accept=".jpg" id="product_img_add" name="product_img" />
+                            <input type="file" required="required" accept=".jpg" id="product_img_add" name="product_img" />
                         </div>
 
 
@@ -113,7 +118,8 @@
                             <label>Tên sản phẩm</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input class="form-control" type="text" id="product_name_add" name="product_name" placeholder="Nhập tên sản phẩm" />
+                            <input class="form-control" type="text" required="required" id="product_name_add" name="product_name" placeholder="Nhập tên sản phẩm"
+                            />
                         </div>
                         <div class="col-md-3 entry_information">
                             <label>Mô tả</label>
@@ -125,22 +131,24 @@
                             <label>Tác giả</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input class="form-control" type="text" id="author_add" name="author" placeholder="Nhập tên tác giả" />
+                            <input class="form-control" type="text" required="required" id="author_add" name="author" placeholder="Nhập tên tác giả"
+                            />
                         </div>
 
                         <div class="col-md-3 entry_information">
-                            <label>Ngày xuất bản (dd-mm-YYYY)</label>
+                            <label>Ngày xuất bản (mm-dd-YYYY)</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input class="form-control" type="text" id="publish_date_add" name="publish_date" placeholder="Nhập ngày xuất bản" />
+                            <input class="form-control" type="date" value="2000-01-01" required="required" id="publish_date_add" name="publish_date"
+                            />
                         </div>
                         <div class="col-md-3 entry_information">
                             <label>Nhà sản xuất (NXB)</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <select class="form-control" name="product_manu" id="product_manu_add">
-                                {{#each manus}}
-                                    <option selected="selected" value="{{this.id_manufacturer}}">{{this.name}}</option>
+                            <select class="form-control" required name="product_manu" id="product_manu_add">
+                                {{#each layoutVM.manufacturer}}
+                                <option value="{{this.id_manufacturer}}">{{this.name}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -150,9 +158,9 @@
                         </div>
 
                         <div class="col-md-9 entry_information">
-                            <select class="form-control" name="product_type" id="product_type_add">
-                                {{#each types}}
-                                    <option selected="selected" value="{{this.id_class}}">{{this.name}}</option>
+                            <select class="form-control" required name="product_type" id="product_type_add">
+                                {{#each layoutVM.type}}
+                                <option value="{{this.id_class}}">{{this.name}}</option>
                                 {{/each}}
                             </select>
                         </div>
@@ -161,14 +169,15 @@
                             <label>Giá bán (VND)</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input class="form-control" type="number" id="price_add" name="price" placeholder="Nhập giá bán của sản phẩm" />
+                            <input class="form-control" type="number" min="0" required="required" id="price_add" name="price" placeholder="Nhập giá bán của sản phẩm"
+                            />
                         </div>
 
                         <div class="col-md-3 entry_information">
                             <label>Giá nhập (VND)</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input class="form-control" type="number" id="import_price_add" name="import_price" placeholder="Nhập giá nhập về của sản phẩm"
+                            <input class="form-control" type="number" min="0" required="required" id="import_price_add" name="import_price" placeholder="Nhập giá nhập về của sản phẩm"
                             />
                         </div>
 
@@ -176,17 +185,217 @@
                             <label>Số lượng tồn</label>
                         </div>
                         <div class="col-md-9 entry_information">
-                            <input class="form-control" type="number" id="in_stock_add" name="in_stock" placeholder="Nhập số lượng có trong kho" />
+                            <input class="form-control" type="number" min="0" required="required" id="in_stock_add" name="in_stock" placeholder="Nhập số lượng có trong kho"
+                            />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer modal_information">
                     <div id="submit_result_add" style="margin-right: 40%; width: 60%;"></div>
                     <button type="submit" id="btn_submit_add" class="btn btn-success">Xong</button>
-                    <button class="btn btn-info">Hủy</button>
+                    <button class="btn btn-info" id="btn_cancel_add">Hủy</button>
                 </div>
+            </form>
         </div>
-        </form>
+    </div>
+</div>
+<!-- BEGIN Modal update Item -->
+<div class="modal fade" id="modalEditItem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
+                    Cập nhật sản phẩm
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <form id="editProductForm" enctype="multipart/form-data" action="/admin/product_manage/edit" method="POST">
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <input class="form-control" type="hidden" name="productIdToEdit" id="productIdToEdit" value="" />
+                        <div class="col-md-3 entry_information">
+                            <label>Hình lớn (550x550)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input type="file" accept=".jpg" id="product_img_edit" name="product_img" />
+                        </div>
+
+
+                        <div class="col-md-3 entry_information">
+                            <label>Tên sản phẩm</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" required="required" type="text" id="product_name_edit" name="product_name" placeholder="Nhập tên sản phẩm"
+                            />
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Mô tả</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <textarea class="form-control" id="decription" name="decription" placeholder="Nhập mô tả"></textarea>
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Tác giả</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" required="required" id="author_edit" name="author" placeholder="Nhập tên tác giả"
+                            />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Ngày xuất bản (mm-dd-YYYY)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="date" required="required" id="publish_date_edit" name="publish_date" />
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <select class="form-control" required name="product_manu" id="product_manu_edit">
+                                {{#each layoutVM.manufacturer}}
+                                <option value="{{this.id_manufacturer}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Loại</label>
+                        </div>
+
+                        <div class="col-md-9 entry_information">
+                            <select class="form-control" required name="product_type" id="product_type_edit">
+                                {{#each layoutVM.type}}
+                                <option value="{{this.id_class}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Giá bán (VND)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" required="required" min="0" id="price_edit" name="price" placeholder="Nhập giá bán của sản phẩm"
+                            />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Giá nhập (VND)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" required="required" min="0" id="import_price_edit" name="import_price" placeholder="Nhập giá nhập về của sản phẩm"
+                            />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Số lượng tồn</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" required="required" min="0" id="in_stock_edit" name="in_stock" placeholder="Nhập số lượng có trong kho"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_edit" style="margin-right: 40%; width: 60%;"></div>
+                    <button type="submit" id="btn_submit_edit" class="btn btn-success">Xong</button>
+                    <button class="btn btn-info" id="btn_cancel_edit">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- BEGIN Modal delete Item -->
+<div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex; color:red;">
+                    Xóa sản phẩm
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <form id="deleteProductForm" action="/admin/product_manage/delete" method="POST">
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>ID</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" readonly="readonly" name="productIdToDelete" id="productIdToDelete" />
+
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Tên sản phẩm</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" readonly="readonly" type="text" id="product_name_delete" name="product_name" />
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Mô tả</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <textarea class="form-control" id="decription" readonly="readonly" name="decription"></textarea>
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Tác giả</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" readonly="readonly" id="author_delete" name="author" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Ngày xuất bản (mm-dd-YYYY)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" readonly="readonly" id="publish_date_delete" name="publish_date" />
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Nhà sản xuất (NXB)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input type="text" class="form-control" readonly="readonly" name="product_manu" id="product_manu_delete" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Loại</label>
+                        </div>
+
+                        <div class="col-md-9 entry_information">
+                            <input type="text" class="form-control" readonly="readonly" name="product_type" id="product_type_delete" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Giá bán (VND)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" readonly="readonly" min="0" id="price_delete" name="price" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Giá nhập (VND)</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" readonly="readonly" min="0" id="import_price_delete" name="import_price" />
+                        </div>
+
+                        <div class="col-md-3 entry_information">
+                            <label>Số lượng tồn</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="number" readonly="readonly" min="0" id="in_stock_delete" name="in_stock" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_delete" style="margin-right: 40%; width: 60%;"></div>
+                    <button type="submit" id="btn_submit_delete" class="btn btn-danger">Ok, Xóa</button>
+                    <button class="btn btn-info" id="btn_cancel_delete">Hủy</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <script>
@@ -200,29 +409,122 @@
             $("#modalEditItem").modal('hide');
         });
 
+        $('#btn_cancel_delete').click(function () {
+            $("#modalDeleteItem").modal('hide');
+        });
+
         $('#addProductForm').submit(function () {
-            var fileInput = document.getElementById("product_img_add").files.length;
-            var product_name = $('#product_name_add').val();
-            var author = $('#author_add').val();
-            var publish_date = $('#publish_date_add').val();
-            var price = $('#price_add').val();
-            var import_price = $('#import_price_add').val();
-            var in_stock = $('#in_stock_add').val();
-
-
-            if (fileInput == 0) {
-                $('#submit_result_add').text("Vui lòng chọn file")
-                return false;
-            }
             $(this).ajaxSubmit({
                 error: function (xhr) {
                     console.log(xhr.status);
                 },
                 success: function (response) {
-                    console.log(response.feedback);
+                    $("#submit_result_add").text(response.feedback);
+                    if (response.isSuccess === true) {
+                        $("#submit_result_add").css({ "color": "#4cd137", "font-size": "20px" });
+                    }
+                    else {
+                        $("#submit_result_add").css({ "color": "red", "font-size": "20px" });
+                    }
                 }
             });
             return false;
+        });
+        $('.btnEditItem').click(function () {
+            $("#modalEditItem").modal('show');
+            var $row = $(this).closest('tr');
+            var $data = $row.find("td");
+            var productIdToEdit = $data.eq(1).text();
+            var product_name_edit = $data.eq(3).text();
+            var product_descripton_edit = $data.eq(4).text();
+            var author_edit = $data.eq(5).text();
+            var publish_date_edit = $data.eq(6).text();
+            var tmpDate = publish_date_edit.split("-");
+            publish_date_edit = tmpDate[2] + "-" + tmpDate[1] + "-" + tmpDate[0];
+            var product_manu_edit = $data.eq(7).text();
+            var product_type_edit = $data.eq(8).text();
+            var price_edit = $data.eq(9).text();
+            var import_price_edit = $data.eq(10).text();
+            var in_stock_edit = $data.eq(11).text();
+            console.log(productIdToEdit);
+            $("#product_name_edit").val(product_name_edit);
+            $("#productIdToEdit").val(productIdToEdit);
+            $("#decription").val(productIdToEdit);
+            $("#author_edit").val(author_edit);
+            $("#publish_date_edit").val(publish_date_edit);
+            $("#product_manu_edit option").filter(function () {
+                return this.text == product_manu_edit;
+            }).attr('selected', true);
+            $("#product_type_edit option").filter(function () {
+                return this.text == product_type_edit;
+            }).attr('selected', true);
+            $("#price_edit").val(price_edit);
+            $("#import_price_edit").val(import_price_edit);
+            $("#in_stock_edit").val(in_stock_edit);
+
+            $('#editProductForm').submit(function () {
+                $(this).ajaxSubmit({
+                    error: function (xhr) {
+                        console.log(xhr.status);
+                    },
+                    success: function (response) {
+                        $("#submit_result_edit").text(response.feedback);
+                        if (response.isSuccess === true) {
+                            $("#submit_result_edit").css({ "color": "#4cd137", "font-size": "20px" });
+                        }
+                        else {
+                            $("#submit_result_edit").css({ "color": "red", "font-size": "20px" });
+                        }
+                    }
+                });
+                return false;
+            });
+            console.log(product_type_edit);
+        });
+        $('.btnDeleteItem').click(function () {
+            $("#modalDeleteItem").modal('show');
+            var $row = $(this).closest('tr');
+            var $data = $row.find("td");
+            var productIdToDelete = $data.eq(1).text();
+            var product_name_delete = $data.eq(3).text();
+            var product_descripton_delete = $data.eq(4).text();
+            var author_delete = $data.eq(5).text();
+            var publish_date_delete = $data.eq(6).text();
+            var product_manu_delete = $data.eq(7).text();
+            var product_type_delete = $data.eq(8).text();
+            var price_delete = $data.eq(9).text();
+            var import_price_delete = $data.eq(10).text();
+            var in_stock_delete = $data.eq(11).text();
+            console.log(productIdToDelete);
+            $("#product_name_delete").val(product_name_delete);
+            $("#productIdToDelete").val(productIdToDelete);
+            console.log($("#productIdToDelete").val());
+            $("#product_descripton_delete").val(product_descripton_delete);
+            $("#author_delete").val(author_delete);
+            $("#publish_date_delete").val(publish_date_delete);
+            $("#product_manu_delete").val(product_manu_delete);
+            $("#product_type_delete").val(product_type_delete);
+            $("#price_delete").val(price_delete);
+            $("#import_price_delete").val(import_price_delete);
+            $("#in_stock_delete").val(in_stock_delete);
+            console.log($("#deleteProductForm"));
+            $('#deleteProductForm').submit(function () {
+                $(this).ajaxSubmit({
+                    error: function (xhr) {
+                        console.log(xhr.status);
+                    },
+                    success: function (response) {
+                        $("#submit_result_delete").text(response.feedback);
+                        if (response.isSuccess === true) {
+                            $("#submit_result_delete").css({ "color": "#4cd137", "font-size": "20px" });
+                        }
+                        else {
+                            $("#submit_result_delete").css({ "color": "red", "font-size": "20px" });
+                        }
+                    }
+                });
+                return false;
+            });
         });
     });
 

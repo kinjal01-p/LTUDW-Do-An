@@ -21,6 +21,29 @@ var storage = multer.diskStorage({
 
 });
 
+var storage2 = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/resources')
+    },
+    filename: (req, file, cb) => {
+        productRepo.getMaxId().then(value => {
+            cb(null, req.body.productIdToEdit + '.jpg')
+        });
+    }
+
+});
+
+var uploadEdit = multer({
+    storage: storage2,
+    fileFilter: (req, file, cb) => {
+        var ext = path.extname(file.originalname);
+        if (ext !== '.jpg') {
+            return cb(new Error('Chỉ được dùng ảnh JPG!'));
+        }
+        cb(null, true)
+    }
+}).single('product_img');
+
 var upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
@@ -49,154 +72,109 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/product_manage', function (req, res, next) {
-
     var page = req.query.page;
-    if (typeof (page) == 'undefined') {
+    var url = '/admin' + req.url;
+
+    if (url.lastIndexOf('?page') != -1)
+        url = url.substr(0, url.lastIndexOf('?page'));
+
+    if (!page) {
         page = 1;
     }
-    page = parseInt(page);
-    var offSet = (page - 1) * config.appConfig.PRODUCTS_PER_TABLE;
-    Promise.all([productRepo.countAll(), productRepo.loadByOffSet(offSet), manuRepo.loadAll(), typeRepo.loadAll()]).then(values => {
-        //console.log(values[0]);
-        //console.log(values[1]);
+
+    page = +page;
+    var offSet = (page - 1);
+
+    var pageList = [];
+
+    Promise.all([productRepo.countAllProducts(), productRepo.loadByOffSetWithUsingOrder(offSet)]).then(values => {
         var numberic = page * config.appConfig.PRODUCTS_PER_TABLE - config.appConfig.PRODUCTS_PER_TABLE + 1;
         for (var i = 0; i < values[1].length; i++) {
             values[1][i]['numberic'] = numberic;
             numberic++;
         }
 
-        var pageNumbers = Math.floor(values[0][0].productNumber / config.appConfig.PRODUCTS_PER_TABLE);
-        var minPage;
-        var maxPage;
-        if (values[0][0].productNumber % config.appConfig.PRODUCTS_PER_TABLE) {
-            pageNumbers++;
-        }
+        var total = values[0][0].TOTAL;
+        var numberOfPages = Math.ceil((total / config.appConfig.PRODUCTS_PER_PAGE));
 
-        if (page - 2 <= 0) {
-            minPage = 1;
-        }
-        else {
-            minPage = page - 2;
-        }
-
-        if (page >= pageNumbers) {
-            maxPage = pageNumbers;
-        }
-        else {
-            maxPage = minPage + 4;
-            if (maxPage > pageNumbers) {
-                maxPage = pageNumbers;
-            }
-        }
-        var prevPage = {};
-        var nextPage = {};
-        if (page <= 1) {
-            prevPage['value'] = 1;
-            prevPage['isMinimum'] = true;
-        }
-        else {
-            prevPage['value'] = page - 1;
-            prevPage['isMinimum'] = false;
-        }
-
-        if (page >= pageNumbers) {
-            nextPage['value'] = pageNumbers;
-            nextPage['isMaximum'] = true;
-        }
-        else {
-            nextPage['value'] = page + 1;
-            nextPage['isMaximum'] = false;
-        }
-        var numbers = [];
-        for (var i = minPage; i <= maxPage; i++) {
-            numbers.push({
-                value: i,
-                isCurrentPage: i === +page
+        for (var i = 0; i < numberOfPages; i++) {
+            pageList.push({
+                url: `${url}?page=${i + 1}`,
+                isCurPage: (i + 1) === +page,
+                val: i + 1
             });
         }
+
+        var prevPage = {
+            url: `${url}?page=${+page - 1}`,
+            isOK: 1 !== +page
+        }
+
+        var nextPage = {
+            url: `${url}?page=${+page + 1}`,
+            isOK: numberOfPages !== +page
+        }
+
         res.render('admin_product_management', {
             layout: 'admin_layout',
             products: values[1],
-            manus: values[2],
-            types: values[3],
-            pageNumbers: numbers,
-            nextPage: nextPage,
-            prevPage: prevPage
+            pages: pageList,
+            prevPage,
+            nextPage
         });
     });
 });
 
 router.get('/type_manage', function (req, res, next) {
     var page = req.query.page;
-    if (typeof (page) == 'undefined') {
+    var url = '/admin' + req.url;
+
+    if (url.lastIndexOf('?page') != -1)
+        url = url.substr(0, url.lastIndexOf('?page'));
+
+    if (!page) {
         page = 1;
     }
-    page = parseInt(page);
-    var offSet = (page - 1) * config.appConfig.TYPES_PER_TABLE;
+
+    page = +page;
+    var offSet = (page - 1);
+
+    var pageList = [];
+
     Promise.all([typeRepo.countAll(), typeRepo.loadByOffSetWithUsingProduct(offSet)]).then(values => {
-        //console.log(values[0]);
         var numberic = page * config.appConfig.TYPES_PER_TABLE - config.appConfig.TYPES_PER_TABLE + 1;
         for (var i = 0; i < values[1].length; i++) {
             values[1][i]['numberic'] = numberic;
             numberic++;
         }
 
-        var pageNumbers = Math.floor(values[0][0].typeNumber / config.appConfig.TYPES_PER_TABLE);
-        var minPage;
-        var maxPage;
-        if (values[0][0].typeNumber % config.appConfig.TYPES_PER_TABLE) {
-            pageNumbers++;
-        }
+        var total = values[0][0].TOTAL;
+        var numberOfPages = Math.ceil((total / config.appConfig.PRODUCTS_PER_PAGE));
 
-        if (page - 2 <= 0) {
-            minPage = 1;
-        }
-        else {
-            minPage = page - 2;
-        }
-
-        if (page >= pageNumbers) {
-            maxPage = pageNumbers;
-        }
-        else {
-            maxPage = minPage + 4;
-            if (maxPage >= pageNumbers) {
-                maxPage = pageNumbers;
-            }
-        }
-        var prevPage = {};
-        var nextPage = {};
-        if (page <= 1) {
-            prevPage['value'] = 1;
-            prevPage['isMinimum'] = true;
-        }
-        else {
-            prevPage['value'] = page - 1;
-            prevPage['isMinimum'] = false;
-        }
-
-        if (page >= pageNumbers) {
-            nextPage['value'] = pageNumbers;
-            nextPage['isMaximum'] = true;
-        }
-        else {
-            nextPage['value'] = page + 1;
-            nextPage['isMaximum'] = false;
-        }
-
-        var numbers = [];
-        for (var i = minPage; i <= maxPage; i++) {
-            numbers.push({
-                value: i,
-                isCurrentPage: i === +page
+        for (var i = 0; i < numberOfPages; i++) {
+            pageList.push({
+                url: `${url}?page=${i + 1}`,
+                isCurPage: (i + 1) === +page,
+                val: i + 1
             });
         }
+
+        var prevPage = {
+            url: `${url}?page=${+page - 1}`,
+            isOK: 1 !== +page
+        }
+
+        var nextPage = {
+            url: `${url}?page=${+page + 1}`,
+            isOK: numberOfPages !== +page
+        }
+
         res.render('admin_type_management', {
             layout: 'admin_layout',
             types: values[1],
-            pageNumbers: numbers,
-            nextPage: nextPage,
-            prevPage: prevPage
+            pages: pageList,
+            nextPage,
+            prevPage
         });
     });
 });
@@ -204,77 +182,54 @@ router.get('/type_manage', function (req, res, next) {
 //rout for manu management page
 router.get('/manufacturer_manage', function (req, res, next) {
     var page = req.query.page;
-    if (typeof (page) == 'undefined') {
+    var url = '/admin' + req.url;
+
+    if (url.lastIndexOf('?page') != -1)
+        url = url.substr(0, url.lastIndexOf('?page'));
+
+    if (!page) {
         page = 1;
     }
-    page = parseInt(page);
-    var offSet = (page - 1) * config.appConfig.MANUFACTURERS_PER_TABLE;
+
+    page = +page;
+    var offSet = (page - 1);
+
+    var pageList = [];
+
     Promise.all([manuRepo.countAll(), manuRepo.loadByOffSetWithUsingProduct(offSet)]).then(values => {
-        //console.log(values[0]);
         var numberic = page * config.appConfig.MANUFACTURERS_PER_TABLE - config.appConfig.MANUFACTURERS_PER_TABLE + 1;
         for (var i = 0; i < values[1].length; i++) {
             values[1][i]['numberic'] = numberic;
             numberic++;
         }
 
-        var pageNumbers = Math.floor(values[0][0].manuNumber / config.appConfig.MANUFACTURERS_PER_TABLE);
-        var minPage;
-        var maxPage;
-        if (values[0][0].manuNumber % config.appConfig.MANUFACTURERS_PER_TABLE) {
-            pageNumbers++;
-        }
+        var total = values[0][0].TOTAL;
+        var numberOfPages = Math.ceil((total / config.appConfig.PRODUCTS_PER_PAGE));
 
-
-        if (page - 2 <= 0) {
-            minPage = 1;
-        }
-        else {
-            minPage = page - 2;
-        }
-
-        if (page >= pageNumbers) {
-            maxPage = pageNumbers;
-        }
-        else {
-            maxPage = minPage + 4;
-            if (maxPage >= pageNumbers) {
-                maxPage = pageNumbers;
-            }
-        }
-        var prevPage = {};
-        var nextPage = {};
-        if (page <= 1) {
-            prevPage['value'] = 1;
-            prevPage['isMinimum'] = true;
-        }
-        else {
-            prevPage['value'] = page - 1;
-            prevPage['isMinimum'] = false;
-        }
-
-        if (page >= pageNumbers) {
-            nextPage['value'] = pageNumbers;
-            nextPage['isMaximum'] = true;
-        }
-        else {
-            nextPage['value'] = page + 1;
-            nextPage['isMaximum'] = false;
-        }
-
-        var numbers = [];
-        for (var i = minPage; i <= maxPage; i++) {
-            numbers.push({
-                value: i,
-                isCurrentPage: i === +page
+        for (var i = 0; i < numberOfPages; i++) {
+            pageList.push({
+                url: `${url}?page=${i + 1}`,
+                isCurPage: (i + 1) === +page,
+                val: i + 1
             });
         }
+
+        var prevPage = {
+            url: `${url}?page=${+page - 1}`,
+            isOK: 1 !== +page
+        }
+
+        var nextPage = {
+            url: `${url}?page=${+page + 1}`,
+            isOK: numberOfPages !== +page
+        }
+
         res.render('admin_manufacturer_management', {
             layout: 'admin_layout',
             manus: values[1],
-            pageNumbers: numbers,
-            nextPage: nextPage,
-            prevPage: prevPage,
-            showAlert: false,
+            pages: pageList,
+            nextPage,
+            prevPage
         });
     });
 });
@@ -534,31 +489,123 @@ router.post('/product_manage/upload', (req, res, next) => {
                                     isSuccess: false
                                 }
                                 res.send(vm)
-                        });
+                            });
                     });
                 }
             });
 
         }
-        // typeRepo.delete(req.body.typeIdToDelete).then(result => {
-        //     console.log("DELETE PRODUCT TYPE: Name: " + req.body.typeNameToDelete + " - ID: " + req.body.typeIdToDelete);
-        //     var vm = {
-        //         feedback: "Xóa loại sản phẩm thành công",
-        //         isSuccess: true
-        //     };
-        //     res.send(vm);
-        // }).catch(err => {
-        //     console.log("Error occurs when Delete product type, err:" + err);
-        //     var vm = {
-        //         feedback: "Lỗi khi xóa loại sản phẩm",
-        //         isSuccess: false
-        //     }
-        //     res.send(vm);
-        // });
-
     });
+});
 
+//rout for edit product
+router.post('/product_manage/edit', (req, res, next) => {
+    uploadEdit(req, res, function (err) {
+        if (err) {
+            err.name = '';
+            console.log(err.toString());
 
+            var vm = {
+                feedback: err.toString(),
+                isSuccess: false
+            };
+            res.send(vm)
+        }
+        else {
+            authorRepo.isExist(req.body.author).then(result => {
+                console.log(result[0].result);
+
+                if (result[0].result == 0) {
+                    authorRepo.getMaxId().then(maxId => {
+                        var newAuthorId = parseInt(maxId[0].maxId) + 1;
+                        console.log(newAuthorId);
+                        authorRepo.add(newAuthorId, req.body.author).then(result => {
+                            productRepo.updateProduct(req.body.productIdToEdit, req.body.product_name,
+                                req.body.decription, req.body.price,
+                                req.body.product_type, req.body.product_manu,
+                                newAuthorId, req.body.publish_date,
+                                req.body.in_stock, req.body.import_price).then(result => {
+                                    var vm = {
+                                        feedback: "Cập nhật sản phẩm thành công",
+                                        isSuccess: true
+                                    }
+                                    res.send(vm)
+                                }).catch(err => {
+                                    console.log("Error occurs when UPDATE PRODUCT , err:" + err);
+                                    var vm = {
+                                        feedback: "Lỗi khi cập nhật sản phẩm",
+                                        isSuccess: false
+                                    }
+                                    res.send(vm)
+                                });
+                        }).catch(err => {
+                            console.log("Error occurs when ADD new author , err:" + err);
+                            var vm = {
+                                feedback: "Lỗi khi thêm tác giả mới",
+                                isSuccess: false
+                            }
+                            res.send(vm)
+                        });
+
+                    });
+                }
+                else {
+                    var existedAuthorID = parseInt(result[0].id);
+                    productRepo.updateProduct(req.body.productIdToEdit, req.body.product_name,
+                        req.body.decription, req.body.price,
+                        req.body.product_type, req.body.product_manu,
+                        existedAuthorID, req.body.publish_date,
+                        req.body.in_stock, req.body.import_price).then(result => {
+                            console.log(result[0]);
+
+                            var vm = {
+                                feedback: "Cập nhật sản phẩm thành công",
+                                isSuccess: true
+                            }
+                            res.send(vm)
+                        }).catch(err => {
+                            console.log("Error occurs when UPDATE PRODUCT , err:" + err);
+                            var vm = {
+                                feedback: "Lỗi khi cập nhật sản phẩm",
+                                isSuccess: false
+                            }
+                            res.send(vm)
+                        });
+
+                }
+            });
+
+        }
+    });
+});
+
+//rout for delete product
+router.post('/product_manage/delete', (req, res, next) => {
+    var productIdToDelete = req.body.productIdToDelete;
+    console.log(req.body);
+
+    productRepo.delete(productIdToDelete).then(result => {
+        var vm = {
+            feedback: "Xóa sản phẩm thành công",
+            isSuccess: true
+        }
+        res.send(vm)
+    }).catch(err => {
+        console.log("Error occurs when DELETE PRODUCT , err:" + err);
+        var vm = {
+            feedback: "Lỗi khi xóa sản phẩm",
+            isSuccess: false
+        }
+        res.send(vm)
+    });
+});
+
+router.get('/login', (req, res) => {
+    res.render('admin/login');
+});
+
+router.post('/login', (req, res) => {
+    
 });
 
 module.exports = router;

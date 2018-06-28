@@ -22,7 +22,7 @@ exports.loadByOffSet = offSet => {
 }
 
 exports.countAll = () => {
-      var sql = `select count(manufacturer.id_manufacturer) as manuNumber
+      var sql = `select count(manufacturer.id_manufacturer) as TOTAL
       from manufacturer;`;
       return db.load(sql);
 }

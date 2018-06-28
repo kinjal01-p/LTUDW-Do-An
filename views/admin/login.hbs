@@ -1,0 +1,72 @@
+{{#contentFor "pageCSS"}}
+<style>
+      .login-page {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+      }
+
+      .form-cus {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+      }
+
+      .form-cus input {
+            font-family: sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+      }
+
+      .form-cus button {
+            font-family: sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #34495e;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+      }
+
+      .form-cus button:hover,
+      .form-cus button:active,
+      .form-cus button:focus {
+            background: #ff6c20;
+      }
+</style>
+{{/contentFor}}
+
+<div class="login-page">
+      <div class="form-cus">
+            <form class="login-form" action="/admin/login" method="POST">
+                  <input placeholder="email" name="email" type="email" class="form-control" value="{{email}}" />
+                  <input type="password" placeholder="password" name="password" class="form-control" />
+                  <button type="submit">login</button>
+
+                  {{#if layoutVM.captcha}}
+                  <p>{{{layoutVM.captcha}}}</p>
+                  {{/if}} {{#if isErrorCaptcha}}
+                  <span id="error_message" style="color:orangered; display: block">* Captcha error. Please try again.</span>
+                  
+                  {{/if}} {{#if isError}}
+                  <span id="error_message" style="color:orangered; margin: 10px; display: block">* Email or password doesn't match. Please try again.</span>
+                  {{/if}}
+            </form>
+      </div>
+</div>

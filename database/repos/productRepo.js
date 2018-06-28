@@ -182,7 +182,54 @@ exports.getMaxId = () => {
 
 exports.add = (id_product, name, description, price, import_price, id_class, id_manufacturer, id_author, publish_date, in_stock) => {
       var sql = `INSERT INTO product (id_product, name, description, price, import_price , id_class, id_manufacturer, id_author, publish_date, in_stock, view_count, sell_amount)
-       VALUES ('${id_product}', N'${name}', N'${description}', ${price}, ${import_price}, ${id_class}, ${id_manufacturer}, ${id_author}, STR_TO_DATE( '${publish_date}', '%d-%m-%Y'), ${in_stock}, 0, 0);`;
+       VALUES ('${id_product}', N'${name}', N'${description}', ${price}, ${import_price}, ${id_class}, ${id_manufacturer}, ${id_author}, STR_TO_DATE( '${publish_date}', '%Y-%m-%d'), ${in_stock}, 0, 0);`;
       console.log(sql);
        return db.load(sql);
+}
+
+exports.loadByOffSetWithUsingOrder = offSet => {
+      var sql = `select product.id_product as id,
+      product.name as prod_name, 
+      product.description as description,
+      product.price as price, 
+      product.import_price as import_price, 
+      date_format(product.publish_date, "%d-%m-%Y") as publish_date,
+      product.in_stock as in_stock,
+      class_product.name as prod_type,
+      manufacturer.name as manufacturer,
+      author.name as author,
+      (product.price - product.import_price)*sell_amount as revenue,
+      count(product_order.id_order) as using_orders
+      from product inner join class_product on class_product.id_class = product.id_class
+      inner join manufacturer on manufacturer.id_manufacturer = product.id_manufacturer
+      inner join author on author.id_author = product.id_author 
+      left join product_order on product_order.id_product = product.id_product
+      where product.id_product != 0 
+      group by product.id_product limit ${config.appConfig.PRODUCTS_PER_TABLE} offset ${offSet * config.appConfig.PRODUCTS_PER_TABLE}`;
+      return db.load(sql);
+}
+
+exports.updateProduct = (id,name,description,price,id_class,id_manufacturer,id_author,publish_date,in_stock,import_price) => {
+      var sql = `UPDATE store.product
+      SET name = N'${name}',
+      description = N'${description}',
+      price = ${price},
+      id_class = ${id_class},
+      id_manufacturer = ${id_manufacturer},
+      id_author = ${id_author},
+      publish_date = STR_TO_DATE( '${publish_date}', '%Y-%m-%d'),
+      in_stock = ${in_stock},
+      import_price = ${import_price}
+      WHERE (id_product = '${id}');`
+      console.log(sql);
+      
+      return db.load(sql);
+}
+
+exports.delete =  (id) => {
+      var sql = `delete from product 
+      where product.id_product = '${id}' and product.id_product not in 
+      (select product_order.id_product from product_order);`
+      console.log(sql);
+      return db.load(sql);
 }

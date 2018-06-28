@@ -20,8 +20,9 @@ exports.getMaxId = () => {
 }
 
 exports.countAll = () => {
-      var sql = `select count(class_product.id_class) as typeNumber
+      var sql = `select count(class_product.id_class) as TOTAL
       from class_product;`;
+      return db.load(sql);
 }
 
 exports.single = id_class => {
@@ -52,7 +53,7 @@ exports.loadByOffSetWithUsingProduct = offSet => {
       count(product.id_product) as using_products
       from class_product left join product on class_product.id_class = product.id_class
       where class_product.id_class!=0 
-      group by class_product.id_class limit  ${config.appConfig.TYPES_PER_TABLE} offset ${offSet};`;
+      group by class_product.id_class limit  ${config.appConfig.TYPES_PER_TABLE} offset ${offSet * config.appConfig.TYPES_PER_TABLE};`;
       return db.load(sql);
 }
 
