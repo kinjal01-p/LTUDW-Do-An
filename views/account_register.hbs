@@ -6,7 +6,8 @@
                         <label>Họ và tên</label>
                   </div>
                   <div class="col-md-9 entry_information">
-                        <input required type="text" class="form-control" name="name" placeholder="Hãy nhập họ và tên của bạn..." value="{{name}}" />
+                        <input required type="text" class="form-control" name="name" placeholder="Hãy nhập họ và tên của bạn..." value="{{name}}"
+                        />
                   </div>
             </div>
 
@@ -15,8 +16,8 @@
                         <label>Email</label>
                   </div>
                   <div class="col-md-9 entry_information">
-                        <input required type="email" class="form-control" name="email" placeholder="Hãy nhập email của bạn..." value="{{email}}" />
-                        {{#if isError}}
+                        <input required type="email" class="form-control" name="email" placeholder="Hãy nhập email của bạn..." value="{{email}}"
+                        /> {{#if isError}}
                         <span id="error_message" style="color:orangered; display: block">* Email is exist. Please try another.</span>
                         {{/if}}
                   </div>
@@ -32,20 +33,21 @@
             </div>
 
             <div class="form-group row">
-                    <div class="col-md-3 entry_information">
-                      <label>Ngày sinh</label>
-                    </div>
-                    <div class="col-md-9 entry_information">
-                      <input required type="date" class="form-control" name="dob" placeholder="Hãy nhập ngày sinh của bạn..." value="{{dob}}" />
-                    </div>
+                  <div class="col-md-3 entry_information">
+                        <label>Ngày sinh</label>
                   </div>
+                  <div class="col-md-9 entry_information">
+                        <input required type="date" class="form-control" name="dob" placeholder="Hãy nhập ngày sinh của bạn..." value="{{dob}}" />
+                  </div>
+            </div>
 
             <div class="form-group row">
                   <div class="col-md-3 entry_information">
                         <label>Địa chỉ</label>
                   </div>
                   <div class="col-md-9 entry_information">
-                        <input required type="text" class="form-control" name="address" placeholder="Hãy nhập địa chỉ của bạn..." value="{{address}}" />
+                        <input required type="text" class="form-control" name="address" placeholder="Hãy nhập địa chỉ của bạn..." value="{{address}}"
+                        />
                   </div>
             </div>
 
@@ -63,12 +65,20 @@
                         <label>Nhập lại mật khẩu</label>
                   </div>
                   <div class="col-md-9 entry_information">
-                        <input required type="password" class="form-control" name="repassword" placeholder="Hãy nhập lại mật khẩu của bạn..." />
-                        {{#if isNotMatch}}
+                        <input required type="password" class="form-control" name="repassword" placeholder="Hãy nhập lại mật khẩu của bạn..." /> {{#if isNotMatch}}
                         <span id="error_message" style="color:orangered; display: block">* Repassword doesn't match. Please try again.</span>
                         {{/if}}
                   </div>
             </div>
+
+            <div class="form-group row">
+                  {{#if layoutVM.captcha}}
+                  <p>{{{layoutVM.captcha}}}</p>
+                  {{/if}} {{#if isErrorCaptcha}}
+                  <span id="error_message" style="color:orangered; display: block">* Captcha error. Please try again.</span>
+                  {{/if}}
+            </div>
+
 
             <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
                   <button type="submit" class="btn btn-success col-md-12">Đăng kí</button>
