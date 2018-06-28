@@ -23,6 +23,11 @@ exports.mysqlSessionConfig = {
       }
 }
 
+exports.captchaConfig = {
+      RECAPTCHA_SITE_KEY: '6LcBCmEUAAAAAEg5fI_NypLK_mKBzK17e2-Tpzlv',
+      RECAPTCHA_SECRET_KEY: '6LcBCmEUAAAAAHjs5-y9kTuzAEly8utepaCFdjD4'
+}
+
 exports.appConfig = {
       PRODUCTS_PER_PAGE: 20,
       PRODUCTS_PER_TOP: 10,

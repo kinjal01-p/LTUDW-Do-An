@@ -55,12 +55,17 @@
 <div class="login-page">
       <div class="form-cus">
             <form class="login-form" action="/account/login" method="POST">
-                  <input placeholder="email" name="email" type="email" class="form-control" value="{{email}}"/>
+                  <input placeholder="email" name="email" type="email" class="form-control" value="{{email}}" />
                   <input type="password" placeholder="password" name="password" class="form-control" />
                   <button type="submit">login</button>
                   <a href="/account/register">Sign up?</a>
 
-                  {{#if isError}}
+                  {{#if layoutVM.captcha}}
+                  <p>{{{layoutVM.captcha}}}</p>
+                  {{/if}} {{#if isErrorCaptcha}}
+                  <span id="error_message" style="color:orangered; display: block">* Captcha error. Please try again.</span>
+                  
+                  {{/if}} {{#if isError}}
                   <span id="error_message" style="color:orangered; margin: 10px; display: block">* Email or password doesn't match. Please try again.</span>
                   {{/if}}
             </form>

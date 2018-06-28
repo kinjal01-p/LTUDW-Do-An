@@ -172,6 +172,10 @@
                     </div>
                   </div>
 
+                  {{#if layoutVM.captcha}}
+                    <p>{{{layoutVM.captcha}}}</p>
+                  {{/if}}
+
                   <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
                     <button type="submit" class="btn btn-primary col-md-12">Đăng nhập</button>
                   </div>
@@ -241,6 +245,10 @@
                       <input required type="password" class="form-control" name="repassword" placeholder="Hãy nhập lại mật khẩu của bạn..." />
                     </div>
                   </div>
+
+                  {{#if layoutVM.captcha}}
+                    <p>{{{layoutVM.captcha}}}</p>
+                  {{/if}}
 
                   <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
                     <button type="submit" class="btn btn-success col-md-12">Đăng kí</button>

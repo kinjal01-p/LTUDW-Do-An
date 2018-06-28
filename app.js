@@ -7,6 +7,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var moment = require('moment');
+var bodyParser = require('body-parser')
 
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
@@ -80,6 +81,10 @@ app.set('view engine', 'hbs');
 
 app.enable('view cache');
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
