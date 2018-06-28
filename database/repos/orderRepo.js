@@ -10,6 +10,11 @@ exports.single = id_order => {
     return db.load(sql);
 }
 
+exports.singleWithClient = (id_order, email) => {
+    var sql = `select * from store.order where id_order = '${id_order}' and email = '${email}'`;
+    return db.load(sql);
+}
+
 exports.loadItemsOrder = id_order => {
     var sql = `select * from store.product_order where id_order = '${id_order}'`;
     return db.load(sql);
