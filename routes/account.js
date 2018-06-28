@@ -126,6 +126,8 @@ router.post('/login', (req, res) => {
 router.post('/logout', (req, res) => {
       req.session.isLogged = false;
       req.session.user = null;
+      req.session.isAdmin = false;
+      req.session.admin = null;
 
       res.redirect(req.headers.referer);
 });
@@ -187,14 +189,6 @@ router.post('/edit', retrict, (req, res) => {
                   });
             });
       }
-});
-
-router.post('/delete', retrict, (req, res) => {
-      accountRepo.remove(req.session.user).then(rows => {
-            req.session.isLogged = false;
-            req.session.user = null;
-            res.redirect('/');
-      });
 });
 
 router.get('/profile', retrict, (req, res) => {

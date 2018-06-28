@@ -1,7 +1,7 @@
 var db = require('../db.js');
 
 exports.loadByClient = email => {
-    var sql = `select * from store.order where email = '${email}' order by time_place`;
+    var sql = `select * from store.order where email = '${email}' order by time_place desc`;
     return db.load(sql);
 }
 

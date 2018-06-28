@@ -54,8 +54,12 @@
 
 <div class="login-page">
       <div class="form-cus">
+            <h2>Đăng nhập quản lý</h2>
             <form class="login-form" action="/admin/login" method="POST">
-                  <input placeholder="email" name="email" type="email" class="form-control" value="{{email}}" />
+                  <input placeholder="username" name="username" type="text" class="form-control" 
+                  {{#if username}}
+                  value="{{username}}"
+                  {{/if}} />
                   <input type="password" placeholder="password" name="password" class="form-control" />
                   <button type="submit">login</button>
 

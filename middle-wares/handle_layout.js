@@ -10,6 +10,10 @@ module.exports = (req, res, next) => {
             req.session.isLogged = false;
       }
 
+      if (req.session.isAdmin === undefined) {
+            req.session.isAdmin = false;
+      }
+
       var totalInCart = 0;
 
       if (req.session.cart !== undefined) {
