@@ -4,6 +4,7 @@ var productRepo = require('../database/repos/productRepo.js');
 var typeRepo = require('../database/repos/typeRepo.js');
 var manuRepo = require('../database/repos/manufacturerRepo.js');
 var authorRepo = require('../database/repos/authorRepo.js');
+var orderRepo = require('../database/repos/orderRepo.js');
 var config = require('../config/config');
 var multer = require('multer');
 var path = require('path');
@@ -646,4 +647,143 @@ router.post('/logout', admin_restrict, (req, res) => {
     res.redirect('/');
 });
 
+router.get('/order_manage',admin_restrict, (req, res) => {
+    var page = req.query.page;
+    var url = '/admin' + req.url;
+
+    if (url.lastIndexOf('?page') != -1)
+        url = url.substr(0, url.lastIndexOf('?page'));
+
+    if (!page) {
+        page = 1;
+    }
+
+    page = +page;
+    var offSet = (page - 1);
+
+    var pageList = [];
+
+    Promise.all([orderRepo.countAll(), orderRepo.loadAllByOffset(offSet)]).then(values => {
+        var numberic = page * config.appConfig.ORDERS_PER_TABLE - config.appConfig.ORDERS_PER_TABLE + 1;
+        for (var i = 0; i < values[1].length; i++) {
+            switch (values[1][i]['status']) {
+                case 0:
+                    {
+                        values[1][i]['not_delivery'] = true;
+                        values[1][i]['delivering'] = false;
+                        values[1][i]['delivered'] = false;
+                        values[1][i]['delivery_cancel'] = false;
+                        break;
+                    }
+                case 1:
+                    {
+                        values[1][i]['not_delivery'] = false;
+                        values[1][i]['delivering'] = true;
+                        values[1][i]['delivered'] = false;
+                        values[1][i]['delivery_cancel'] = false;
+                        break;
+                    }
+                case 2:
+                    {
+                        values[1][i]['not_delivery'] = false;
+                        values[1][i]['delivering'] = false;
+                        values[1][i]['delivered'] = true;
+                        values[1][i]['delivery_cancel'] = false;
+                        break;
+                    }
+                case 3:
+                    {
+                        values[1][i]['not_delivery'] = false;
+                        values[1][i]['delivering'] = false;
+                        values[1][i]['delivered'] = false;
+                        values[1][i]['delivery_cancel'] = true;
+                        break;
+                    }
+                default:
+                    values[1][i]['not_delivery'] = true;
+                    values[1][i]['delivering'] = false;
+                    values[1][i]['delivered'] = false;
+                    values[1][i]['delivery_cancel'] = false;
+                    break;
+            }
+            values[1][i]['numberic'] = numberic;
+            numberic++;
+        }
+
+        var total = values[0][0].TOTAL;
+        var numberOfPages = Math.ceil((total / config.appConfig.ORDERS_PER_TABLE));
+
+        for (var i = 0; i < numberOfPages; i++) {
+            pageList.push({
+                url: `${url}?page=${i + 1}`,
+                isCurPage: (i + 1) === +page,
+                val: i + 1
+            });
+        }
+
+        var prevPage = {
+            url: `${url}?page=${+page - 1}`,
+            isOK: 1 !== +page
+        }
+
+        var nextPage = {
+            url: `${url}?page=${+page + 1}`,
+            isOK: numberOfPages !== +page
+        }
+        console.log(values[1]);
+
+        res.render('admin_order_management', {
+            layout: 'admin_layout',
+            orders: values[1],
+            pages: pageList,
+            prevPage,
+            nextPage
+        });
+    });
+});
+
+router.post('/order_manage/update', admin_restrict, (req, res) => {
+    orderRepo.updateStatus(req.body.idToUpdate, req.body.status).then(result => {
+        console.log(req.body.status);
+        var vm = {
+            feedback: "Cập nhật trạng thái công",
+            isSuccess: true
+        }
+        res.send(vm)
+    }).catch(err => {
+        console.log("Error occurs when UPDATE ORDER , err:" + err);
+        var vm = {
+            feedback: "Lỗi khi cập nhật trạng thái ",
+            isSuccess: false
+        }
+        res.send(vm)
+    });
+});
+
+router.post('/order_manage/delete', admin_restrict, (req, res) => {
+    orderRepo.deleteProductOrder(req.body.idToDelete).then(result => {
+        orderRepo.deleteOrder(req.body.idToDelete).then(result => {
+            var vm = {
+                feedback: "Xóa order thành công",
+                isSuccess: true
+            }
+            res.send(vm)
+
+        }).catch(err => {
+            console.log("Error occurs when DELETE ORDER , err:" + err);
+            var vm = {
+                feedback: "Lỗi khi xóa order ",
+                isSuccess: false
+            }
+            res.send(vm)
+        });
+    }).catch(err => {
+        console.log("Error occurs when DELETE PRODUCT_ORDER , err:" + err);
+        var vm = {
+            feedback: "Lỗi khi xóa product_order ",
+            isSuccess: false
+        }
+        res.send(vm)
+    });
+});
 module.exports = router;

@@ -1,0 +1,227 @@
+<div class="web_container" style="width: 95%; min-height: 700px">
+    <div class="web_body_wraper">
+        <div id="orderManager">
+            <h1>Quản lý đơn hàng</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th style="width: 5%">
+                                <i class="fa fa-list" aria-hidden="true"></i>No.
+                            </th>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 5%">Trạng thái</th>
+                            <th style="width: 15%">Email người đặt hàng</th>
+                            <th style="width: 5%">Ngày đặt hàng</th>
+                            <th style="width: 10%">Tổng tiền (VND)</th>
+                            <th style="width: 5%">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each orders}} {{#if this.not_delivery}}
+                        <tr class="table-danger">
+                            {{/if}} {{#if this.delivering}}
+                            <tr class="table-primary">
+                                {{/if}} {{#if this.delivered}}
+                                <tr class="table-success">
+                                    {{/if}} {{#if this.delivery_cancel}}
+                                    <tr class="table-dark">
+                                        {{/if}}
+                                        <td>{{this.numberic}}</td>
+                                        <td>{{this.id_order}}</td>
+                                        {{#if this.not_delivery}}
+                                        <td>Chưa giao</td>
+                                        {{/if}} {{#if this.delivering}}
+                                        <td>Đang giao</td>
+                                        {{/if}} {{#if this.delivered}}
+                                        <td>Đã giao</td>
+                                        {{/if}} {{#if this.delivery_cancel}}
+                                        <td>Đã hủy</td>
+                                        {{/if}}
+                                        <td>{{this.email}}</td>
+                                        <td>{{this.time_place}}</td>
+                                        <td>{{this.total_price}}</td>
+                                        <td>
+                                            <div>
+                                                <button class="btn btn-warning btnUpdateOrder">Update</button>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <button class="btn btn-danger btnDeleteOrder">Delete</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-end">
+                    {{#with prevPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-prev">
+                        <a class="page-link" href="{{this.url}}">Previous</a>
+                    </li>
+                    {{/if}} {{/with}} {{#each pages}} {{#if this.isCurPage}}
+                    <li class="page-item active">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="{{this.url}}">{{this.val}}</a>
+                    </li>
+                    {{/if}} {{/each}} {{#with nextPage}} {{#if this.isOK}}
+                    <li class="page-item pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{else}}
+                    <li class="page-item disabled pagination-next">
+                        <a class="page-link" href="{{this.url}}">Next</a>
+                    </li>
+                    {{/if}} {{/with}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- BEGIN Modal update Item -->
+<div class="modal fade" id="modalUpdateItem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
+                    Cập nhật trạng thái đơn hàng
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <form action="/admin/order_manage/update" method="POST" id="updateStatusForm">
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>Trạng thái</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input type="hidden" name="idToUpdate" id="idToUpdate">
+                            <select required="required" class="form-control" id="status" name="status">
+                                <option value="0">Chưa giao</option>
+                                <option value="1">Đang giao</option>
+                                <option value="2">Đã giao</option>
+                                <option value="3">Hủy</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_update" style="margin-right: 40%; width: 60%;"></div>
+                    <button id="btn_submit_edit" type="submit" class="btn btn-success">Cập nhật</button>
+                    <button id="btn_cancel_update" class="btn btn-info">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- BEGIN Modal delete Item -->
+<div class="modal fade" id="modalDeleteItem" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="float: left; display: flex;">
+                <h4 class="modal-title" style="float: left; display: flex;">
+                    Bạn muốn xóa đơn hàng:
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×</button>
+            </div>
+            <form action="/admin/order_manage/delete" method="POST" id="deleteOrderForm">
+                <div class="modal-body modal_information">
+                    <div class="row">
+                        <div class="col-md-3 entry_information">
+                            <label>ID</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input class="form-control" type="text" readonly="readonly" name="idToDelete" id="idToDelete">
+                        </div>
+                        <div class="col-md-3 entry_information">
+                            <label>Trạng thái</label>
+                        </div>
+                        <div class="col-md-9 entry_information">
+                            <input readonly="readonly" class="form-control" id="statusDelete" name="status" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal_information">
+                    <div id="submit_result_delete" style="margin-right: 40%; width: 60%;"></div>
+                    <button id="btn_submit_delete" type="submit" class="btn btn-danger">Ok, xóa</button>
+                    <button id="btn_cancel_delete" class="btn btn-info">Hủy</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.btnUpdateOrder').click(function () {
+            var $row = $(this).closest('tr');
+            var $data = $row.find("td");
+            var idToUpdate = $data.eq(1).text();
+            $("#idToUpdate").val(idToUpdate);
+            $("#modalUpdateItem").modal('show');
+            $('#updateStatusForm').submit(function () {
+                $(this).ajaxSubmit({
+                    error: function (xhr) {
+                        console.log(xhr.status);
+                    },
+                    success: function (response) {
+                        $("#submit_result_update").text(response.feedback);
+                        if (response.isSuccess === true) {
+                            $("#submit_result_update").css({ "color": "#4cd137", "font-size": "20px" });
+                        }
+                        else {
+                            $("#submit_result_update").css({ "color": "red", "font-size": "20px" });
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+
+        $('.btnDeleteOrder').click(function () {
+            var $row = $(this).closest('tr');
+            var $data = $row.find("td");
+            var idToDelete = $data.eq(1).text();
+            var status = $data.eq(2).text();
+            $("#idToDelete").val(idToDelete);
+            $("#statusDelete").val(status);
+            $("#modalDeleteItem").modal('show');
+            $('#deleteOrderForm').submit(function () {
+                $(this).ajaxSubmit({
+                    error: function (xhr) {
+                        console.log(xhr.status);
+                    },
+                    success: function (response) {
+                        $("#submit_result_delete").text(response.feedback);
+                        if (response.isSuccess === true) {
+                            $("#submit_result_delete").css({ "color": "#4cd137", "font-size": "20px" });
+                        }
+                        else {
+                            $("#submit_result_delete").css({ "color": "red", "font-size": "20px" });
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+
+        $('#btn_cancel_update').click(function () {
+            $("#modalUpdateItem").modal('hide');
+        });
+
+        $('#btn_cancel_delete').click(function () {
+            $("#modalDeleteItem").modal('hide');
+        });
+
+    });
+</script>

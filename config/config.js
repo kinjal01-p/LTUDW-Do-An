@@ -37,5 +37,6 @@ exports.appConfig = {
       PRODUCTS_PER_TABLE: 20,
       TYPES_PER_TABLE: 20,
       MANUFACTURERS_PER_TABLE: 20,
+      ORDERS_PER_TABLE: 20
 }
 
