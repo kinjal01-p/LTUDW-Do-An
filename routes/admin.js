@@ -22,6 +22,7 @@ var storage = multer.diskStorage({
 });
 
 var admin_restrict = require('../middle-wares/admin_restrict.js');
+var restrict_logged = require('../middle-wares/restrict_logged.js');
 var restrict_admin_logged = require('../middle-wares/restrict_admin_logged.js');
 
 var adminRepo = require('../database/repos/adminRepo.js');
@@ -601,11 +602,11 @@ router.post('/product_manage/delete', admin_restrict, (req, res, next) => {
     });
 });
 
-router.get('/login', restrict_admin_logged, (req, res) => {
+router.get('/login', restrict_logged, restrict_admin_logged, (req, res) => {
     res.render('admin/login');
 });
 
-router.post('/login', restrict_admin_logged, (req, res) => {
+router.post('/login', restrict_logged, restrict_admin_logged, (req, res) => {
     recaptcha.verify(req, function (error, data) {
         if (!error) {
             var user = {
