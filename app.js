@@ -17,6 +17,7 @@ var config = require('./config/config.js');
 var handle_layout = require('./middle-wares/handle_layout.js');
 var restrict = require('./middle-wares/restrict.js');
 var restrict_checkout = require('./middle-wares/restrict_check_out.js');
+var restrict_admin_logged = require('./middle-wares/restrict_admin_logged.js');
 
 var indexRouter = require('./routes/index');
 var detailsRouter = require('./routes/details_product');
@@ -110,6 +111,9 @@ app.use(session({
 app.use(handle_layout);
 //
 
+app.use('/admin', adminRouter);
+app.use(restrict_admin_logged);
+
 app.use('/', indexRouter);
 app.use('/details', detailsRouter);
 app.use('/search', searchRouter);
@@ -119,7 +123,6 @@ app.use('/account', accountRouter);
 app.use('/check_out', restrict_checkout, checkoutRouter);
 app.use('/history', restrict, history);
 
-app.use('/admin', adminRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

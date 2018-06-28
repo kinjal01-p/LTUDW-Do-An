@@ -95,38 +95,4 @@
     </div>
   </form>
   {{/with}}
-  <form method="POST" action="/account/delete" style="margin: 20px; padding: 20px; background: #dfe6e9;">
-    <div style="margin: 0 auto; position: relative; text-align: center;width: 50%">
-      <button class="btn btn-danger col-md-12" id="removeAccount" type="reset">Xoá tài khoản</button>
-      <div style="display: none;" id="choice">
-        <h3>Bạn có muốn xoá tài khoản không?</h3>
-        <button class="btn btn-danger" type="submit">Có</button>
-        <button class="btn btn-primary" type="reset" id="choiceNO">Không</button>
-      </div>
-    </div>
-  </form>
 </div>
-
-{{#contentFor "pageJS"}}
-<script>
-  $(document).ready(function () {
-    $("#removeAccount").click(function () {
-      $("#choice").show();
-      $("#removeAccount").hide();
-    });
-    $("#choiceNO").click(function () {
-      $("#choice").hide();
-      $("#removeAccount").show();
-    });
-    $("#areaChangePassword").hide();
-    $("#isChangePassword").change(function () {
-      if (this.checked) {
-        $("#areaChangePassword").show();
-        $("#areaChangePassword input").prop('required', true);
-      } else {
-        $("#areaChangePassword").hide();
-        $("#areaChangePassword input").prop('required', false);
-      }
-    });
-  });
-</script> {{/contentFor}}

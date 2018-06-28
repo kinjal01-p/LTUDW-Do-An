@@ -24,8 +24,3 @@ exports.editProfile = user => {
       where email = '${user.email}'`;
       return db.save(sql);
 }
-
-exports.remove = user => {
-      var sql = `delete from client where password = '${user.password}' and email = '${user.email}'`;
-      return db.save(sql);
-}

@@ -21,6 +21,15 @@ var storage = multer.diskStorage({
 
 });
 
+var admin_restrict = require('../middle-wares/admin_restrict.js');
+var restrict_admin_logged = require('../middle-wares/restrict_admin_logged.js');
+
+var adminRepo = require('../database/repos/adminRepo.js');
+var SHA256 = require('crypto-js/sha256');
+
+const Recaptcha = require('express-recaptcha').Recaptcha
+const recaptcha = new Recaptcha(config.captchaConfig.RECAPTCHA_SITE_KEY, config.captchaConfig.RECAPTCHA_SECRET_KEY);
+
 var storage2 = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, './public/resources')
@@ -55,7 +64,7 @@ var upload = multer({
     }
 }).single('product_img');
 
-router.get('/dashboard', function (req, res, next) {
+router.get('/dashboard', admin_restrict, function (req, res) {
     Promise.all([productRepo.countPerType(), productRepo.loadTotalRevenuePerType()]).then(values => {
         //console.log(values[0]);
         //console.log(values[1]);
@@ -67,11 +76,11 @@ router.get('/dashboard', function (req, res, next) {
     });
 });
 
-router.get('/', function (req, res, next) {
-    res.redirect('admin/dashboard');
+router.get('/', admin_restrict, function (req, res, next) {
+    res.redirect('/admin/dashboard');
 });
 
-router.get('/product_manage', function (req, res, next) {
+router.get('/product_manage', admin_restrict, function (req, res, next) {
     var page = req.query.page;
     var url = '/admin' + req.url;
 
@@ -125,7 +134,7 @@ router.get('/product_manage', function (req, res, next) {
     });
 });
 
-router.get('/type_manage', function (req, res, next) {
+router.get('/type_manage', admin_restrict, function (req, res, next) {
     var page = req.query.page;
     var url = '/admin' + req.url;
 
@@ -180,7 +189,7 @@ router.get('/type_manage', function (req, res, next) {
 });
 
 //rout for manu management page
-router.get('/manufacturer_manage', function (req, res, next) {
+router.get('/manufacturer_manage', admin_restrict, function (req, res, next) {
     var page = req.query.page;
     var url = '/admin' + req.url;
 
@@ -234,7 +243,7 @@ router.get('/manufacturer_manage', function (req, res, next) {
     });
 });
 //rout for add manufac
-router.post('/manufacturer_manage/add', (req, res) => {
+router.post('/manufacturer_manage/add', admin_restrict, (req, res) => {
 
     manuRepo.isExist(req.body.manuName).then(result => {
         if (result[0].result < 1) {
@@ -257,8 +266,7 @@ router.post('/manufacturer_manage/add', (req, res) => {
                     res.send(vm);
                 });
             });
-        }
-        else {
+        } else {
             var vm = {
                 feedback: 'Nhà xuất bản đã tồn tại',
                 isSuccess: false
@@ -268,7 +276,7 @@ router.post('/manufacturer_manage/add', (req, res) => {
     });
 });
 //rout for edit manu
-router.post('/manufacturer_manage/edit', (req, res) => {
+router.post('/manufacturer_manage/edit', admin_restrict, (req, res) => {
     manuRepo.isExist(req.body.newManuName).then(isExist => {
         if (isExist[0].result < 1) {
             manuRepo.updateNameById(req.body.manuId, req.body.newManuName).then(result => {
@@ -288,8 +296,7 @@ router.post('/manufacturer_manage/edit', (req, res) => {
                 }
                 res.send(vm);
             });
-        }
-        else {
+        } else {
             var vm = {
                 feedback: 'Nhà xuất bản đã tồn tại',
                 isSuccess: false
@@ -300,7 +307,7 @@ router.post('/manufacturer_manage/edit', (req, res) => {
 });
 
 //rout for delete manu
-router.post('/manufacturer_manage/delete', (req, res) => {
+router.post('/manufacturer_manage/delete', admin_restrict, (req, res) => {
     manuRepo.delete(req.body.manuIdToDelete).then(result => {
         console.log("DELETE MANUFACTURER: Name: " + req.body.manuNameToDelete + " - ID: " + req.body.manuIdToDelete);
         var vm = {
@@ -319,7 +326,7 @@ router.post('/manufacturer_manage/delete', (req, res) => {
 });
 
 //rout for add type
-router.post('/type_manage/add', (req, res) => {
+router.post('/type_manage/add', admin_restrict, (req, res) => {
 
     typeRepo.isExist(req.body.typeName).then(result => {
         if (result[0].result < 1) {
@@ -342,8 +349,7 @@ router.post('/type_manage/add', (req, res) => {
                     res.send(vm);
                 });
             });
-        }
-        else {
+        } else {
             console.log("aaaa");
 
             var vm = {
@@ -355,7 +361,7 @@ router.post('/type_manage/add', (req, res) => {
     });
 });
 //rout for edit type
-router.post('/type_manage/edit', (req, res) => {
+router.post('/type_manage/edit', admin_restrict, (req, res) => {
     typeRepo.isExist(req.body.newTypeName).then(isExist => {
         if (isExist[0].result < 1) {
             typeRepo.updateNameById(req.body.typeId, req.body.newTypeName).then(result => {
@@ -375,8 +381,7 @@ router.post('/type_manage/edit', (req, res) => {
                 }
                 res.send(vm);
             });
-        }
-        else {
+        } else {
             var vm = {
                 feedback: 'Loại sản phẩm đã tồn tại',
                 isSuccess: false
@@ -387,7 +392,7 @@ router.post('/type_manage/edit', (req, res) => {
 });
 
 //rout for delete type
-router.post('/type_manage/delete', (req, res) => {
+router.post('/type_manage/delete', admin_restrict, (req, res) => {
     typeRepo.delete(req.body.typeIdToDelete).then(result => {
         console.log("DELETE PRODUCT TYPE: Name: " + req.body.typeNameToDelete + " - ID: " + req.body.typeIdToDelete);
         var vm = {
@@ -406,7 +411,7 @@ router.post('/type_manage/delete', (req, res) => {
 });
 
 //rout for add product
-router.post('/product_manage/upload', (req, res, next) => {
+router.post('/product_manage/upload', admin_restrict, (req, res, next) => {
     upload(req, res, function (err) {
         if (err) {
             err.name = '';
@@ -417,8 +422,7 @@ router.post('/product_manage/upload', (req, res, next) => {
                 isSuccess: false
             };
             res.send(vm)
-        }
-        else {
+        } else {
             authorRepo.isExist(req.body.author).then(result => {
                 if (result[0].result == 0) {
                     authorRepo.getMaxId().then(maxId => {
@@ -437,19 +441,19 @@ router.post('/product_manage/upload', (req, res, next) => {
                                 productRepo.add(newProductId, product_name, decription, price,
                                     import_price, product_type, product_manu,
                                     newAuthorId, publish_date, in_stock).then(result => {
-                                        var vm = {
-                                            feedback: "Thêm sản phẩm mới thành công",
-                                            isSuccess: true
-                                        }
-                                        res.send(vm)
-                                    }).catch(err => {
-                                        console.log("Error occurs when ADD new Product , err:" + err);
-                                        var vm = {
-                                            feedback: "Lỗi khi thêm mới sản phẩm",
-                                            isSuccess: false
-                                        }
-                                        res.send(vm)
-                                    });
+                                    var vm = {
+                                        feedback: "Thêm sản phẩm mới thành công",
+                                        isSuccess: true
+                                    }
+                                    res.send(vm)
+                                }).catch(err => {
+                                    console.log("Error occurs when ADD new Product , err:" + err);
+                                    var vm = {
+                                        feedback: "Lỗi khi thêm mới sản phẩm",
+                                        isSuccess: false
+                                    }
+                                    res.send(vm)
+                                });
                             });
                         }).catch(err => {
                             console.log("Error occurs when ADD new author , err:" + err);
@@ -461,8 +465,7 @@ router.post('/product_manage/upload', (req, res, next) => {
                         });
 
                     });
-                }
-                else {
+                } else {
                     var existedAuthorID = parseInt(result[0].id);
                     productRepo.getMaxId().then(maxId => {
                         var newProductId = parseInt(maxId[0].maxId) + 1;
@@ -477,19 +480,19 @@ router.post('/product_manage/upload', (req, res, next) => {
                         productRepo.add(newProductId, product_name, decription, price,
                             import_price, product_type, product_manu,
                             existedAuthorID, publish_date, in_stock).then(result => {
-                                var vm = {
-                                    feedback: "Thêm sản phẩm mới thành công",
-                                    isSuccess: true
-                                }
-                                res.send(vm)
-                            }).catch(err => {
-                                console.log("Error occurs when ADD new Product , err:" + err);
-                                var vm = {
-                                    feedback: "Lỗi khi thêm mới sản phẩm",
-                                    isSuccess: false
-                                }
-                                res.send(vm)
-                            });
+                            var vm = {
+                                feedback: "Thêm sản phẩm mới thành công",
+                                isSuccess: true
+                            }
+                            res.send(vm)
+                        }).catch(err => {
+                            console.log("Error occurs when ADD new Product , err:" + err);
+                            var vm = {
+                                feedback: "Lỗi khi thêm mới sản phẩm",
+                                isSuccess: false
+                            }
+                            res.send(vm)
+                        });
                     });
                 }
             });
@@ -499,7 +502,7 @@ router.post('/product_manage/upload', (req, res, next) => {
 });
 
 //rout for edit product
-router.post('/product_manage/edit', (req, res, next) => {
+router.post('/product_manage/edit', admin_restrict, (req, res, next) => {
     uploadEdit(req, res, function (err) {
         if (err) {
             err.name = '';
@@ -510,8 +513,7 @@ router.post('/product_manage/edit', (req, res, next) => {
                 isSuccess: false
             };
             res.send(vm)
-        }
-        else {
+        } else {
             authorRepo.isExist(req.body.author).then(result => {
                 console.log(result[0].result);
 
@@ -525,19 +527,19 @@ router.post('/product_manage/edit', (req, res, next) => {
                                 req.body.product_type, req.body.product_manu,
                                 newAuthorId, req.body.publish_date,
                                 req.body.in_stock, req.body.import_price).then(result => {
-                                    var vm = {
-                                        feedback: "Cập nhật sản phẩm thành công",
-                                        isSuccess: true
-                                    }
-                                    res.send(vm)
-                                }).catch(err => {
-                                    console.log("Error occurs when UPDATE PRODUCT , err:" + err);
-                                    var vm = {
-                                        feedback: "Lỗi khi cập nhật sản phẩm",
-                                        isSuccess: false
-                                    }
-                                    res.send(vm)
-                                });
+                                var vm = {
+                                    feedback: "Cập nhật sản phẩm thành công",
+                                    isSuccess: true
+                                }
+                                res.send(vm)
+                            }).catch(err => {
+                                console.log("Error occurs when UPDATE PRODUCT , err:" + err);
+                                var vm = {
+                                    feedback: "Lỗi khi cập nhật sản phẩm",
+                                    isSuccess: false
+                                }
+                                res.send(vm)
+                            });
                         }).catch(err => {
                             console.log("Error occurs when ADD new author , err:" + err);
                             var vm = {
@@ -548,29 +550,28 @@ router.post('/product_manage/edit', (req, res, next) => {
                         });
 
                     });
-                }
-                else {
+                } else {
                     var existedAuthorID = parseInt(result[0].id);
                     productRepo.updateProduct(req.body.productIdToEdit, req.body.product_name,
                         req.body.decription, req.body.price,
                         req.body.product_type, req.body.product_manu,
                         existedAuthorID, req.body.publish_date,
                         req.body.in_stock, req.body.import_price).then(result => {
-                            console.log(result[0]);
+                        console.log(result[0]);
 
-                            var vm = {
-                                feedback: "Cập nhật sản phẩm thành công",
-                                isSuccess: true
-                            }
-                            res.send(vm)
-                        }).catch(err => {
-                            console.log("Error occurs when UPDATE PRODUCT , err:" + err);
-                            var vm = {
-                                feedback: "Lỗi khi cập nhật sản phẩm",
-                                isSuccess: false
-                            }
-                            res.send(vm)
-                        });
+                        var vm = {
+                            feedback: "Cập nhật sản phẩm thành công",
+                            isSuccess: true
+                        }
+                        res.send(vm)
+                    }).catch(err => {
+                        console.log("Error occurs when UPDATE PRODUCT , err:" + err);
+                        var vm = {
+                            feedback: "Lỗi khi cập nhật sản phẩm",
+                            isSuccess: false
+                        }
+                        res.send(vm)
+                    });
 
                 }
             });
@@ -580,7 +581,7 @@ router.post('/product_manage/edit', (req, res, next) => {
 });
 
 //rout for delete product
-router.post('/product_manage/delete', (req, res, next) => {
+router.post('/product_manage/delete', admin_restrict, (req, res, next) => {
     var productIdToDelete = req.body.productIdToDelete;
     console.log(req.body);
 
@@ -600,12 +601,48 @@ router.post('/product_manage/delete', (req, res, next) => {
     });
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', restrict_admin_logged, (req, res) => {
     res.render('admin/login');
 });
 
-router.post('/login', (req, res) => {
-    
+router.post('/login', restrict_admin_logged, (req, res) => {
+    recaptcha.verify(req, function (error, data) {
+        if (!error) {
+            var user = {
+                username: req.body.username,
+                password: SHA256(req.body.password + req.body.username).toString()
+            };
+
+            adminRepo.login(user).then(rows => {
+                if (rows.length > 0) {
+                    req.session.isAdmin = true;
+                    req.session.user = rows[0];
+
+                    res.redirect('/admin');
+                } else {
+                    res.render('admin/login', {
+                        isError: true,
+                        isErrorCaptcha: false,
+                        username: req.body.username
+                    });
+                }
+            });
+        } else {
+            res.render('admin/login', {
+                isError: false,
+                isErrorCaptcha: true,
+                username: req.body.username
+            });
+        }
+    });
+});
+
+router.post('/logout', admin_restrict, (req, res) => {
+    req.session.isLogged = false;
+    req.session.user = null;
+    req.session.isAdmin = false;
+
+    res.redirect('/');
 });
 
 module.exports = router;
