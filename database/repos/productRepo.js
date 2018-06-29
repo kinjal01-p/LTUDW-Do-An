@@ -233,3 +233,8 @@ exports.delete =  (id) => {
       console.log(sql);
       return db.load(sql);
 }
+
+exports.checkInStock = (id_product, amount) => {
+      var sql = `select (in_stock >= ${amount}) as isOK from product where id_product = '${id_product}'`;
+      return db.load(sql);
+}

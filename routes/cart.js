@@ -55,8 +55,22 @@ router.post('/edit', function (req, res) {
         amount: +req.body.amount
     };
 
-    cartRepo.edit(req.session.cart, item);
-    res.redirect(req.headers.referer);
+    if (cartRepo.checkExist(req.session.cart, item.id_product) == false) {
+        res.send({
+            feedback: "Lỗi! Sản phẩm không nằm trong giỏ hàng để cập nhật."
+        });
+    } else {
+        productRepo.checkInStock(item.id_product, item.amount).then(rows => {
+            if (rows[0].isOK) {
+                cartRepo.edit(req.session.cart, item);
+                res.redirect(req.headers.referer);
+            } else {
+                res.send({
+                    feedback: "Lỗi! Sản phẩm này không có đủ số lượng mà quý khách yêu cầu."
+                });
+            }
+        });
+    }
 });
 
 router.post('/remove', function (req, res) {
