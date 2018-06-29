@@ -1,10 +1,9 @@
 var db = require('../db.js');
 
 exports.isExist = name =>{
-    var sql = `select count(author.id_author) as result,
-    author.id_author as id
+    var sql = `select author.id_author as id
     from author
-    where  lower(author.name) = lower(N'${name}');`;
+    where lower(author.name) = lower(N'${name}')`;
     return db.load(sql);
 }
 exports.getMaxId = () => {
@@ -14,6 +13,6 @@ exports.getMaxId = () => {
 }
 
 exports.add = (id,name) =>{
-    var sql = `insert into author (id_author, name) values (${id},'${name}');`;
+    var sql = `insert into author (id_author, name) values ('${id}','${name}');`;
     return db.load(sql);
 }

@@ -426,7 +426,7 @@ router.post('/product_manage/upload', admin_restrict, (req, res, next) => {
             res.send(vm)
         } else {
             authorRepo.isExist(req.body.author).then(result => {
-                if (result[0].result == 0) {
+                if (result.length <= 0) {
                     authorRepo.getMaxId().then(maxId => {
                         var newAuthorId = parseInt(maxId[0].maxId) + 1;
                         authorRepo.add(newAuthorId, req.body.author).then(result => {

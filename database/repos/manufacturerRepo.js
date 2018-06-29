@@ -54,7 +54,7 @@ exports.loadByOffSetWithUsingProduct = offSet => {
       count(product.id_product) as using_products
       from manufacturer left join product on manufacturer.id_manufacturer = product.id_manufacturer
       where manufacturer.id_manufacturer!=0 
-      group by manufacturer.id_manufacturer limit  ${config.appConfig.MANUFACTURERS_PER_TABLE} offset ${offSet};`;
+      group by manufacturer.id_manufacturer limit  ${config.appConfig.MANUFACTURERS_PER_TABLE} offset ${offSet * config.appConfig.MANUFACTURERS_PER_TABLE};`;
       return db.load(sql);
 }
 
