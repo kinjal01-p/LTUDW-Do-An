@@ -45,7 +45,9 @@ exports.updateNameById = (id,newName) => {
 
 exports.single = id_manufacturer => {
       var sql = `select * from manufacturer where id_manufacturer = ${id_manufacturer}`;
+      return db.load(sql);
 }
+
 exports.loadByOffSetWithUsingProduct = offSet => {
       var sql = `select manufacturer.id_manufacturer as id,
       manufacturer.name as manu_name,
