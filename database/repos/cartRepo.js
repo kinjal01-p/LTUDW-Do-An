@@ -26,3 +26,13 @@ exports.remove = (cart, id_product) => {
         }
     }
 }
+
+exports.checkExist = (cart, id_product) => {
+    for (var i = 0; i < cart.length; i++) {
+        if (id_product === cart[i].id_product) {
+            return true;
+        }
+    }
+
+    return false;
+}
