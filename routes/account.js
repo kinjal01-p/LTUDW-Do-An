@@ -13,7 +13,7 @@ const Recaptcha = require('express-recaptcha').Recaptcha
 const recaptcha = new Recaptcha(config.captchaConfig.RECAPTCHA_SITE_KEY, config.captchaConfig.RECAPTCHA_SECRET_KEY);
 
 router.get('/register', retrict_logged, (req, res) => {
-      res.render('account_register', {
+      res.render('account/register', {
             isError: false,
             isNotMatch: false,
             isErrorCaptcha: false,
@@ -38,7 +38,7 @@ router.post('/register', (req, res) => {
                   };
 
                   if (req.body.password != req.body.repassword) {
-                        res.render('account_register', {
+                        res.render('account/register', {
                               isError: false,
                               isNotMatch: true,
                               isErrorCaptcha: false,
@@ -62,7 +62,7 @@ router.post('/register', (req, res) => {
                                     }
                               });
                         }).catch(error => {
-                              res.render('account_register', {
+                              res.render('account/register', {
                                     isError: true,
                                     isNotMatch: false,
                                     isErrorCaptcha: false,
@@ -76,7 +76,7 @@ router.post('/register', (req, res) => {
                   }
             } else {
                   //error code
-                  res.render('account_register', {
+                  res.render('account/register', {
                         isError: false,
                         isNotMatch: false,
                         isErrorCaptcha: true,
@@ -106,7 +106,7 @@ router.post('/login', (req, res) => {
 
                               res.redirect('/');
                         } else {
-                              res.render('account_login', {
+                              res.render('account/login', {
                                     isError: true,
                                     isErrorCaptcha: false,
                                     email: req.body.email
@@ -114,7 +114,7 @@ router.post('/login', (req, res) => {
                         }
                   });
             } else {
-                  res.render('account_login', {
+                  res.render('account/login', {
                         isError: false,
                         isErrorCaptcha: true,
                         email: req.body.email
@@ -141,13 +141,13 @@ router.post('/edit', retrict, (req, res) => {
 
             accountRepo.login(user).then(rows => {
                   if (rows.length <= 0) {
-                        res.render('account_profile', {
+                        res.render('account/profile', {
                               newError: false,
                               oldError: true
                         });
                   } else {
                         if (req.body.newpassword != req.body.repassword) {
-                              res.render('account_profile', {
+                              res.render('account/profile', {
                                     newError: true,
                                     oldError: false
                               });
@@ -192,7 +192,7 @@ router.post('/edit', retrict, (req, res) => {
 });
 
 router.get('/profile', retrict, (req, res) => {
-      res.render('account_profile', {
+      res.render('account/profile', {
             newError: false,
             oldError: false
       });

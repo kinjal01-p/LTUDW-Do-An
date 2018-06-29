@@ -70,7 +70,7 @@ router.get('/dashboard', admin_restrict, function (req, res) {
     Promise.all([productRepo.countPerType(), productRepo.loadTotalRevenuePerType()]).then(values => {
         //console.log(values[0]);
         //console.log(values[1]);
-        res.render('admin_dashboard', {
+        res.render('admin/dashboard', {
             layout: 'admin_layout',
             productPerTypeArr: values[0],
             revenuePerTypeArr: values[1]
@@ -126,7 +126,7 @@ router.get('/product_manage', admin_restrict, function (req, res, next) {
             isOK: numberOfPages !== +page
         }
 
-        res.render('admin_product_management', {
+        res.render('admin/product_management', {
             layout: 'admin_layout',
             products: values[1],
             pages: pageList,
@@ -180,7 +180,7 @@ router.get('/type_manage', admin_restrict, function (req, res, next) {
             isOK: numberOfPages !== +page
         }
 
-        res.render('admin_type_management', {
+        res.render('admin/type_management', {
             layout: 'admin_layout',
             types: values[1],
             pages: pageList,
@@ -235,7 +235,7 @@ router.get('/manufacturer_manage', admin_restrict, function (req, res, next) {
             isOK: numberOfPages !== +page
         }
 
-        res.render('admin_manufacturer_management', {
+        res.render('admin/manufacturer_management', {
             layout: 'admin_layout',
             manus: values[1],
             pages: pageList,
@@ -732,7 +732,7 @@ router.get('/order_manage',admin_restrict, (req, res) => {
         }
         console.log(values[1]);
 
-        res.render('admin_order_management', {
+        res.render('admin/order_management', {
             layout: 'admin_layout',
             orders: values[1],
             pages: pageList,
