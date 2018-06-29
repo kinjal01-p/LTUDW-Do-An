@@ -36,3 +36,15 @@ exports.checkExist = (cart, id_product) => {
 
     return false;
 }
+
+exports.amountActual = (cart, item) => {
+    var amount = 0;
+    for (var i = 0; i < cart.length; i++) {
+        if (cart[i].id_product === item.id_product) {
+            amount = +cart[i].amount;
+            break;
+        }
+    }
+
+    return amount + item.amount;
+}

@@ -135,7 +135,7 @@
                               {{else}}
                               <h4 style="color: orange;">{{number_format this.price}} đ</h4>
                               {{#if ../layoutVM.isLogged}}
-                              <form method="POST" action="/cart/add">
+                              <form method="POST" action="/cart/add" id="addItemForm">
                                     <input name="id_product" type="hidden" value="{{this.id_product}}">
                                     <input name="amount" type="hidden" value="1">
                                     <button style="width: 100%; margin-top: 10px; text-align: center;" type="submit" class="btn btn-info">

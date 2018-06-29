@@ -59,7 +59,7 @@
 
             {{#if product.out_of_stock}} {{else}} {{#if layoutVM.isLogged}}
             <div style="background:#dfe6e9; width: 50%; padding: 20px;">
-                <form method="POST" action="/cart/add">
+                <form method="POST" action="/cart/add" id="addItemForm">
                     <input name="id_product" type="hidden" value="{{product.id_product}}">
                     <div class="form-group row">
                         <div class="col-md-3 entry_information">

@@ -45,8 +45,17 @@ router.post('/add', function (req, res) {
         amount: +req.body.amount
     };
 
-    cartRepo.add(req.session.cart, item);
-    res.redirect(req.headers.referer);
+    var amountAfter = amountActual(req.session.cart, item);
+    productRepo.checkInStock(item.id_product, amountAfter).then(rows => {
+        if (rows[0].isOK) {
+            cartRepo.add(req.session.cart, item);
+            res.redirect(req.headers.referer);
+        } else {
+            res.send({
+                feedback: "Lỗi! Sản phẩm này không có đủ số lượng mà quý khách yêu cầu."
+            });
+        }
+    });
 });
 
 router.post('/edit', function (req, res) {
