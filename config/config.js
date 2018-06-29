@@ -3,7 +3,7 @@ exports.mysqlConfig = {
       port: 3306,
       user: process.env.mysqlUser,
       password: process.env.mysqlPass,
-      database: 'heroku_8bdc6337206fdaa'
+      database: process.env.mysqlDatabase
 }
 
 exports.mysqlSessionConfig = {
@@ -11,7 +11,7 @@ exports.mysqlSessionConfig = {
       port: 3306,
       user: process.env.mysqlUser,
       password: process.env.mysqlPass,
-      database: 'heroku_8bdc6337206fdaa',
+      database: process.env.mysqlDatabase,
       createDatabaseTable: true,
       schema: {
             tableName: 'sessions',
