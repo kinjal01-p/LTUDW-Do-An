@@ -26,7 +26,7 @@
                 </div>
                 <div class="cart_extend_info col-md-2">
                     <div class="cart_product_quantity_row row">
-                        <form action="/cart/edit" method="POST" style="margin-top: 20px;">
+                        <form action="/cart/edit" method="POST" style="margin-top: 20px;" id="updateItemForm">
                             <input name="id_product" type="hidden" value="{{this.product.id_product}}">
                             <input type="number" class="form-control" min="1" value="{{this.amount}}" name="amount" />
                             <button type="submit" class="btn btn-success" style="margin-top: 10px;">Update</button>
@@ -51,3 +51,49 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="noticeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thông báo</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <span id="message" style="font-size=20px;"></span>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#noticeModal').on('hidden.bs.modal', function (e) {
+            window.location.reload(true);
+        });
+
+        $('#updateItemForm').submit(function () {
+            $(this).ajaxSubmit({
+                error: function (xhr) {
+                    console.log(xhr.status);
+                },
+                success: function (response) {
+                    $("#message").html(response.feedback);
+                    $("#noticeModal").modal('show');
+                    console.log(response.feedback);
+                }
+            });
+            return false;
+        });
+    });
+</script>
