@@ -85,7 +85,7 @@
                 {{#each sameTypeProducts}}
                 <a href="/details/{{this.id_product}}" class="relate_product_wraper">
                     <div class="relate_product_img_warper">
-                        <img id="relate_product_img" src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="">
+                        <img id="relate_product_img" src="{{../layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="">
                     </div>
                     <div class="relate_product_name">{{this.name}}</div>
                     <div class="relate_product_price">{{number_format this.price}} đ</div>
@@ -102,7 +102,7 @@
                 {{#each sameManufacturerProducts}}
                 <a href="/details/{{this.id_product}}" class="relate_product_wraper">
                     <div class="relate_product_img_warper">
-                        <img id="relate_product_img" src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="">
+                        <img id="relate_product_img" src="{{../layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="">
                     </div>
                     <div class="relate_product_name">{{this.name}}</div>
                     <div class="relate_product_price">{{number_format this.price}} đ</div>

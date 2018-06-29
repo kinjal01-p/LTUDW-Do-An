@@ -62,7 +62,7 @@
                 <div class="box">
                     <a href="/details/{{this.id_product}}">
                         <span class="image">
-                            <img src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
+                            <img src="{{../layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
                         </span>
                         <span class="title">
                             {{this.name}}
@@ -77,7 +77,7 @@
                             <input name="amount" type="hidden" value="1">
                             <button style="width: 100%; margin-top: 10px; text-align: center;" type="submit" class="btn btn-info">
                                 <span>
-                                    <img src="{{layoutVM.imageUrl}}/checkout.png" />
+                                    <img src="{{../layoutVM.imageUrl}}/checkout.png" />
                                 </span>
                             </button>
                         </form>
