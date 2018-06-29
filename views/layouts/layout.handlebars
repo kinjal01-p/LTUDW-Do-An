@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="shortcut icon" type="image/png" href="/resources/imgs/logo.png" />
+  <link rel="shortcut icon" type="image/png" href="{{layoutVM.imageUrl}}/logo.png" />
 
   <link rel="stylesheet" href="/stylesheets/global_style.css">
 
@@ -24,7 +24,7 @@
 <body>
   <nav class="navbar navbar-expand-lg sticky-top navbar-light color_navbar">
     <a class="navbar-brand" href="/">
-      <img src="/resources/imgs/logo.png" />
+      <img src="{{layoutVM.imageUrl}}/logo.png" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
             name="q">
           <button class="btn btn-danger my-2 my-sm-0" type="submit">
             <i>
-              <img src="/resources/imgs/icons/search.png" />
+              <img src="{{layoutVM.imageUrl}}/search.png" />
             </i>
             <span>Tìm kiếm</span>
           </button>
@@ -47,7 +47,7 @@
         <!--END AN-MT: them tìm kiếm -->
         <button class="btn btn-danger advance_search" id="btnAdvanceSearch">
           <i>
-            <img src="/resources/imgs/icons/search.png" />
+            <img src="{{layoutVM.imageUrl}}/search.png" />
           </i>
           <span>Nâng cao</span>
         </button>
@@ -58,7 +58,7 @@
         <div style="display: block; margin: auto 20px;">
           <a class="check_out" href="/cart">
             <i>
-              <img src="/resources/imgs/icons/checkout.png" />
+              <img src="{{layoutVM.imageUrl}}/checkout.png" />
             </i>
             <span class="text">Giỏ hàng</span>
             <span class="count">{{layoutVM.countCart}}</span>
@@ -69,7 +69,7 @@
             aria-expanded="false">
             <button class="btn btn-primary">
               <i>
-                <img src="/resources/imgs/icons/user.png" />
+                <img src="{{layoutVM.imageUrl}}/user.png" />
               </i>
               <span>Chào, {{layoutVM.curUser.name}}</span>
             </button>
@@ -87,7 +87,7 @@
         <div style="display: block; margin: auto 20px;">
           <button class="btn btn-primary" id="btnLogin">
             <i>
-              <img src="/resources/imgs/icons/user.png" />
+              <img src="{{layoutVM.imageUrl}}/user.png" />
             </i>
             <span>Đăng nhập</span>
           </button>
@@ -327,7 +327,7 @@
           <div style="margin: 0 auto; position: relative; text-align: center;width: 100%">
             <button type="submit" class="btn btn-primary col-md-12">
               <span>
-                <img src="/resources/imgs/icons/search.png" />
+                <img src="{{layoutVM.imageUrl}}/search.png" />
                 <span>Tìm kiếm</span>
               </span>
             </button>

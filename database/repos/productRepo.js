@@ -176,7 +176,7 @@ exports.updateAmount = (id_product, amount) => {
       return db.save(sql);
 }
 exports.getMaxId = () => {
-      var sql = `SELECT max(product.id_product) as maxId FROM store.product;`;
+      var sql = `SELECT max(product.id_product) as maxId FROM heroku_8bdc6337206fdaa.product;`;
       return db.load(sql);
 }
 
@@ -210,7 +210,7 @@ exports.loadByOffSetWithUsingOrder = offSet => {
 }
 
 exports.updateProduct = (id,name,description,price,id_class,id_manufacturer,id_author,publish_date,in_stock,import_price) => {
-      var sql = `UPDATE store.product
+      var sql = `UPDATE heroku_8bdc6337206fdaa.product
       SET name = N'${name}',
       description = N'${description}',
       price = ${price},

@@ -1,17 +1,17 @@
 exports.mysqlConfig = {
-      host: 'localhost',
+      host: process.env.mysqlUrl,
       port: 3306,
-      user: 'root',
-      password: 'root',
-      database: 'store'
+      user: process.env.mysqlUser,
+      password: process.env.mysqlPass,
+      database: 'heroku_8bdc6337206fdaa'
 }
 
 exports.mysqlSessionConfig = {
-      host: 'localhost',
+      host: process.env.mysqlUrl,
       port: 3306,
-      user: 'root',
-      password: 'root',
-      database: 'store',
+      user: process.env.mysqlUser,
+      password: process.env.mysqlPass,
+      database: 'heroku_8bdc6337206fdaa',
       createDatabaseTable: true,
       schema: {
             tableName: 'sessions',
@@ -24,8 +24,8 @@ exports.mysqlSessionConfig = {
 }
 
 exports.captchaConfig = {
-      RECAPTCHA_SITE_KEY: '6LcBCmEUAAAAAEg5fI_NypLK_mKBzK17e2-Tpzlv',
-      RECAPTCHA_SECRET_KEY: '6LcBCmEUAAAAAHjs5-y9kTuzAEly8utepaCFdjD4'
+      RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
+      RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY
 }
 
 exports.appConfig = {
@@ -40,3 +40,6 @@ exports.appConfig = {
       ORDERS_PER_TABLE: 20
 }
 
+exports.imageConfig = {
+      url: 'https://res.cloudinary.com/tqbdev/image/upload/v1530232903/resources'
+}

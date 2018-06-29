@@ -35,7 +35,7 @@
                   {{#each top_new}}
                   <a href="/details/{{this.id_product}}" class="top_ten_product" id="imgResize">
                         <div class="top_ten_img">
-                              <img src="/resources/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                              <img src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
                         </div>
                   </a>
                   {{/each}}
@@ -46,7 +46,7 @@
                   {{#each top_sale}}
                   <a href="/details/{{this.id_product}}" class="top_ten_product" id="imgResize">
                         <div class="top_ten_img">
-                              <img src="/resources/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                              <img src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
                         </div>
                   </a>
                   {{/each}}
@@ -57,7 +57,7 @@
                   {{#each top_viewed}}
                   <a href="/details/{{this.id_product}}" class="top_ten_product" id="imgResize">
                         <div class="top_ten_img">
-                              <img src="/resources/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
+                              <img src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" title="{{this.name}}" alt="{{this.id_product}}.jpg" style="width:100%">
                         </div>
                   </a>
                   {{/each}}
@@ -125,7 +125,7 @@
                   <div class="box">
                         <a href="/details/{{this.id_product}}">
                               <span class="image">
-                                    <img src="/resources/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
+                                    <img src="{{layoutVM.imageUrl}}/{{this.id_product}}.jpg" alt="{{this.id_product}}.jpg">
                               </span>
                               <span class="title">
                                     {{this.name}}
@@ -140,7 +140,7 @@
                                     <input name="amount" type="hidden" value="1">
                                     <button style="width: 100%; margin-top: 10px; text-align: center;" type="submit" class="btn btn-info">
                                           <span>
-                                                <img src="/resources/imgs/icons/checkout.png" />
+                                                <img src="{{layoutVM.imageUrl}}/checkout.png" />
                                           </span>
                                     </button>
                               </form>

@@ -45,7 +45,7 @@
                         {{#each products}}
                         <tr>
                               <td>
-                                    <img src="/resources/{{this.product.id_product}}.jpg" width="35%" alt="{{this.product.id_product}}.jpg">
+                                    <img src="{{layoutVM.imageUrl}}/{{this.product.id_product}}.jpg" width="35%" alt="{{this.product.id_product}}.jpg">
                               </td>
                               <td>
                                     <a href="/details/{{this.product.id_product}}">{{this.product.name}}</a>
